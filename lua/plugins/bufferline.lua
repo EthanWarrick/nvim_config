@@ -10,6 +10,7 @@ Plugin.opts = {
     offsets = {
       {filetype = 'NvimTree'}
     },
+    separator_style = "slant",
   },
   -- :help bufferline-highlights
   highlights = {
