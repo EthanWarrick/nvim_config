@@ -6,7 +6,7 @@ Plugin.cmd = {'NvimTreeToggle'}
 
 -- See :help nvim-tree-setup
 Plugin.opts = {
-  hijack_cursor = false,
+  hijack_cursor = true,
   on_attach = function(bufnr)
     local bufmap = function(lhs, rhs, desc)
       vim.keymap.set('n', lhs, rhs, {buffer = bufnr, desc = desc})
