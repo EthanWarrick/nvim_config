@@ -32,7 +32,15 @@ Plugin.opts = {
     'css',
     'json',
     'c',
-    'cpp'
+    'cpp',
+    'bash',
+    'cmake',
+    'git_config',
+    'git_rebase',
+    'make',
+    'python',
+    'regex',
+    'yaml'
   },
 }
 
