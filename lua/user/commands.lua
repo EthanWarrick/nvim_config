@@ -37,3 +37,38 @@ vim.api.nvim_exec([[
     endfunction
     nnoremap <F12> :call GenerateCtags()<CR> 
 ]], false)
+
+-- TODO: this should be coverted to lua
+-- Avoid scrolling when switching buffers
+vim.api.nvim_create_autocmd('BufLeave', {
+  desc = 'Save window view position',
+  group = group,
+  callback = function()
+    vim.api.nvim_exec([[
+      if !exists("w:SavedBufView")
+          let w:SavedBufView = {}
+      endif
+      let w:SavedBufView[bufnr("%")] = winsaveview()
+    ]], false)
+  end,
+})
+
+-- TODO: this should be coverted to lua
+-- Avoid scrolling when switching buffers
+vim.api.nvim_create_autocmd('BufEnter', {
+  desc = 'Restore window view position',
+  group = group,
+  callback = function()
+    vim.api.nvim_exec([[
+      let buf = bufnr("%")
+      if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+          let v = winsaveview()
+          let atStartOfFile = v.lnum == 1 && v.col == 0
+          if atStartOfFile && !&diff
+              call winrestview(w:SavedBufView[buf])
+          endif
+          unlet w:SavedBufView[buf]
+      endif
+    ]], false)
+  end,
+})
