@@ -2,7 +2,7 @@ local Plugin = {'neovim/nvim-lspconfig'}
 local user = {}
 
 Plugin.dependencies =  {
-  -- {'hrsh7th/cmp-nvim-lsp'},
+  {'hrsh7th/cmp-nvim-lsp'},
   {'williamboman/mason-lspconfig.nvim', lazy = true},
   {
     'williamboman/mason.nvim',

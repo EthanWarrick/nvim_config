@@ -109,5 +109,5 @@ function Plugin.config()
   })
 end
 
-return
--- return Plugin
+-- return
+return Plugin
