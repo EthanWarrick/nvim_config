@@ -25,3 +25,8 @@ vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>') -- Buffer previous
 vim.keymap.set('n', '<leader>p', ':let @" = expand("%")<cr>') -- Copy relative path
 vim.keymap.set('n', '<leader>P', ':let @" = expand("%:p")<cr>') -- Copy absolute path
 
+-- Insert Newline
+-- vim.keymap.set('n', '<leader>o', ':<C-u>call append(line("."),   repeat([""], v:count1))<CR>') -- Insert newline below
+-- vim.keymap.set('n', '<leader>O', ':<C-u>call append(line(".")-1,   repeat([""], v:count1))<CR>') -- Insert newline below
+vim.keymap.set('n', '<leader>o', 'o<Esc>') -- Insert newline below
+vim.keymap.set('n', '<leader>O', 'O<Esc>') -- Insert newline below
