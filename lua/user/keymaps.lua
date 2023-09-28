@@ -31,3 +31,12 @@ vim.keymap.set('n', '<leader>P', ':let @" = expand("%:p")<cr>') -- Copy absolute
 -- vim.keymap.set('n', '<leader>O', ':<C-u>call append(line(".")-1,   repeat([""], v:count1))<CR>') -- Insert newline below
 vim.keymap.set('n', '<leader>o', 'o<Esc>') -- Insert newline below
 vim.keymap.set('n', '<leader>O', 'O<Esc>') -- Insert newline below
+
+-- Toggle diagnostic messages
+vim.keymap.set('n', '<leader>d', function()
+  if vim.diagnostic.is_disabled(0) then
+    vim.diagnostic.enable()
+  else
+    vim.diagnostic.disable()
+  end
+end)
