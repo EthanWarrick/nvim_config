@@ -15,6 +15,14 @@ Plugin.opts = {
       statusline = {'NvimTree'}
     }
   },
+  sections = {
+    lualine_c = {
+      {
+        'filename',
+        path = 1,
+      }
+    },
+  },
 }
 
 function Plugin.init()
