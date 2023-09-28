@@ -16,6 +16,7 @@ vim.keymap.set({'n', 'x'}, 'x', '"_x')
 -- Buffer Commands
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>') -- Write
 vim.keymap.set('n', '<leader>q', '<cmd>quit<cr>') -- Quit
+vim.keymap.set('n', '<leader>Q', '<cmd>quitall<cr>') -- Quit
 vim.keymap.set('n', '<leader>bq', '<cmd>bdelete<cr>') -- Buffer quit
 vim.keymap.set('n', '<leader>bl', '<cmd>buffer #<cr>') -- Buffer last
 vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>') -- Buffer next
