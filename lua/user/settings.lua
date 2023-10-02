@@ -10,7 +10,7 @@ vim.opt.shiftwidth = 2 -- Number of spaces for (auto)indent
 vim.opt.expandtab = true -- Turn tab into spaces
 vim.opt.signcolumn = 'yes'
 vim.opt.cursorline = true -- Highlight the entire line containing the cursor
-
+vim.opt.colorcolumn = '81' -- Highlight a vertical column for visual character limit
 
 vim.opt.termguicolors = true
 
