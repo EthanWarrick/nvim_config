@@ -14,3 +14,4 @@ vim.opt.colorcolumn = '81' -- Highlight a vertical column for visual character l
 
 vim.opt.termguicolors = true
 
+vim.g.editorconfig = true -- Enables .editorconfig files for project specific formatting
