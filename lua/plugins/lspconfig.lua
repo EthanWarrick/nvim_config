@@ -2,7 +2,7 @@ local Plugin = {'neovim/nvim-lspconfig'}
 local user = {}
 
 Plugin.dependencies =  {
-  {'hrsh7th/cmp-nvim-lsp'},
+  {'hrsh7th/cmp-nvim-lsp', enabled=false},
   {'williamboman/mason-lspconfig.nvim'},
 }
 
@@ -50,13 +50,13 @@ function Plugin.config()
   -- See :help lspconfig-global-defaults
   local lspconfig = require('lspconfig')
   local lsp_defaults = lspconfig.util.default_config
-
+--[[
   lsp_defaults.capabilities = vim.tbl_deep_extend(
     'force',
     lsp_defaults.capabilities,
     require('cmp_nvim_lsp').default_capabilities()
   )
-
+]]
   local group = vim.api.nvim_create_augroup('lsp_cmds', {clear = true})
 
   vim.api.nvim_create_autocmd('LspAttach', {
