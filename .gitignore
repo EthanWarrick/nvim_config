@@ -2,8 +2,9 @@
 .*
 ~*
 
-# ignore vim session file
+# ignore these vim files
 Session.vim
+/spell
 
 # --------------------------------------------------------
 # BEGIN Explictly Allowed Files (i.e. do NOT ignore these)
