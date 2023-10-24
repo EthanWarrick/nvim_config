@@ -1,0 +1,14 @@
+# ignore all files starting with . or ~
+.*
+~*
+
+# ignore vim session file
+Session.vim
+
+# --------------------------------------------------------
+# BEGIN Explictly Allowed Files (i.e. do NOT ignore these)
+# --------------------------------------------------------
+
+# track these files, if they exist
+!.editorconfig
+!.gitignore
