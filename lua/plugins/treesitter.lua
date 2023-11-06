@@ -57,7 +57,7 @@ Plugin.opts = {
   },
 }
 
-function Plugin.config(name, opts)
+function Plugin.config(_, opts)
   require('nvim-treesitter.configs').setup(opts)
 end
 
