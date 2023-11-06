@@ -1,15 +1,15 @@
-local Plugin = {'hrsh7th/nvim-cmp', enabled=false}
+local Plugin = {'hrsh7th/nvim-cmp'}
 
 Plugin.dependencies = {
   -- Sources
-  {'hrsh7th/cmp-buffer', enabled=false},
-  {'hrsh7th/cmp-path', enabled=false},
-  {'saadparwaiz1/cmp_luasnip', enabled=false},
-  {'hrsh7th/cmp-nvim-lsp', enabled=false},
+  {'hrsh7th/cmp-buffer'},
+  {'hrsh7th/cmp-path'},
+  {'saadparwaiz1/cmp_luasnip'},
+  {'hrsh7th/cmp-nvim-lsp'},
 
   -- Snippets
-  {'L3MON4D3/LuaSnip', enabled=false},
-  {'rafamadriz/friendly-snippets', enabled=false},
+  {'L3MON4D3/LuaSnip'},
+  {'rafamadriz/friendly-snippets'},
 }
 
 Plugin.event = 'InsertEnter'
