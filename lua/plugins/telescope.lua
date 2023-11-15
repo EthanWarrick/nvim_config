@@ -19,7 +19,13 @@ function Plugin.init()
   vim.keymap.set('n', '<leader>fs', '<cmd>Telescope current_buffer_fuzzy_find layout_strategy=vertical<cr>')
 end
 
-function Plugin.config()
+Plugin.opts = {
+  defaults = {
+  }
+}
+
+function Plugin.config(_, opts)
+  require('telescope').setup(opts)
   require('telescope').load_extension('fzf')
 end
 
