@@ -46,6 +46,7 @@ Plugin.opts = {
     'markdown',
     'python',
     'regex',
+    'rst',
     'rust',
     'ssh_config',
     'toml',
