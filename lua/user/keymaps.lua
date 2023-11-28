@@ -25,6 +25,7 @@ vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>') -- Buffer previous
 -- Copy path
 vim.keymap.set('n', '<leader>p', ':let @" = expand("%")<cr>') -- Copy relative path
 vim.keymap.set('n', '<leader>P', ':let @" = expand("%:p")<cr>') -- Copy absolute path
+vim.keymap.set('n', '<C-p>', ':let @+ = @%<cr>') -- Copy relative path to system clipboard
 
 -- Insert Newline
 vim.keymap.set('n', '<leader>o', 'o<Esc>k') -- Insert newline below
