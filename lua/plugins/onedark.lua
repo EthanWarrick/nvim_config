@@ -3,6 +3,8 @@ local Plugin = {'navarasu/onedark.nvim'}
 
 Plugin.name = 'onedark'
 
+Plugin.priority = 1000
+
 Plugin.opts = {
   -- Main options --
   style = 'dark', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
@@ -42,5 +44,10 @@ Plugin.opts = {
     background = true,    -- use background color for virtual text
   },
 }
+
+Plugin.config = function(_, opts)
+  require('onedark').setup(opts)
+  require('onedark').load() -- load the colorscheme here
+end
 
 return Plugin
