@@ -7,7 +7,8 @@ Plugin.event = 'VeryLazy'
 -- See :help lualine.txt
 Plugin.opts = {
   options = {
-    theme = 'onedark',
+    -- theme = 'onedark',
+    theme = 'catppuccin',
     icons_enabled = true,
     component_separators = '|',
     section_separators = '',

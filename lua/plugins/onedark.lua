@@ -1,5 +1,4 @@
--- local Plugin = {'joshdick/onedark.vim'}
-local Plugin = {'navarasu/onedark.nvim'}
+local Plugin = {'navarasu/onedark.nvim', enabled = false}
 
 Plugin.name = 'onedark'
 

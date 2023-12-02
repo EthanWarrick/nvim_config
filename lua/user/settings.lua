@@ -12,6 +12,6 @@ vim.opt.signcolumn     = 'yes'
 vim.opt.cursorline     = true   -- Highlight the entire line containing the cursor
 vim.opt.colorcolumn    = '81'   -- Highlight a vertical column for visual character limit
 
-vim.opt.termguicolors  = true
+vim.opt.termguicolors  = true   -- Helps with displaying colors correctly
 
 vim.g.editorconfig     = true   -- Enables .editorconfig files for project specific formatting
