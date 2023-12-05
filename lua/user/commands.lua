@@ -80,3 +80,23 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { "gitcommit", },
   command = [[setlocal spell spelllang=en_us]]
 })
+
+-- Use relative line numbers on the focused window if in normal mode.
+-- If in insert mode or the window is unfocused, use absolute line numbers.
+local numbertogglegroup = vim.api.nvim_create_augroup("numbertoggle", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+  pattern = "*",
+  callback = function()
+    vim.opt.statuscolumn =
+      '%s%C%=%{%v:relnum?"%r":"%0"..(float2nr(log10(line("$")))+1).."l"%} '
+  end,
+  group = numbertogglegroup,
+})
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
+  pattern = "*",
+  callback = function()
+    vim.opt.statuscolumn =
+      '%s%C%=%{%v:relnum?"%l":"%0"..(float2nr(log10(line("$")))+1).."l"%} '
+  end,
+  group = numbertogglegroup,
+})
