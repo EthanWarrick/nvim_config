@@ -151,3 +151,50 @@ Leader key: `Space`.
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Snippet engine. |
 | [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) | Collection of snippets. |
 
+## Motions vs Text-Objects
+> **_NOTE:_**  This section is based on my current understanding of
+vi/vim/neovim and may contradict official documentation.
+
+This topic is somewhat relevant when trying to make keymaps. Motions and
+text-objects often correspond, but this does not make them the same.
+Essentially, motions *move* the cursor while text-objects define some *area* of
+text. Typing `w` in **Normal Mode** performs a motion - it moves the cursor to
+the next word. Typing `yw` performs the yank operator on the *text-object* `w`
+representing the area of text from the initial cursor position to the next word.
+In this way both the `w` motion and text-object correspond to each other - both
+essentially mean 'from here to the next word'. They differ because because the
+motion just moves the cursor and the text-object is the data structure
+specifying an area of text passed to the operator.
+
+Another way to consider this is with modes. Motions are performed in **Normal
+Mode** and text-objects are given in **Operator-Pending Mode**. As a reminder,
+operators are commands like `y` (yank) and `d` (delete) while **Operator-Pending
+Mode** is the mode entered after an operator is performed. **Operator-Pending
+Mode** is specifically for supplying text-objects on which the given operator is
+performed. Operators are specifically distinguished from other vim commands
+because they initiate **Operator-Pending Mode** and perform their function on a
+text-object. Alternatively, non-operator vim commands include anything not
+operating on a text object. The command `i` (enter insert mode) isn't an
+operator because is isn't performed on a group of text. The command `r` isn't an
+operator because it only changes a single character.
+
+**Visual Mode** is kind of a special case that seems to except both motions and
+text objects. I believe that, actually, **Visual Mode** just has additional,
+corresponding keymappings to represent the selection one would expect.
+The selections made in **Visual Mode** can be passed to an operator as the
+needed text-object.
+
+All of this is to say that three keymappings are needed to implement custom
+keymaps emulating the standard vim motion/text-object functionality. 
+
+1. **Normal Mode** keymap: This is to provide the motion functionality - where
+you want the cursor to end up.
+2. **Operator-Pending Mode** keymap: This is to provide the text selection
+passed to an operator performed from normal mode.
+3. **Visual Mode** keymap: This is select the desired text within visual mode.
+
+These keymappings likely will need to be setup to perform specific commands or
+functions to make the desired movement and grab the desired text. A useful way
+to make text selections in **Operator-Pending Mode** is mapping to the `:normal`
+command followed by some visual mode selection. This allows for full text
+selection with some predefined visual mode sequence.
