@@ -6,6 +6,9 @@ Plugin.priority = 1000
 
 Plugin.opts = {
   flavour = "mocha", -- latte, frappe, macchiato, mocha
+  styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+        conditionals = {},
+  },
   color_overrides = {
     mocha = {
       rosewater = "#ffc9c9",
