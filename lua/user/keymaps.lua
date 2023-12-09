@@ -6,6 +6,11 @@ vim.keymap.set({'n', 'x', 'o'}, '<leader>h', '^')
 vim.keymap.set({'n', 'x', 'o'}, '<leader>l', 'g_')
 vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 
+-- Essentially creates a line text object
+--  - this is for operating on lines without counting the newline
+vim.keymap.set({'x', 'o'}, 'al', ":normal v0og_<CR>")
+vim.keymap.set({'x', 'o'}, 'il', ':normal v0og_<CR>')
+
 -- Basic clipboard interaction
 vim.keymap.set({'n', 'x'}, 'gy', '"+y') -- copy
 vim.keymap.set({'n', 'x'}, 'gp', '"+p') -- paste
