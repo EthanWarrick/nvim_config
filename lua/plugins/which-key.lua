@@ -1,4 +1,4 @@
-local Plugin = {'folke/which-key.nvim'}
+local Plugin = {'folke/which-key.nvim', enabled=false}
 
 Plugin.name = 'which-key'
 
