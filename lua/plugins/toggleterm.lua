@@ -1,4 +1,4 @@
-local Plugin = {'akinsho/toggleterm.nvim'}
+local Plugin = {'akinsho/toggleterm.nvim', enabled = false}
 
 Plugin.name = 'toggleterm'
 
