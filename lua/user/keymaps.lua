@@ -36,6 +36,12 @@ vim.keymap.set('n', '<C-p>', ':let @+ = @%<cr>') -- Copy relative path to system
 vim.keymap.set('n', '<leader>o', 'o<Esc>k') -- Insert newline below
 vim.keymap.set('n', '<leader>O', 'O<Esc>j') -- Insert newline above
 
+-- Indentation shortcuts
+vim.keymap.set('n', '<Tab>', '>>')
+vim.keymap.set('n', '<S-Tab>', '<<')
+vim.keymap.set('x', '<Tab>', '>gv')
+vim.keymap.set('x', '<S-Tab>', '<gv')
+
 -- Toggle diagnostic messages
 vim.keymap.set('n', '<leader>d', function()
   if vim.diagnostic.is_disabled(0) then
