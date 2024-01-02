@@ -52,3 +52,7 @@ vim.opt.ignorecase     = true   -- Ignore capitalization when searching a file
 vim.opt.smartcase      = true   -- Stop ignoring capitalization when searching a capital letter
 vim.opt.hlsearch       = false  -- Highlight search term
 -------------------------------------------------------------------------------
+
+-------------------------------- Diff Behavior --------------------------------
+vim.opt.diffopt        = "internal,filler,closeoff,foldcolumn:1,followwrap,algorithm:histogram"
+-------------------------------------------------------------------------------
