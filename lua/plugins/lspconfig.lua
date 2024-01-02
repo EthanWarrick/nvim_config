@@ -33,63 +33,54 @@ function Plugin.init()
       source = 'always',
     },
   })
-
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover,
-    {border = 'rounded'}
-  )
-
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.handlers.signature_help,
-    {border = 'rounded'}
-  )
 end
 
-function Plugin.config()
+function Plugin.config(_, opts)
   -- See :help lspconfig-global-defaults
   local lspconfig = require('lspconfig')
 
-  local group = vim.api.nvim_create_augroup('lsp_cmds', {clear = true})
+  if not opts.servers then
+    return -- Skip config if there are no servers specified
+  end
 
+  -- Define buffer specific keymaps on LspAttach event
+  local group = vim.api.nvim_create_augroup('lsp_cmds', {clear = true})
   vim.api.nvim_create_autocmd('LspAttach', {
     group = group,
     desc = 'LSP actions',
     callback = user.on_attach
   })
 
+  -- Gather configured servers to install
+	local ensure_installed = {} ---@type string[]
+	for server, server_opts in pairs(opts.servers) do
+		if server_opts then
+			server_opts = server_opts == true and {} or server_opts
+			-- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
+			ensure_installed[#ensure_installed + 1] = server
+		end
+	end
+
   -- See :help mason-lspconfig-settings
-  require('mason-lspconfig').setup({
-    ensure_installed = {
-      -- 'eslint',
-      -- 'tsserver',
-      -- 'html',
-      -- 'cssls',
-      'lua_ls',
-			'clangd',
-			-- 'pyright',
-    },
-    handlers = {
-      -- See :help mason-lspconfig-dynamic-server-setup
-      function(server)
-        -- See :help lspconfig-setup
-        lspconfig[server].setup({})
-      end,
-      ['tsserver'] = function()
-        lspconfig.tsserver.setup({
-          settings = {
-            completions = {
-              completeFunctionCalls = true
-            }
-          }
-        })
-      end,
-      ['lua_ls'] = function()
-        require('plugins.lsp.lua_ls')
-      end
-    }
+	require("mason-lspconfig").setup({
+		ensure_installed = ensure_installed,
+		handlers = {
+			-- See :help mason-lspconfig-dynamic-server-setup
+			function(server)
+				local server_opts = opts.servers[server]
+				if opts.setup and opts.setup[server] then
+					opts.setup[server](server, server_opts)
+					return
+				else
+					-- See :help lspconfig-setup
+					lspconfig[server].setup(server_opts)
+				end
+			end,
+		},
   })
 end
 
+-- Define keymapings
 function user.on_attach()
   local bufmap = function(mode, lhs, rhs)
     local opts = {buffer = true}
