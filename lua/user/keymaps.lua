@@ -8,8 +8,8 @@ vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 
 -- Essentially creates a line text object
 --  - this is for operating on lines without counting the newline
-vim.keymap.set({'x', 'o'}, 'al', ":normal v0og_<CR>")
-vim.keymap.set({'x', 'o'}, 'il', ':normal v0og_<CR>')
+vim.keymap.set({'x', 'o'}, 'al', ":normal 0vg_<CR>")
+vim.keymap.set({'x', 'o'}, 'il', ':normal ^vg_<CR>')
 
 -- Basic clipboard interaction
 vim.keymap.set({'n', 'x'}, 'gy', '"+y') -- copy
