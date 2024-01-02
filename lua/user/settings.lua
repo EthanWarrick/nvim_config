@@ -17,7 +17,6 @@ vim.opt.statuscolumn =
 vim.opt.number         = true                 -- Show line numbers
 vim.opt.relativenumber = true                 -- Show relative line numbers
 vim.opt.numberwidth    = 1                    -- Width for number column
-vim.opt.wrap           = true                 -- Wrap text
 
 -- Sign Column
 vim.opt.signcolumn     = 'auto'               -- Width for sign column
@@ -30,17 +29,26 @@ vim.opt.fillchars = {                         -- Fold column characters
 }
 -------------------------------------------------------------------------------
 
+------------------------------- Editor Behavior -------------------------------
 vim.opt.mouse          = 'a'    -- Turn on mouse mode
-vim.opt.ignorecase     = true   -- Ignore capitalization when searching a file
-vim.opt.smartcase      = true   -- Stop ignoring capitalization when searching a capital letter
-vim.opt.hlsearch       = false  -- Highlight search term
-vim.opt.breakindent    = true   -- Preserve indentation when wrapping text
+
+-- An .editorconfig file will override other options specified here
+vim.g.editorconfig     = true   -- Enables .editorconfig files for project specific formatting
+
+-- Default Tab Behavior
 vim.opt.tabstop        = 2      -- Tab size
 vim.opt.shiftwidth     = 2      -- Number of spaces for (auto)indent
 vim.opt.expandtab      = true   -- Turn tab into spaces
+
+-- Default User Interface Behavior
+vim.opt.wrap           = true   -- Wrap text
+vim.opt.breakindent    = true   -- Preserve indentation when wrapping text
 vim.opt.cursorline     = true   -- Highlight the entire line containing the cursor
 vim.opt.colorcolumn    = '81'   -- Highlight a vertical column for visual character limit
-
 vim.opt.termguicolors  = true   -- Helps with displaying colors correctly
 
-vim.g.editorconfig     = true   -- Enables .editorconfig files for project specific formatting
+-- Searching Behavior
+vim.opt.ignorecase     = true   -- Ignore capitalization when searching a file
+vim.opt.smartcase      = true   -- Stop ignoring capitalization when searching a capital letter
+vim.opt.hlsearch       = false  -- Highlight search term
+-------------------------------------------------------------------------------
