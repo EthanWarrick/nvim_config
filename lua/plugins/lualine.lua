@@ -4,8 +4,6 @@ Plugin.dependencies = {
   { "nvim-tree/nvim-web-devicons", lazy = true },
 }
 
-Plugin.name = "lualine"
-
 Plugin.event = "VeryLazy"
 
 local function modifiedSymbol()

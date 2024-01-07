@@ -6,8 +6,6 @@ Plugin.dependencies = {
   { "nvim-tree/nvim-web-devicons", lazy = true },
 }
 
-Plugin.name = "bufferline"
-
 Plugin.event = "VeryLazy"
 
 Plugin.opts = {
