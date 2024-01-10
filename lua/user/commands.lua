@@ -77,7 +77,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'Turn on spell check for specific files',
   group = group,
-  pattern = { "gitcommit", },
+  pattern = { "gitcommit", "markdown", },
   command = [[setlocal spell spelllang=en_us]]
 })
 
