@@ -18,8 +18,7 @@ return {
     "PratikBhusal/vim-grip",
     enabled = os.execute("which grip") == 0, -- Only enable if grip is installed
     ft = {'md', 'mkdn', 'mdown', 'markdown'}, -- Lazy load on these files
-    -- cmd = {'GripStart', 'GripExport'}, -- Lazy load on these commands
-    init = function()
+    config = function()
       vim.g.grip_default_map = 0 -- Don't use the default plugin keymappings
 
       vim.keymap.set('n', '<leader>m', '<cmd>GripStart<cr>') -- Start grip and open in browser
