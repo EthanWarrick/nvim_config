@@ -30,7 +30,7 @@ Plugin.opts = {
     colorcolumn = "",
   },
   keymaps = {
-    ["<Esc>"] = "actions.close",
+    ["<Esc>"] = {callback = 'actions.close', mode = 'n'},
   },
   view_options = {
     show_hidden = true,
