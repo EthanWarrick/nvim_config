@@ -5,7 +5,6 @@ Plugin.branch = '0.1.x'
 Plugin.dependencies = {
   {'nvim-lua/plenary.nvim'},
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
-  {"nvim-telescope/telescope-file-browser.nvim"},
 }
 
 Plugin.cmd = {'Telescope'}
@@ -18,7 +17,6 @@ function Plugin.init()
   vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
   vim.keymap.set('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>')
   vim.keymap.set('n', '<leader>fs', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
-  vim.keymap.set('n', '<leader>fE', '<cmd>Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal<cr>')
 end
 
 Plugin.opts = {
@@ -30,7 +28,6 @@ Plugin.opts = {
 function Plugin.config(_, opts)
   require('telescope').setup(opts)
   require('telescope').load_extension('fzf')
-  require("telescope").load_extension('file_browser')
 end
 
 return Plugin
