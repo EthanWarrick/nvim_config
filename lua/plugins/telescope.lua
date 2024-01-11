@@ -1,5 +1,7 @@
 local Plugin = {'nvim-telescope/telescope.nvim'}
 
+Plugin.enabled = false
+
 Plugin.branch = '0.1.x'
 
 Plugin.dependencies = {
@@ -9,6 +11,7 @@ Plugin.dependencies = {
     dependencies = { {"junegunn/fzf", build = "./install --bin"} }, -- Installs fzf utility
     build = 'make'
   },
+  {"mertzt89/grep-op.nvim", config = true, lazy = false},
 }
 
 Plugin.cmd = {'Telescope'}
@@ -25,7 +28,7 @@ end
 
 Plugin.opts = {
   defaults = {
-    layout_strategy = 'flex',
+    layout_strategy = 'vertical',
   }
 }
 
