@@ -53,8 +53,9 @@ vim.opt.smartcase      = true   -- Stop ignoring capitalization when searching a
 vim.opt.hlsearch       = false  -- Highlight search term
 
 -- Set command mode autocomplete behavior
---  Tab completes until the longest matching string, two tabs lists available commands
-vim.opt.wildmode       = "longest,longest,longest:full"
+--  Tab completes until the longest matching string, two tabs lists available commands,
+--  then one more tab selects the first match from the list.
+vim.opt.wildmode       = "longest,longest,longest:full,full"
 -------------------------------------------------------------------------------
 
 -------------------------------- Diff Behavior --------------------------------
