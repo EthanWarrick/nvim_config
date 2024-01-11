@@ -4,7 +4,11 @@ Plugin.branch = '0.1.x'
 
 Plugin.dependencies = {
   {'nvim-lua/plenary.nvim'},
-  {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    dependencies = { {"junegunn/fzf", build = "./install --bin"} }, -- Installs fzf utility
+    build = 'make'
+  },
 }
 
 Plugin.cmd = {'Telescope'}
