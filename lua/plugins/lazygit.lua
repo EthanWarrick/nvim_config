@@ -6,8 +6,8 @@ Plugin.dependencies = {
 
 Plugin.cmd = {'LazyGit', 'LazyGitConfig', 'LazyGitCurrentFile', 'LazyGitFilter', 'LazyGitFilterCurrentFile'}
 Plugin.keys = {
-  {'<leader>g', '<cmd>LazyGit<cr>', mode = 'n', desc = 'Open Lazygit Window'},
-  {'<leader>G', '<cmd>LazyGitFilter<cr>', mode = 'n', desc = 'Open Lazygit Commits Window'},
+  {'<leader>gg', '<cmd>LazyGit<cr>', mode = 'n', desc = 'Open Lazygit Window'},
+  -- {'<leader>G', '<cmd>LazyGitFilter<cr>', mode = 'n', desc = 'Open Lazygit Commits Window'},
 }
 
 function Plugin.config()
