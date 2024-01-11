@@ -20,7 +20,24 @@ Plugin.keys = {
   {'<leader>gc', function() require('fzf-lua').git_commits() end,          mode = 'n', desc = 'Current buffer fuzzy find'},
   {'<leader>gC', function() require('fzf-lua').git_bcommits() end,         mode = 'n', desc = 'Current buffer fuzzy find'},
   {'<leader>gb', function() require('fzf-lua').git_branches() end,         mode = 'n', desc = 'Current buffer fuzzy find'},
+
+  {'<leader>fs', ':set operatorfunc=GrepOperator<cr>g@',                   mode = 'n', desc = 'Grep operator'},
+  {'<leader>fs', ':<c-u>call GrepOperator(visualmode())<cr>',              mode = 'v', desc = 'Grep operator'},
 }
+
+vim.api.nvim_exec([[
+  function! GrepOperator(type)
+    if a:type ==# 'v'
+      normal! `<v`>y
+    elseif a:type ==# 'char'
+      normal! `[v`]y
+    else
+      return
+    endif
+
+    silent execute "lua require('fzf-lua').grep({search='" . @@ . "'})"
+  endfunction
+]], false)
 
 Plugin.config = true
 
