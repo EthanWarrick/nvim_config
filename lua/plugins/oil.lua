@@ -9,13 +9,7 @@ Plugin.dependencies =  {
 Plugin.cmd = {'Oil',}
 
 Plugin.keys = {
-  {
-    "<leader>fe",
-    function()
-      require("oil").open_float()
-    end,
-    { desc = "Oil" },
-  },
+  {'<leader>fe', function() require('oil').open_float() end, mode = 'n', desc = 'Oil'},
 }
 
 Plugin.opts = {
