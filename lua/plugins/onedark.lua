@@ -1,4 +1,4 @@
-local Plugin = {'navarasu/onedark.nvim', enabled = false}
+local Plugin = {'navarasu/onedark.nvim'}
 
 Plugin.name = 'onedark'
 
@@ -13,7 +13,7 @@ Plugin.opts = {
   cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
 
   -- toggle theme style ---
-  toggle_style_key = "<leader>c", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+  toggle_style_key = "<leader>C", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
   toggle_style_list = {'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light'}, -- List of styles to toggle between
 
   -- Change code style ---
@@ -46,7 +46,7 @@ Plugin.opts = {
 
 Plugin.config = function(_, opts)
   require('onedark').setup(opts)
-  require('onedark').load() -- load the colorscheme here
+  -- require('onedark').load() -- load the colorscheme here
 end
 
 return Plugin

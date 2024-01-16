@@ -7,3 +7,5 @@ load('user.settings')
 load('user.commands')
 load('user.keymaps')
 require('user.plugins')
+
+vim.cmd.colorscheme "catppuccin"
