@@ -29,7 +29,12 @@ function lazy.setup(plugins)
 end
 
 lazy.path = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-lazy.opts = {}
+
+lazy.opts = {
+  ui ={
+    border = "rounded",
+  },
+}
 
 lazy.setup({{import = 'plugins'}})
 
