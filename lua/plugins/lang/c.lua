@@ -45,7 +45,30 @@ return {
 
   -- Clangd Extensions
   {
-    "p00f/clangd_extensions.nvim",
+    'p00f/clangd_extensions.nvim',
+    dependencies = {'nvim-tree/nvim-web-devicons'},
+    ft = {'c', 'h', 'cpp', 'hpp', 'hxx',},
+    opts = {
+      ast = {
+        --These require codicons (https://github.com/microsoft/vscode-codicons)
+        role_icons = {
+          type = "",
+          declaration = "",
+          expression = "",
+          specifier = "",
+          statement = "",
+          ["template argument"] = "",
+        },
+        kind_icons = {
+          Compound = "",
+          Recovery = "",
+          TranslationUnit = "",
+          PackExpansion = "",
+          TemplateTypeParm = "",
+          TemplateTemplateParm = "",
+          TemplateParamObject = "",
+        },
+      },
+    },
   },
-
 }
