@@ -33,6 +33,15 @@ function Plugin.init()
       source = 'always',
     },
   })
+
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    {border = 'rounded'}
+  )
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    {border = 'rounded'}
+  )
 end
 
 function Plugin.config(_, opts)
@@ -90,7 +99,7 @@ function user.on_attach()
   -- You can search each function in the help page.
   -- For example :help vim.lsp.buf.hover()
 
-  bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+  bufmap('n', '<leader><space>', '<cmd>lua vim.lsp.buf.hover()<cr>')
   bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
   bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
   bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
