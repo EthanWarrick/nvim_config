@@ -1,13 +1,13 @@
-local Plugin = { "catppuccin/nvim"}
+local Plugin = { "catppuccin/nvim" }
 
-Plugin.name = 'catppuccin'
+Plugin.name = "catppuccin"
 
 Plugin.priority = 1000
 
 Plugin.opts = {
   flavour = "mocha", -- latte, frappe, macchiato, mocha
   styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-        conditionals = {},
+    conditionals = {},
   },
   color_overrides = {
     mocha = {
@@ -42,7 +42,7 @@ Plugin.opts = {
 }
 
 Plugin.config = function(_, opts)
-  require('catppuccin').setup(opts)
+  require("catppuccin").setup(opts)
   -- vim.cmd.colorscheme "catppuccin"
 end
 

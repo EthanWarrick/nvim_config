@@ -1,16 +1,15 @@
 return {
 
-	-- LSP
-	{
-		"neovim/nvim-lspconfig",
+  -- LSP
+  {
+    "neovim/nvim-lspconfig",
     optional = true,
-		opts = {
-			servers = {
-				-- Ensure mason installs the server
-				 pylsp = {},
-         ruff_lsp = {}, -- Additional ruff diagnostics
-			},
-		},
-	},
-
+    opts = {
+      servers = {
+        -- Ensure mason installs the server
+        pylsp = {},
+        ruff_lsp = {}, -- Additional ruff diagnostics
+      },
+    },
+  },
 }

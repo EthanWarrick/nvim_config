@@ -1,10 +1,10 @@
-local Plugin = {'williamboman/mason.nvim'}
+local Plugin = { "williamboman/mason.nvim" }
 
 Plugin.lazy = false
 
 -- See :help mason-settings
 Plugin.opts = {
-  ui = {border = 'rounded'}
+  ui = { border = "rounded" },
 }
 
 Plugin.config = function(_, opts)
@@ -35,4 +35,3 @@ Plugin.config = function(_, opts)
 end
 
 return Plugin
-

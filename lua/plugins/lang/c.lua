@@ -1,13 +1,13 @@
 return {
 
-	-- LSP
-	{
-		"neovim/nvim-lspconfig",
+  -- LSP
+  {
+    "neovim/nvim-lspconfig",
     optional = true,
-		opts = {
-			servers = {
-				-- Ensure mason installs the server
-				clangd = {
+    opts = {
+      servers = {
+        -- Ensure mason installs the server
+        clangd = {
           root_dir = function(fname)
             return require("lspconfig.util").root_pattern(
               "Makefile",
@@ -38,16 +38,16 @@ return {
             completeUnimported = true,
             clangdFileStatus = true,
           },
-				},
-			},
-		},
-	},
+        },
+      },
+    },
+  },
 
   -- Clangd Extensions
   {
-    'p00f/clangd_extensions.nvim',
-    dependencies = {'nvim-tree/nvim-web-devicons'},
-    ft = {'c', 'h', 'cpp', 'hpp', 'hxx',},
+    "p00f/clangd_extensions.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    ft = { "c", "h", "cpp", "hpp", "hxx" },
     opts = {
       ast = {
         --These require codicons (https://github.com/microsoft/vscode-codicons)

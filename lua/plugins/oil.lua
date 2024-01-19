@@ -1,15 +1,22 @@
-local Plugin = {'stevearc/oil.nvim'}
+local Plugin = { "stevearc/oil.nvim" }
 
-Plugin.dependencies =  {
-  {'nvim-tree/nvim-web-devicons'},
+Plugin.dependencies = {
+  { "nvim-tree/nvim-web-devicons" },
 }
 
 -- This isn't lazy loading correctly because its not loading on ':edit .' unless
 --  already loaded.
-Plugin.cmd = {'Oil',}
+Plugin.cmd = { "Oil" }
 
 Plugin.keys = {
-  {'<leader>fe', function() require('oil').open_float() end, mode = 'n', desc = 'Oil'},
+  {
+    "<leader>fe",
+    function()
+      require("oil").open_float()
+    end,
+    mode = "n",
+    desc = "Oil",
+  },
 }
 
 Plugin.opts = {
@@ -24,7 +31,7 @@ Plugin.opts = {
     colorcolumn = "",
   },
   keymaps = {
-    ["<Esc>"] = {callback = 'actions.close', mode = 'n'},
+    ["<Esc>"] = { callback = "actions.close", mode = "n" },
   },
   view_options = {
     show_hidden = true,

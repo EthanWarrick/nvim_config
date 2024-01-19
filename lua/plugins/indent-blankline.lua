@@ -1,10 +1,10 @@
-local Plugin = {'lukas-reineke/indent-blankline.nvim'}
+local Plugin = { "lukas-reineke/indent-blankline.nvim" }
 
-Plugin.name = 'indent_blankline'
+Plugin.name = "indent_blankline"
 
-Plugin.main = 'ibl'
+Plugin.main = "ibl"
 
-Plugin.event = {'BufReadPost', 'BufNewFile'}
+Plugin.event = { "BufReadPost", "BufNewFile" }
 
 -- See :help ibl.setup()
 Plugin.opts = {
@@ -13,7 +13,7 @@ Plugin.opts = {
     enabled = true,
   },
   indent = {
-    char = '▏',
+    char = "▏",
   },
 }
 

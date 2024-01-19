@@ -3,9 +3,9 @@ local load = function(mod)
   require(mod)
 end
 
-load('user.settings')
-load('user.commands')
-load('user.keymaps')
-require('user.plugins')
+load("user.settings")
+load("user.commands")
+load("user.keymaps")
+require("user.plugins")
 
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")

@@ -1,31 +1,31 @@
-local Plugin = {'nvim-lualine/lualine.nvim'}
+local Plugin = { "nvim-lualine/lualine.nvim" }
 
-Plugin.dependencies =  {
-  {'nvim-tree/nvim-web-devicons', lazy = true},
+Plugin.dependencies = {
+  { "nvim-tree/nvim-web-devicons", lazy = true },
 }
 
-Plugin.name = 'lualine'
+Plugin.name = "lualine"
 
-Plugin.event = 'VeryLazy'
+Plugin.event = "VeryLazy"
 
 -- See :help lualine.txt
 Plugin.opts = {
   options = {
     -- theme = 'onedark',
-    theme = 'catppuccin',
+    theme = "catppuccin",
     icons_enabled = true,
-    component_separators = '|',
-    section_separators = '',
+    component_separators = "|",
+    section_separators = "",
     disabled_filetypes = {
-      statusline = {'NvimTree'}
-    }
+      statusline = { "NvimTree" },
+    },
   },
   sections = {
     lualine_c = {
       {
-        'filename',
+        "filename",
         path = 1,
-      }
+      },
     },
   },
 }
