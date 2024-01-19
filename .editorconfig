@@ -1,0 +1,9 @@
+# Linux kernel EditorConfig file (https://editorconfig.org/)
+
+# Located at the project root
+root = true
+
+# Base settings for most files
+[*]
+indent_style = space
+indent_size = 2
