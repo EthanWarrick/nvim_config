@@ -8,6 +8,7 @@ return {
 			servers = {
 				-- Ensure mason installs the server
 				 pylsp = {},
+         ruff_lsp = {}, -- Additional ruff diagnostics
 			},
 		},
 	},
