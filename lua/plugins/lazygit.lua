@@ -18,6 +18,7 @@ function Plugin.config()
   vim.g.lazygit_config_file_path = { -- list of custom config file paths
     os.getenv("HOME") .. '/.config/lazygit/config.yml',
     os.getenv("HOME") .. '/.config/lazygit/private-config.yml',
+    -- vim.fn.stdpath('config') .. '/lazygit.yml',
   }
 end
 
