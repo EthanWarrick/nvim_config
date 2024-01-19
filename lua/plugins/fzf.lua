@@ -7,7 +7,6 @@ Plugin.dependencies = {
   {"junegunn/fzf", build = "./install --bin"}, -- Installs fzf utility
 }
 
-Plugin.cmd = {'FzfLua',}
 Plugin.keys = function()
   local fzf = require("fzf-lua")
   return {
