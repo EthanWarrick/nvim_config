@@ -1,5 +1,8 @@
 return {
 
+  -- Treesitter
+  require("util").ts_ensure_installed({ "markdown" }),
+
   -- LSP
   {
     "neovim/nvim-lspconfig",

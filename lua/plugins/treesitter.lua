@@ -24,8 +24,14 @@ Plugin.opts = {
   },
 }
 
+require("util").ts_ensure_installed({
+  "vim",
+  "vimdoc",
+})
+
 function Plugin.config(_, opts)
   require("nvim-treesitter.configs").setup(opts)
+  vim.cmd("TSUpdate all")
 end
 
 return Plugin

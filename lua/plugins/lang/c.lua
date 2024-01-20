@@ -1,5 +1,8 @@
 return {
 
+  -- Treesitter
+  require("util").ts_ensure_installed({ "c", "cpp", "make", "rst" }),
+
   -- LSP
   {
     "neovim/nvim-lspconfig",
