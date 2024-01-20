@@ -3,6 +3,7 @@ local M = {}
 function M.ts_ensure_installed(ensure)
   return {
     "nvim-treesitter/nvim-treesitter",
+    optional = true,
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
 
@@ -18,6 +19,7 @@ end
 function M.mason_ensure_installed(ensure)
   return {
     "williamboman/mason.nvim",
+    optional = true,
     opts = function(_, opts)
       if type(ensure) == "string" then
         ensure = { ensure }
