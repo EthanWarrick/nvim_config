@@ -1,5 +1,7 @@
 local Plugin = { "moll/vim-bbye" }
 
+Plugin.enabled = false
+
 Plugin.cmd = "Bdelete"
 
 function Plugin.init()
