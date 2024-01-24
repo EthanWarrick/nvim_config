@@ -1,5 +1,7 @@
 local Plugin = { "akinsho/bufferline.nvim" }
 
+Plugin.enabled = false
+
 Plugin.dependencies = {
   { "nvim-tree/nvim-web-devicons", lazy = true },
 }
