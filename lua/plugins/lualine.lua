@@ -35,6 +35,20 @@ local function readonlySymbol()
     separator = "",
   }
 end
+local function recordingSymbol()
+  return {
+    function()
+      local reg = vim.fn.reg_recording()
+      if reg == "" then
+        return ""
+      end -- not recording
+      return "Recording @" .. reg
+    end,
+    padding = 0,
+    separator = "",
+    color = { fg = "#f9905f" },
+  }
+end
 
 -- See :help lualine.txt
 Plugin.opts = {
@@ -63,6 +77,7 @@ Plugin.opts = {
       modifiedSymbol(),
       readonlySymbol(),
     },
+    lualine_x = { recordingSymbol(), "encoding", "fileformat", "filetype" },
   },
   inactive_sections = {
     lualine_c = {
@@ -75,7 +90,9 @@ Plugin.opts = {
 }
 
 function Plugin.init()
-  vim.opt.showmode = false
+  vim.opt.showmode = false -- Don't show current mode in command line
+  vim.opt.cmdheight = 0 -- Don't show commmand line
+  vim.opt.laststatus = 2 -- Determines if the status line covers multiple splits
 end
 
 return Plugin
