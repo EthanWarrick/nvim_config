@@ -22,6 +22,19 @@ local function modifiedSymbol()
     color = { fg = "green" },
   }
 end
+local function readonlySymbol()
+  return {
+    function()
+      local symbol = ""
+      if vim.bo.readonly then
+        symbol = ""
+      end
+      return symbol
+    end,
+    padding = 0,
+    separator = "",
+  }
+end
 
 -- See :help lualine.txt
 Plugin.opts = {
@@ -42,11 +55,13 @@ Plugin.opts = {
         path = 1,
         symbols = {
           modified = "",
+          readonly = "",
         },
         separator = "",
         padding = { left = 1, right = 0 },
       },
       modifiedSymbol(),
+      readonlySymbol(),
     },
   },
   inactive_sections = {
