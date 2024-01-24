@@ -31,7 +31,7 @@ require("util").ts_ensure_installed({
 
 function Plugin.config(_, opts)
   require("nvim-treesitter.configs").setup(opts)
-  vim.cmd("TSUpdate all")
+  vim.cmd("silent TSUpdate")
 end
 
 return Plugin
