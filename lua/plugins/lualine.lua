@@ -8,6 +8,21 @@ Plugin.name = "lualine"
 
 Plugin.event = "VeryLazy"
 
+local function modifiedSymbol()
+  return {
+    function()
+      local symbol = ""
+      if vim.bo.modified then
+        symbol = "●"
+      end
+      return symbol
+    end,
+    padding = 0,
+    separator = "",
+    color = { fg = "green" },
+  }
+end
+
 -- See :help lualine.txt
 Plugin.opts = {
   options = {
@@ -25,7 +40,13 @@ Plugin.opts = {
       {
         "filename",
         path = 1,
+        symbols = {
+          modified = "",
+        },
+        separator = "",
+        padding = { left = 1, right = 0 },
       },
+      modifiedSymbol(),
     },
   },
   inactive_sections = {
