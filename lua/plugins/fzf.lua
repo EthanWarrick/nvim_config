@@ -12,7 +12,7 @@ Plugin.keys = function()
   return {
     -- Buffers and Files --
     {
-      "<leader>fb",
+      "<leader>bb",
       function()
         fzf.buffers()
       end,
