@@ -1,5 +1,7 @@
 local Plugin = { "levouh/tint.nvim" }
 
+Plugin.event = { "WinEnter", }
+
 Plugin.opts = {
   tint = -70,
   window_ignore_function = function(winid)
