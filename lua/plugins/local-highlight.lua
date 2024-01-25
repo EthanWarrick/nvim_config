@@ -1,7 +1,5 @@
 local Plugin = { "tzachar/local-highlight.nvim" }
 
-Plugin.name = "local-highlight"
-
 Plugin.opts = {
   file_types = nil, -- If this is given only attach to this
   -- OR attach to every filetype except:

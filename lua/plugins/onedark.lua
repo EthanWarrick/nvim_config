@@ -1,7 +1,5 @@
 local Plugin = { "navarasu/onedark.nvim" }
 
-Plugin.name = "onedark"
-
 Plugin.priority = 1000
 
 Plugin.opts = {

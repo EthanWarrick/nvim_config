@@ -1,7 +1,5 @@
 local Plugin = { "folke/which-key.nvim", enabled = false }
 
-Plugin.name = "which-key"
-
 Plugin.event = "VeryLazy"
 
 function Plugin.init()
