@@ -130,22 +130,15 @@ Plugin.keys = function()
   }
 end
 
--- {'<leader>fs', ':set operatorfunc=GrepOperator<cr>g@',                   mode = 'n', desc = 'Grep operator'},
--- {'<leader>fs', ':<c-u>call GrepOperator(visualmode())<cr>',              mode = 'v', desc = 'Grep operator'},
--- vim.api.nvim_exec([[
---   function! GrepOperator(type)
---     if a:type ==# 'v'
---       normal! `<v`>y
---     elseif a:type ==# 'char'
---       normal! `[v`]y
---     else
---       return
---     endif
---
---     silent execute "lua require('fzf-lua').grep({search='" . @@ . "'})"
---   endfunction
--- ]], false)
-
-Plugin.config = true
+Plugin.config = function()
+  local actions = require("fzf-lua.actions")
+  require("fzf-lua").setup({
+    actions = {
+      files = {
+        ["default"] = actions.file_edit,
+      },
+    },
+  })
+end
 
 return Plugin
