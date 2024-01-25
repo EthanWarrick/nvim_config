@@ -1,6 +1,6 @@
 local Plugin = { "levouh/tint.nvim" }
 
-Plugin.event = { "WinEnter", }
+Plugin.event = { "WinEnter" }
 
 Plugin.opts = {
   tint = -70,
@@ -12,7 +12,7 @@ Plugin.opts = {
 
     -- Do not tint `terminal` or floating windows, tint everything else
     return buftype == "terminal" or floating or diff
-  end
+  end,
 }
 
 return Plugin

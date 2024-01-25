@@ -7,7 +7,7 @@ return {
     "json",
     "tsx",
     "typescript",
-}),
+  }),
 
   -- LSP
   {
