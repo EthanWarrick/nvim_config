@@ -10,7 +10,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     optional = true,
-    dependencies = { "folke/neodev.nvim", opts = {} },
+    dependencies = { "folke/neodev.nvim", config = true },
     opts = {
       servers = {
         -- Ensure mason installs the server
