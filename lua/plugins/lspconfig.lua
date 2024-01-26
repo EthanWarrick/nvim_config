@@ -85,27 +85,26 @@ end
 
 -- Define keymapings
 function user.on_attach()
-  local bufmap = function(mode, lhs, rhs)
-    local opts = { buffer = true }
+  local bufmap = function(mode, lhs, rhs, desc)
+    local opts = { buffer = true, desc = desc }
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 
   -- You can search each function in the help page.
   -- For example :help vim.lsp.buf.hover()
-
-  bufmap("n", "<leader><space>", "<cmd>lua vim.lsp.buf.hover()<cr>")
-  bufmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
-  bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
-  bufmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
-  bufmap("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
-  bufmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>")
-  -- bufmap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-  -- bufmap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>")
-  -- bufmap({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>")
-  -- bufmap("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>")
-  bufmap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
-  bufmap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
-  bufmap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+  bufmap("n", "<leader><space>", vim.lsp.buf.hover, "Open hover preview")
+  bufmap("n", "gd", vim.lsp.buf.definition, "Go to definition")
+  bufmap("n", "gD", vim.lsp.buf.declaration, "Go to declartation")
+  bufmap("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
+  bufmap("n", "go", vim.lsp.buf.type_definition, "Go to type definition")
+  bufmap("n", "gr", vim.lsp.buf.references, "List references")
+  bufmap("n", "gl", vim.diagnostic.open_float, "Open diagnostic float")
+  bufmap("n", "[d", vim.diagnostic.goto_prev, "Go to next diagnostic")
+  bufmap("n", "]d", vim.diagnostic.goto_next, "Go to previous diagnostic")
+  -- bufmap('n', 'gs', vim.lsp.buf.signature_help, "")
+  -- bufmap("n", "<F2>", vim.lsp.buf.rename, "")
+  -- bufmap({ "n", "x" }, "<F3>", function() vim.lsp.buf.format({async = true}) end, "")
+  -- bufmap("n", "<F4>", vim.lsp.buf.code_action, "")
 end
 
 return Plugin
