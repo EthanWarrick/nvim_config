@@ -5,6 +5,7 @@
   "fzf": { "branch": "master", "commit": "da752fc9a4b3cb9dd08cc80614a491f980436b46" },
   "fzf-lua": { "branch": "main", "commit": "36195a230246fc44e8144ee0b454fc022ac5326b" },
   "gitsigns.nvim": { "branch": "main", "commit": "300a306da9973e81c2c06460f71fd7a079df1f36" },
+  "grip": { "branch": "master", "commit": "a3f0ab5c8942ac15cf68f790b80c0a43b3a4c71e" },
   "indent-blankline.nvim": { "branch": "master", "commit": "12e92044d313c54c438bd786d11684c88f6f78cd" },
   "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
   "lazygit.nvim": { "branch": "main", "commit": "1e08e3f5ac1152339690140e61a4a32b3bdc7de5" },
