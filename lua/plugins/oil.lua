@@ -15,7 +15,7 @@ Plugin.keys = {
       require("oil").open_float()
     end,
     mode = "n",
-    desc = "Oil",
+    desc = "Open oil file explorer",
   },
 }
 
@@ -31,11 +31,17 @@ Plugin.opts = {
     colorcolumn = "",
   },
   keymaps = {
-    ["<Esc>"] = { callback = "actions.close", mode = "n" },
+    ["<Esc>"] = { callback = "actions.close", mode = "n", desc = "Close oil window" },
   },
   view_options = {
     show_hidden = true,
   },
 }
+
+Plugin.init = function()
+  -- Disable the default netrw file explorer
+  vim.g.loaded_netrw = 1
+  vim.g.loaded_netrwPlugin = 1
+end
 
 return Plugin
