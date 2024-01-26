@@ -1,21 +1,6 @@
-# Neovim Starter
+# Neovim Configuration
 
-Base configuration for Neovim. For those looking to make Neovim their new main editor. Here you'll find a popular combination of plugin to make your experience a little bit better.
-
-A few things have been configured to resemble other modern text editors. You'll find a file explorer with tree style view, list open files in tabs, git integration and a terminal easy to toggle.
-
-Autocompletion and "code intellisense" is provided by the LSP client built into Neovim. The following language servers are configured:
-
-* tsserver
-* eslint
-* cssls
-* html
-
-Most of the code in this configuration is explained in this series:
-
-* [Build your first Neovim configuration in lua](https://vonheikemen.github.io/devlog/tools/build-your-first-lua-config-for-neovim/)
-* [Neovim: Plugins to get started](https://vonheikemen.github.io/devlog/tools/neovim-plugins-to-get-started/)
-* [Setup nvim-lspconfig + nvim-cmp](https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/)
+My lua-based neovim configuration based on the starter code from [VonHeikemen](https://github.com/VonHeikemen/nvim-starter/tree/05-modular).
 
 ## Requirements
 
@@ -23,13 +8,12 @@ Most of the code in this configuration is explained in this series:
 * git.
 * A `C` compiler. Can be `gcc`, `tcc` or `zig`.
 * [make](https://www.gnu.org/software/make/), the build tool.
+* python and pip
 * [npm cli](https://docs.npmjs.com/cli/v8/commands/npm). Javascript package manager.
 * [nodejs](https://nodejs.org/es/). Javascript runtime. Required by the language servers listed above.
 * (optional) [ripgrep](https://github.com/BurntSushi/ripgrep). Improves project wide search speed.
 * (optional) [fd](https://github.com/sharkdp/fd). Improves file search speed.
 * (optional) A patched font to display icons. I hear [nerdfonts](https://www.nerdfonts.com/) has a good collection.
-
-> Here's the config [compatible with v0.7](https://github.com/VonHeikemen/nvim-starter/tree/4e7ccba7e69182f3dc1ee2f27be66677118c35b6). 
 
 ## Installation
 
@@ -44,18 +28,12 @@ nvim --headless -c 'echo stdpath("config") | quit'
 * Now clone this repository in that location.
 
 ```sh
-git clone https://github.com/VonHeikemen/nvim-starter /tmp/nvim-config-path
+git clone https://github.com/EthanWarrick/nvim_config /tmp/nvim-config-path
 ```
 
 > Do not execute this command as is. Replace `/tmp/nvim-config-path` with the correct path from the previous step.
 
-* Move to the configuration folder where you clone the repository. Change branch to `05-modular`.
-
-```sh
-git checkout 05-modular
-```
-
-* Next time you start Neovim all plugins will be downloaded automatically. After this process is done `nvim-treesitter` will install language parsers for treesitter. And, `mason.nvim` will download language servers listed in the configuration. Use the command `:Mason` to check the download process of language servers. 
+* Next time you start Neovim all plugins will be downloaded automatically. After this process is done `nvim-treesitter` will install language parsers for treesitter. And, `mason.nvim` will download packages listed in the configuration. Use the command `:Mason` to check the download process of language servers. 
 
 ## Keybindings
 
@@ -114,35 +92,43 @@ Leader key: `Space`.
 | Insert | `<Shift-Tab>` | If completion menu is open, go to previous item. |
 
 ## Plugin list
-
 | Name | Description  |
 | --- | --- |
-| [lazy.nvim](https://github.com/folke/lazy.nvim) | Plugin manager. |
-| [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | Collection of colorscheme for Neovim. |
-| [onedark.vim](https://github.com/joshdick/onedark.vim) | Colorscheme based on Atom's default theme. |
-| [monokai.nvim](https://github.com/tanvirtin/monokai.nvim) | Colorscheme based on Sublime text's default theme. |
-| [darkplus.nvim](https://github.com/lunarvim/darkplus.nvim) | Colorscheme based on VS Code's default theme. |
-| [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) | Helper functions to show icons. |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Pretty statusline. |
-| [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | Pretty tabline. |
-| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Shows indent guides in current file. |
-| [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) | File explorer. |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder. |
-| [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | Extension for telescope. Allows fzf-like syntax in searches. |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Shows indicators in gutter based on file changes detected by git. |
-| [vim-fugitive](https://github.com/tpope/vim-fugitive) | Git integration into Neovim/Vim. |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Configures treesitter parsers. Provides modules to manipulate code. |
-| [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) | Creates textobjects based on treesitter queries. |
 | [Comment.nvim](https://github.com/numToStr/Comment.nvim) | Toggle comments. |
-| [vim-surround](https://github.com/tpope/vim-surround) | Add, remove, change "surroundings". |
-| [targets.vim](https://github.com/wellle/targets.vim) | Creates new textobjects. |
-| [vim-repeat](https://github.com/tpope/vim-repeat) | Add "repeat" support for plugins. |
-| [vim-bbye](https://github.com/moll/vim-bbye) | Close buffers without closing the current window. |
-| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | Collection of modules. Used internaly by other plugins. |
-| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Manage terminal windows easily. |
+| [catppuccin]() |  |
+| [clangd_extensions.nvim]() |  |
+| [conform.nvim]() |  |
+| [fzf]() | Fuzzy Finder Command Line Tool |
+| [fzf-lua]() | Fzf integration for nvim |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Shows indicators in gutter based on file changes detected by git. |
+| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Shows indent guides in current file. |
+| [lazy.nvim](https://github.com/folke/lazy.nvim) | Plugin manager. |
+| [lazygit.nvim]() |  |
+| [local-highlight.nvim]() |  |
+| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Pretty statusline. |
 | [mason.nvim](https://github.com/williamboman/mason.nvim) | Portable package manager for Neovim. |
 | [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) | Integrates nvim-lspconfig and mason.nvim. |
+| [neodev.nvim]() |  |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | Quickstart configs for Neovim's LSP client.  |
+| [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) | File explorer. |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Configures treesitter parsers. Provides modules to manipulate code. |
+| [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) | Creates textobjects based on treesitter queries. |
+| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) | Helper functions to show icons. |
+| [oil.nvim]() |  |
+| [onedark.vim](https://github.com/navarasu/onedark.nvim) | Colorscheme based on Atom's default theme. |
+| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | Collection of modules. Used internaly by other plugins. |
+| [targets.vim](https://github.com/wellle/targets.vim) | Creates new textobjects. |
+| [tint.nvim]() |  |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive) | Git integration into Neovim/Vim. |
+| [vim-grip]() |  |
+| [vim-repeat](https://github.com/tpope/vim-repeat) | Add "repeat" support for plugins. |
+| [vim-surround](https://github.com/tpope/vim-surround) | Add, remove, change "surroundings". |
+| [vim-tmux-navigator]() |  |
+
+### Disabled Plugins
+| Name | Description  |
+| --- | --- |
+| [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | Pretty tabline. |
 | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | Autocompletion engine. |
 | [cmp-buffer](https://github.com/hrsh7th/cmp-buffer) | nvim-cmp source. Suggest words in the current buffer. |
 | [cmp-path](https://github.com/hrsh7th/cmp-path) | nvim-cmp source. Show suggestions based on file system paths. |
@@ -150,6 +136,23 @@ Leader key: `Space`.
 | [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) | nvim-cmp source. Show suggestions based on LSP servers queries. |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Snippet engine. |
 | [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) | Collection of snippets. |
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder. |
+| [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | Extension for telescope. Allows fzf-like syntax in searches. |
+| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Manage terminal windows easily. |
+| [vim-bbye](https://github.com/moll/vim-bbye) | Close buffers without closing the current window. |
+| [which-key.nvim]() |  |
+
+## Mason package list
+| Name | Description  |
+| --- | --- |
+| [clangd]() | C/C++ LSP |
+| [lua-language-server]() | Lua LSP  |
+| [marksman]() | Markdown LSP |
+| [python-lsp-server]() | Python LSP |
+| [ruff]() | Python Linter |
+| [ruff-lsp]() | Ruff as LSP Diagnostics |
+| [stylua]() | Lua Formatter |
+| [typescript-language-server]() | Javascript/Typescript LSP |
 
 ## Motions vs Text-Objects
 > **_NOTE:_**  This section is based on my current understanding of
