@@ -26,7 +26,7 @@ Plugin.opts = {
 }
 
 function Plugin.init()
-  vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>")
+  vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Open file tree" })
 end
 
 return Plugin
