@@ -10,9 +10,10 @@ Plugin.opts = {
     local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
     local diff = vim.api.nvim_win_get_option(winid, "diff")
 
-    -- Do not tint `terminal` or floating windows, tint everything else
+    -- Do not tint `terminal`, floating windows or diff tint everything else
     return buftype == "terminal" or floating or diff
   end,
+  highlight_ignore_patterns = { "WinSeparator", "Status.*", "lualine_*" },
 }
 
 return Plugin
