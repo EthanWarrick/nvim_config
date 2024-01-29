@@ -3,6 +3,7 @@ local user = {}
 
 Plugin.dependencies = {
   { "williamboman/mason-lspconfig.nvim" },
+  -- { "hrsh7th/cmp-nvim-lsp", optional = true },
 }
 
 Plugin.cmd = { "LspInfo", "LspInstall", "LspUnInstall" }
