@@ -2,6 +2,10 @@ local Plugin = { "kyazdani42/nvim-tree.lua" }
 
 Plugin.cmd = { "NvimTreeToggle" }
 
+Plugin.keys = {
+  { "<leader>e", "<cmd>NvimTreeToggle<cr>", mode = "n", desc = "Open file tree" },
+}
+
 -- See :help nvim-tree-setup
 Plugin.opts = {
   hijack_cursor = true,
@@ -24,9 +28,5 @@ Plugin.opts = {
     end, "Expand folder or open file")
   end,
 }
-
-function Plugin.init()
-  vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Open file tree" })
-end
 
 return Plugin
