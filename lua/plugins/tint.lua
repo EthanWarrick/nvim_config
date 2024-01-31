@@ -1,6 +1,7 @@
 local Plugin = { "levouh/tint.nvim" }
 
 Plugin.event = { "WinEnter" }
+Plugin.cmd = { "TintEnable", "TintDisable", "TintToggle" }
 
 Plugin.opts = {
   tint = -55, -- Determines the intensity of dimming
@@ -15,5 +16,24 @@ Plugin.opts = {
   end,
   highlight_ignore_patterns = { "WinSeparator", "Status.*", "lualine_*" },
 }
+
+Plugin.config = function(_, opts)
+  require("tint").setup(opts)
+  vim.api.nvim_create_user_command(
+    "TintEnable",
+    require("tint").enable,
+    { desc = "Enbale dimming of inactive windows" }
+  )
+  vim.api.nvim_create_user_command(
+    "TintDisable",
+    require("tint").disable,
+    { desc = "Disable dimming of inactive windows" }
+  )
+  vim.api.nvim_create_user_command(
+    "TintToggle",
+    require("tint").toggle,
+    { desc = "Toggle dimming of inactive windows" }
+  )
+end
 
 return Plugin
