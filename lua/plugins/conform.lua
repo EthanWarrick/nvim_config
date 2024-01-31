@@ -1,5 +1,7 @@
 local Plugin = { "stevearc/conform.nvim" }
 
+Plugin.event = "BufWritePre"
+
 Plugin.opts = {
   format_on_save = function(bufnr)
     -- Disable with a global or buffer-local variable
