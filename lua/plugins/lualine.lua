@@ -87,10 +87,12 @@ Plugin.opts = {
   },
 }
 
-function Plugin.init()
+function Plugin.config(_, opts)
   vim.opt.showmode = false -- Don't show current mode in command line
   vim.opt.cmdheight = 0 -- Don't show commmand line
   vim.opt.laststatus = 2 -- Determines if the status line covers multiple splits
+
+  require("lualine").setup(opts)
 end
 
 return Plugin
