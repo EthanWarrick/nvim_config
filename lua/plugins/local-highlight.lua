@@ -14,9 +14,7 @@ function Plugin.init()
   vim.opt.updatetime = 500 -- Time it takes for highlighting to update
 
   -- Set the highlight settings for this plugin
-  local ns_id = vim.api.nvim_create_namespace("")
-  vim.api.nvim_set_hl(ns_id, "Hover", { underline = true })
-  vim.api.nvim_set_hl_ns(ns_id)
+  vim.api.nvim_set_hl(0, "Hover", { underline = true })
 end
 
 return Plugin
