@@ -1,6 +1,13 @@
 local Plugin = { "williamboman/mason.nvim" }
 
-Plugin.lazy = false
+Plugin.cmd = {
+  "Mason",
+  "MasonLog",
+  "MasonUpdate",
+  "MasonInstall",
+  "MasonUninstall",
+  "MasonUninstallAll",
+}
 
 -- See :help mason-settings
 Plugin.opts = {
