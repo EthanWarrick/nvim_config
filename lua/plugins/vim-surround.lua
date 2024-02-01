@@ -1,5 +1,7 @@
 local Plugin = { "tpope/vim-surround" }
 
+Plugin.dependencies = { "tpope/vim-repeat" }
+
 Plugin.keys = {
   "ds",
   "cs",
