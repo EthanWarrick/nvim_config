@@ -1,18 +1,19 @@
-local Plugin = { "tpope/vim-surround" }
-
-Plugin.dependencies = { "tpope/vim-repeat" }
+local Plugin = { "kylechui/nvim-surround" }
 
 Plugin.keys = {
-  "ds",
-  "cs",
-  "cS",
+  { "<C-g>s", mode = "i" },
+  { "<C-g>S", mode = "i" },
   "ys",
-  "yS",
   "yss",
-  "ySs",
+  "yS",
   "ySS",
   { "S", mode = "x" },
   { "gS", mode = "x" },
+  "ds",
+  "cs",
+  "cS",
 }
+
+Plugin.config = true
 
 return Plugin
