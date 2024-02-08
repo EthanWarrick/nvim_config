@@ -71,6 +71,10 @@ Plugin.opts = {
         "%S",
         separator = "",
       },
+      {
+        "selectioncount",
+        separator = "",
+      },
       recordingSymbol(),
       "encoding",
       "fileformat",
