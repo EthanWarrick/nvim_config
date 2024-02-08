@@ -103,7 +103,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnte
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
   pattern = "*",
   callback = function()
-    vim.opt.statuscolumn = '%s%C%=%{%v:relnum?"%l":"%0"..(float2nr(log10(line("$")))+1).."l"%} '
+    vim.opt.statuscolumn = "%=%l "
   end,
   group = numbertogglegroup,
 })
