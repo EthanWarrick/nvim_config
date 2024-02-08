@@ -66,7 +66,16 @@ Plugin.opts = {
       modifiedSymbol(),
       readonlySymbol(),
     },
-    lualine_x = { recordingSymbol(), "encoding", "fileformat", "filetype" },
+    lualine_x = {
+      {
+        "%S",
+        separator = "",
+      },
+      recordingSymbol(),
+      "encoding",
+      "fileformat",
+      "filetype",
+    },
     lualine_y = { "searchcount", "progress" },
   },
   inactive_sections = {
@@ -81,6 +90,8 @@ Plugin.opts = {
 
 function Plugin.config(_, opts)
   vim.opt.showmode = false -- Don't show current mode in command line
+  vim.opt.showcmd = true -- Enable displaying keypresses % partial commands
+  vim.opt.showcmdloc = "statusline" -- Showcmd info is placed on statusline at '%S'
   vim.opt.cmdheight = 0 -- Don't show commmand line
   vim.opt.laststatus = 2 -- Determines if the status line covers multiple splits
 
