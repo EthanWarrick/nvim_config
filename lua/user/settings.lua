@@ -49,7 +49,7 @@ vim.opt.termguicolors = true -- Helps with displaying colors correctly
 -- Searching Behavior
 vim.opt.ignorecase = true -- Ignore capitalization when searching a file
 vim.opt.smartcase = true -- Stop ignoring capitalization when searching a capital letter
-vim.opt.hlsearch = false -- Highlight search term
+vim.opt.hlsearch = true -- Highlight search term
 
 -- Set command mode autocomplete behavior
 --  Tab completes until the longest matching string, two tabs lists available commands,
