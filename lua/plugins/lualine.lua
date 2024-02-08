@@ -43,8 +43,7 @@ end
 -- See :help lualine.txt
 Plugin.opts = {
   options = {
-    -- theme = 'onedark',
-    theme = "catppuccin",
+    theme = "auto",
     icons_enabled = true,
     component_separators = "|",
     section_separators = "",
