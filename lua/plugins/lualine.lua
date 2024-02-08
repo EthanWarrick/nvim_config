@@ -68,6 +68,7 @@ Plugin.opts = {
       readonlySymbol(),
     },
     lualine_x = { recordingSymbol(), "encoding", "fileformat", "filetype" },
+    lualine_y = { "searchcount", "progress" },
   },
   inactive_sections = {
     lualine_c = {
