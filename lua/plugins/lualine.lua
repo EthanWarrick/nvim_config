@@ -40,6 +40,16 @@ local function recordingSymbol()
   }
 end
 
+local hl_table = {
+  ["n"] = "#89a0e0",
+  ["no"] = "#89a0e0",
+  ["i"] = "#b0d080",
+  ["v"] = "#df95cf",
+  ["V"] = "#df95cf",
+  [""] = "#df95cf",
+  ["c"] = "#f9905f",
+}
+
 -- See :help lualine.txt
 Plugin.opts = {
   options = {
@@ -70,10 +80,16 @@ Plugin.opts = {
       {
         "%S",
         separator = "",
+        color = function()
+          return { fg = hl_table[vim.api.nvim_get_mode()["mode"]], gui = "bold" }
+        end,
       },
       {
         "selectioncount",
         separator = "",
+        color = function()
+          return { fg = hl_table[vim.api.nvim_get_mode()["mode"]], gui = "bold" }
+        end,
       },
       recordingSymbol(),
       "encoding",
