@@ -9,11 +9,7 @@ Plugin.event = "VeryLazy"
 local function modifiedSymbol()
   return {
     function()
-      local symbol = ""
-      if vim.bo.modified then
-        symbol = "●"
-      end
-      return symbol
+      return vim.bo.modified and "●" or ""
     end,
     padding = 0,
     separator = "",
@@ -23,11 +19,7 @@ end
 local function readonlySymbol()
   return {
     function()
-      local symbol = ""
-      if vim.bo.readonly then
-        symbol = ""
-      end
-      return symbol
+      return vim.bo.readonly and "" or ""
     end,
     padding = 0,
     separator = "",
