@@ -41,53 +41,53 @@ git clone https://github.com/EthanWarrick/nvim_config /tmp/nvim-config-path
 ## Plugin list
 | Name | Description  |
 | --- | --- |
-| [Comment.nvim](https://github.com/numToStr/Comment.nvim) | Toggle comments. |
-| [catppuccin]() |  |
-| [clangd_extensions.nvim]() |  |
-| [conform.nvim]() |  |
+| [Comment.nvim](https://github.com/numToStr/Comment.nvim) | Toggle comments |
+| [catppuccin]() | Colorscheme |
+| [clangd_extensions.nvim]() | Extensions for the clangd LSP |
+| [conform.nvim]() | Auto formatting |
 | [fzf]() | Fuzzy Finder Command Line Tool |
 | [fzf-lua]() | Fzf integration for nvim |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Shows indicators in gutter based on file changes detected by git. |
-| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Shows indent guides in current file. |
-| [lazy.nvim](https://github.com/folke/lazy.nvim) | Plugin manager. |
-| [lazygit.nvim]() |  |
-| [local-highlight.nvim]() |  |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Pretty statusline. |
-| [mason.nvim](https://github.com/williamboman/mason.nvim) | Portable package manager for Neovim. |
-| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) | Integrates nvim-lspconfig and mason.nvim. |
-| [neodev.nvim]() |  |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | Quickstart configs for Neovim's LSP client.  |
-| [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) | File explorer. |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Configures treesitter parsers. Provides modules to manipulate code. |
-| [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) | Creates textobjects based on treesitter queries. |
-| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) | Helper functions to show icons. |
-| [oil.nvim]() |  |
-| [onedark.vim](https://github.com/navarasu/onedark.nvim) | Colorscheme based on Atom's default theme. |
-| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | Collection of modules. Used internaly by other plugins. |
-| [targets.vim](https://github.com/wellle/targets.vim) | Creates new textobjects. |
-| [tint.nvim]() |  |
-| [vim-fugitive](https://github.com/tpope/vim-fugitive) | Git integration into Neovim/Vim. |
-| [vim-grip]() |  |
-| [vim-repeat](https://github.com/tpope/vim-repeat) | Add "repeat" support for plugins. |
-| [vim-surround](https://github.com/tpope/vim-surround) | Add, remove, change "surroundings". |
-| [vim-tmux-navigator]() |  |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Shows indicators in gutter based on file changes detected by git |
+| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Shows indent guides in current file |
+| [lazy.nvim](https://github.com/folke/lazy.nvim) | Plugin manager |
+| [lazygit.nvim]() | Opens Lazygit within a neovim terminal floating window |
+| [local-highlight.nvim]() | Highlights all occurances of the word under cursor |
+| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Pretty statusline |
+| [mason.nvim](https://github.com/williamboman/mason.nvim) | Portable package manager for Neovim |
+| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) | Integrates nvim-lspconfig and mason.nvim |
+| [neodev.nvim]() | Lua LSP control specifically for neovim configuration |
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | Quickstart configs for Neovim's LSP client  |
+| [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) | File explorer |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Configures treesitter parsers. Provides modules to manipulate code |
+| [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) | Creates textobjects based on treesitter queries |
+| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) | Helper functions to show icons |
+| [oil.nvim]() | Netrw replacement - provides `ls` style file explorer/editor |
+| [onedark.vim](https://github.com/navarasu/onedark.nvim) | Colorscheme based on Atom's default theme |
+| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | Collection of modules. Used internaly by other plugins |
+| [targets.vim](https://github.com/wellle/targets.vim) | Creates new textobjects |
+| [tint.nvim]() | Shade non-focused windows darker |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive) | Git integration into Neovim/Vim |
+| [vim-grip]() | Provides keymaps to control the grip cmdline tool |
+| [vim-repeat](https://github.com/tpope/vim-repeat) | Add "repeat" support for plugins |
+| [vim-surround](https://github.com/tpope/vim-surround) | Add, remove, change "surroundings" |
+| [vim-tmux-navigator]() | Provides keymaps to interface neovim windows with tmux |
 
 ### Disabled Plugins
 | Name | Description  |
 | --- | --- |
-| [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | Pretty tabline. |
-| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | Autocompletion engine. |
-| [cmp-buffer](https://github.com/hrsh7th/cmp-buffer) | nvim-cmp source. Suggest words in the current buffer. |
-| [cmp-path](https://github.com/hrsh7th/cmp-path) | nvim-cmp source. Show suggestions based on file system paths. |
-| [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip) | nvim-cmp source. Show suggestions based on installed snippets. |
-| [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) | nvim-cmp source. Show suggestions based on LSP servers queries. |
-| [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Snippet engine. |
-| [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) | Collection of snippets. |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder. |
-| [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | Extension for telescope. Allows fzf-like syntax in searches. |
-| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Manage terminal windows easily. |
-| [vim-bbye](https://github.com/moll/vim-bbye) | Close buffers without closing the current window. |
-| [which-key.nvim]() |  |
+| [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | Pretty tabline |
+| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | Autocompletion engine |
+| [cmp-buffer](https://github.com/hrsh7th/cmp-buffer) | nvim-cmp source. Suggest words in the current buffer |
+| [cmp-path](https://github.com/hrsh7th/cmp-path) | nvim-cmp source. Show suggestions based on file system paths |
+| [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip) | nvim-cmp source. Show suggestions based on installed snippets |
+| [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) | nvim-cmp source. Show suggestions based on LSP servers queries |
+| [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Snippet engine |
+| [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) | Collection of snippets |
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder |
+| [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | Extension for telescope. Allows fzf-like syntax in searches |
+| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Manage terminal windows easily |
+| [vim-bbye](https://github.com/moll/vim-bbye) | Close buffers without closing the current window |
+| [which-key.nvim]() | Shows live keymap suggestions |
 
 ## Mason package list
 | Name | Description  |
