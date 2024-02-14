@@ -28,6 +28,7 @@ vim.keymap.set({ "x", "o" }, "il", ":normal ^vg_<CR>", { desc = "'in-line' text 
 
 -- Basic clipboard/register interaction
 vim.keymap.set({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
+vim.keymap.set({ "n", "x" }, "gY", '"+Y', { remap = true, desc = "Copy to system clipboard" })
 vim.keymap.set({ "n", "x" }, "gp", '"+p', { desc = "Paste to system clipboard" })
 vim.keymap.set("n", "<C-p>", ":let @+ = @%<cr>", { desc = "Copy relative path to system clipboard" })
 vim.keymap.set({ "n", "x" }, "x", '"_x', { desc = 'Delete without saving to " register' })
