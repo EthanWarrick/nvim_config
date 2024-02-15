@@ -56,6 +56,7 @@ function Plugin.config(_, opts)
   })
 
   -- Gather configured servers to install
+  -- See :lua =vim.lsp.get_active_clients()[1] for specific LSP info
   local ensure_installed = {} ---@type string[]
   for server, server_opts in pairs(opts.servers) do
     if server_opts then
