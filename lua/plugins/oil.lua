@@ -2,6 +2,7 @@ local Plugin = { "stevearc/oil.nvim" }
 
 Plugin.dependencies = {
   { "nvim-tree/nvim-web-devicons" },
+  { "SirZenith/oil-vcs-status" },
 }
 
 -- This isn't lazy loading correctly because its not loading on ':edit .' unless
@@ -29,6 +30,7 @@ Plugin.opts = {
     statuscolumn = "",
     relativenumber = false,
     colorcolumn = "",
+    signcolumn = "yes",
   },
   keymaps = {
     ["<Esc>"] = { callback = "actions.close", mode = "n", desc = "Close oil window" },
