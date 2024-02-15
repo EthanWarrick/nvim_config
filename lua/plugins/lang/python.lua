@@ -13,7 +13,11 @@ return {
     opts = {
       servers = {
         -- Ensure mason installs the server
-        pylsp = {},
+        pylsp = {
+          handlers = {
+            ["textDocument/publishDiagnostics"] = function() end,
+          },
+        },
         ruff_lsp = {}, -- Additional ruff diagnostics
       },
     },
