@@ -55,6 +55,10 @@ vim.opt.hlsearch = true -- Highlight search term
 --  Tab completes until the longest matching string, two tabs lists available commands,
 --  then one more tab selects the first match from the list.
 vim.opt.wildmode = "longest,longest,longest:full,full"
+
+-- Show the following hidden characters
+vim.o.listchars = "trail:-,nbsp:+,tab:▏ ,eol:↴"
+vim.o.list = true
 -------------------------------------------------------------------------------
 
 -------------------------------- Diff Behavior --------------------------------
