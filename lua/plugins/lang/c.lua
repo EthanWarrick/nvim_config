@@ -29,12 +29,13 @@ return {
           },
           cmd = {
             "clangd",
-            "--background-index",
-            "--clang-tidy",
-            "--header-insertion=iwyu",
-            "--completion-style=detailed",
-            "--function-arg-placeholders",
-            "--fallback-style=llvm",
+            -- "--log=verbose",
+            "--background-index", -- Index project code in the background
+            "--clang-tidy", -- use clang-tidy for code formatting
+            "--fallback-style=llvm", -- formatting option if not using clang-tidy
+            -- "--header-insertion=iwyu", -- Add #include directive when accepting code completions
+            -- "--completion-style=detailed", -- Code completion
+            -- "--function-arg-placeholders", -- Code completion
           },
           init_options = {
             usePlaceholders = true,
