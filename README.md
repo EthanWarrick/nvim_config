@@ -35,6 +35,8 @@ git clone https://github.com/EthanWarrick/nvim_config /tmp/nvim-config-path
 
 * Next time you start Neovim all plugins will be downloaded automatically. After this process is done `nvim-treesitter` will install language parsers for treesitter. And, `mason.nvim` will download packages listed in the configuration. Use the command `:Mason` to check the download process of language servers. 
 
+> If you are replacing an existing neovim config, you may need to delete the contents of `~/.local/share/nvim` and `~/.local/state/nvim`. Do this if you are receiving numerous errors immediately after installation. This file may contain unwanted runtime files from your previous config.
+
 ## Keybindings
 [See here.](docs/keymaps.md)
 
