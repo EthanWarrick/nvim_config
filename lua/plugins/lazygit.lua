@@ -14,12 +14,14 @@ function Plugin.config()
   vim.g.lazygit_floating_window_winblend = 0 -- transparency of floating window
   vim.g.lazygit_floating_window_use_plenary = 1 -- use plenary.nvim to manage floating window if available
 
-  vim.g.lazygit_use_custom_config_file_path = 1 -- config file path is evaluated if this value is 1
-  vim.g.lazygit_config_file_path = { -- list of custom config file paths
-    os.getenv("HOME") .. "/.config/lazygit/config.yml",
-    os.getenv("HOME") .. "/.config/lazygit/private-config.yml",
-    -- vim.fn.stdpath('config') .. '/lazygit.yml',
-  }
+  if vim.fn.filereadable(os.getenv("HOME") .. "/.config/lazygit/private-config.yml") == 1 then
+    vim.g.lazygit_use_custom_config_file_path = 1 -- config file path is evaluated if this value is 1
+    vim.g.lazygit_config_file_path = { -- list of custom config file paths
+      os.getenv("HOME") .. "/.config/lazygit/config.yml",
+      os.getenv("HOME") .. "/.config/lazygit/private-config.yml",
+      -- vim.fn.stdpath('config') .. '/lazygit.yml',
+    }
+  end
 end
 
 return Plugin
