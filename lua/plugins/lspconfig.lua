@@ -105,7 +105,9 @@ function user.on_attach()
   bufmap("n", "]d", vim.diagnostic.goto_next, "Go to previous diagnostic")
   -- bufmap('n', 'gs', vim.lsp.buf.signature_help, "")
   bufmap("n", "<F2>", vim.lsp.buf.rename, "")
-  -- bufmap({ "n", "x" }, "<F3>", function() vim.lsp.buf.format({async = true}) end, "")
+  bufmap({ "n", "x" }, "<F3>", function()
+    vim.lsp.buf.format({ async = true })
+  end, "")
   -- bufmap("n", "<F4>", vim.lsp.buf.code_action, "")
 end
 
