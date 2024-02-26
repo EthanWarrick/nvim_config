@@ -11,7 +11,9 @@ Plugin.opts = {
     enabled = true,
   },
   indent = {
-    char = "▏",
+    -- char = "▏",
+    char = "│",
+    tab_char = "┆",
   },
 }
 
