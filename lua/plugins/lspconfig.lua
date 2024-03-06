@@ -108,7 +108,7 @@ function user.on_attach()
   bufmap({ "n", "x" }, "<F3>", function()
     vim.lsp.buf.format({ async = true })
   end, "")
-  -- bufmap("n", "<F4>", vim.lsp.buf.code_action, "")
+  bufmap("n", "<F4>", vim.lsp.buf.code_action, "")
 end
 
 return Plugin
