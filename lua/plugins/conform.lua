@@ -1,6 +1,8 @@
 local Plugin = { "stevearc/conform.nvim" }
 
-Plugin.event = "BufWritePre"
+Plugin.dependencies = { "williamboman/mason.nvim" }
+
+-- Plugin.event = "BufWritePre"
 
 Plugin.opts = {
   format_on_save = function(bufnr)
@@ -12,22 +14,48 @@ Plugin.opts = {
   end,
 }
 
-vim.api.nvim_create_user_command("FormatDisable", function(args)
-  if args.bang then
-    -- FormatDisable! will disable formatting just for this buffer
-    vim.b.disable_autoformat = true
-  else
-    vim.g.disable_autoformat = true
+Plugin.config = function(_, opts)
+  -- Obtain formatters
+  local ensure_installed = {} ---@type string[]
+  for _, formatters in pairs(opts.formatters_by_ft) do
+    ensure_installed = vim.list_extend(ensure_installed, formatters)
   end
-end, {
-  desc = "Disable autoformat-on-save",
-  bang = true,
-})
-vim.api.nvim_create_user_command("FormatEnable", function()
-  vim.b.disable_autoformat = false
-  vim.g.disable_autoformat = false
-end, {
-  desc = "Re-enable autoformat-on-save",
-})
+
+  -- Install formatter packages from mason registry
+  local mr = require("mason-registry")
+  local function mason_try_install()
+    for _, formatter in ipairs(ensure_installed) do
+      local p = mr.get_package(formatter)
+      if not p:is_installed() then
+        p:install()
+      end
+    end
+  end
+  if mr.refresh then
+    mr.refresh(vim.schedule_wrap(mason_try_install))
+  else
+    mason_try_install()
+  end
+
+  require("conform").setup(opts)
+
+  vim.api.nvim_create_user_command("FormatDisable", function(args)
+    if args.bang then
+      -- FormatDisable! will disable formatting just for this buffer
+      vim.b.disable_autoformat = true
+    else
+      vim.g.disable_autoformat = true
+    end
+  end, {
+    desc = "Disable autoformat-on-save",
+    bang = true,
+  })
+  vim.api.nvim_create_user_command("FormatEnable", function()
+    vim.b.disable_autoformat = false
+    vim.g.disable_autoformat = false
+  end, {
+    desc = "Re-enable autoformat-on-save",
+  })
+end
 
 return Plugin
