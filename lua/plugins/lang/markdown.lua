@@ -20,7 +20,7 @@ return {
   {
     "PratikBhusal/vim-grip",
     dependencies = { "joeyespo/grip", build = "pip3 install ." },
-    ft = { "md", "mkdn", "mdown", "markdown" }, -- Lazy load on these files
+    ft = { "markdown" }, -- Lazy load on these files
     config = function()
       vim.g.grip_default_map = 0 -- Don't use the default plugin keymappings
 

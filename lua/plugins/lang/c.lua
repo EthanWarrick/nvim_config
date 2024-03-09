@@ -51,7 +51,7 @@ return {
   {
     "p00f/clangd_extensions.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    ft = { "c", "h", "cpp", "hpp", "hxx" },
+    ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
     opts = {
       ast = {
         --These require codicons (https://github.com/microsoft/vscode-codicons)
