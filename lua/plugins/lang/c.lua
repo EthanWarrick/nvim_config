@@ -75,4 +75,23 @@ return {
       },
     },
   },
+
+  -- Linter
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        c = { "checkpatch" },
+      },
+      linters = {
+        checkpatch = {
+          cmd = "./scripts/checkpatch.pl",
+          condition = function(ctx)
+            return vim.fn.filereadable("./scripts/checkpatch.pl") == 1
+          end,
+        },
+      },
+    },
+  },
 }
