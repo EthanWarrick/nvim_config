@@ -1,6 +1,6 @@
 local Plugin = { "mfussenegger/nvim-lint" }
 
-Plugin.dependencies = { "rshkarin/mason-nvim-lint" }
+Plugin.dependencies = { "williamboman/mason.nvim" }
 
 Plugin.opts = {
   -- Event to trigger linters
@@ -28,6 +28,7 @@ Plugin.opts = {
 Plugin.config = function(_, opts)
   local M = {}
 
+  -- Configure custom linters
   local lint = require("lint")
   for name, linter in pairs(opts.linters) do
     if type(linter) == "table" and type(lint.linters[name]) == "table" then
@@ -37,16 +38,34 @@ Plugin.config = function(_, opts)
     end
   end
 
+  -- Check mason registry for linter packages
+  local mr = require("mason-registry")
   local ensure_installed = {} ---@type string[]
   for _, linters in pairs(opts.linters_by_ft) do
-    ensure_installed = vim.list_extend(ensure_installed, linters)
+    for _, linter in ipairs(linters) do
+      if pcall(mr.get_package, linter) then
+        ensure_installed = vim.list_extend(ensure_installed, { linter })
+      end
+    end
   end
-  lint.linters_by_ft = opts.linters_by_ft
 
-  require("mason-nvim-lint").setup({
-    ensure_installed = ensure_installed,
-    automatic_installation = false,
-  })
+  -- Install linter packages from mason registry
+  local function mason_try_install()
+    for _, formatter in ipairs(ensure_installed) do
+      local p = mr.get_package(formatter)
+      if not p:is_installed() then
+        p:install()
+      end
+    end
+  end
+  if mr.refresh then
+    mr.refresh(vim.schedule_wrap(mason_try_install))
+  else
+    mason_try_install()
+  end
+
+  -- Pass linters to plugin
+  lint.linters_by_ft = opts.linters_by_ft
 
   -- Enable diagnostics keybindings
   vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
