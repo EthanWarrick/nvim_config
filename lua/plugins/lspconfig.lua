@@ -20,10 +20,11 @@ function Plugin.init()
     })
   end
 
-  sign({ name = "DiagnosticSignError", text = "✘" })
-  sign({ name = "DiagnosticSignWarn", text = "▲" })
-  sign({ name = "DiagnosticSignHint", text = "⚑" })
-  sign({ name = "DiagnosticSignInfo", text = "»" })
+  local icons = require("util").icons.diagnostics
+  sign({ name = "DiagnosticSignError", text = icons.error })
+  sign({ name = "DiagnosticSignWarn", text = icons.warn })
+  sign({ name = "DiagnosticSignHint", text = icons.hint })
+  sign({ name = "DiagnosticSignInfo", text = icons.info })
 
   -- See :help vim.diagnostic.config()
   vim.diagnostic.config({
