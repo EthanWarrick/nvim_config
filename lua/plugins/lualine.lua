@@ -62,6 +62,8 @@ Plugin.opts = {
     },
   },
   sections = {
+    lualine_a = { "mode" },
+    lualine_b = { "branch", "diff", { "diagnostics", symbols = require("util").icons.diagnostics } },
     lualine_c = {
       {
         "filename",
@@ -97,14 +99,20 @@ Plugin.opts = {
       "filetype",
     },
     lualine_y = { "searchcount", "progress" },
+    lualine_z = { "location" },
   },
   inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
     lualine_c = {
       {
         "filename",
         path = 1,
       },
     },
+    lualine_x = { "location" },
+    lualine_y = {},
+    lualine_z = {},
   },
 }
 
