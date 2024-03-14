@@ -2,7 +2,7 @@ local Plugin = { "stevearc/oil.nvim" }
 
 Plugin.dependencies = {
   { "nvim-tree/nvim-web-devicons" },
-  { "SirZenith/oil-vcs-status" },
+  { "SirZenith/oil-vcs-status", opts = { status_symbol = require("util").icons.git } },
 }
 
 -- This isn't lazy loading correctly because its not loading on ':edit .' unless
