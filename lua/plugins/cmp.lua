@@ -1,120 +1,69 @@
 local Plugin = { "hrsh7th/nvim-cmp" }
 
-Plugin.enabled = false
+-- Plugin.enabled = false
 
 Plugin.dependencies = {
-  -- Sources
-  { "hrsh7th/cmp-buffer" },
-  { "hrsh7th/cmp-path" },
-  { "saadparwaiz1/cmp_luasnip" },
-  { "hrsh7th/cmp-nvim-lsp" },
-
-  -- Snippets
-  { "L3MON4D3/LuaSnip" },
-  { "rafamadriz/friendly-snippets" },
-
-  -- Icons
-  { "onsails/lspkind.nvim" },
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
 }
 
 Plugin.event = "InsertEnter"
 
 Plugin.opts = function()
+  vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
   local cmp = require("cmp")
-  local luasnip = require("luasnip")
-  local select_opts = { behavior = cmp.SelectBehavior.Select }
+  local defaults = require("cmp.config.default")()
   return {
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end,
+    completion = {
+      completeopt = "menu,menuone,noinsert",
     },
-    sources = {
-      { name = "path" },
+    sources = cmp.config.sources({
       { name = "nvim_lsp" },
-      { name = "buffer", keyword_length = 3 },
-      { name = "luasnip", keyword_length = 2 },
-    },
+      { name = "path" },
+    }, {
+      { name = "buffer" },
+    }),
     formatting = {
-      fields = { "menu", "abbr", "kind" },
-      format = function(entry, vim_item)
-        vim_item.abbr = vim.trim(vim_item.abbr)
-        if vim.tbl_contains({ "path" }, entry.source.name) then
-          local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
-          if icon then
-            vim_item.kind = icon
-            vim_item.kind_hl_group = hl_group
-            return vim_item
-          end
+      format = function(_, item)
+        local icons = require("util").icons.kinds
+        if icons[item.kind] then
+          item.kind = icons[item.kind] .. item.kind
         end
-        return require("lspkind").cmp_format({ with_text = true })(entry, vim_item)
+        return item
       end,
     },
-    -- See :help cmp-mapping
-    mapping = {
-      ["<Up>"] = cmp.mapping.select_prev_item(select_opts),
-      ["<Down>"] = cmp.mapping.select_next_item(select_opts),
-
-      ["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
-      ["<C-n>"] = cmp.mapping.select_next_item(select_opts),
-
-      ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-d>"] = cmp.mapping.scroll_docs(4),
-
+    mapping = cmp.mapping.preset.insert({
+      ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.abort(),
-      ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-      ["<CR>"] = cmp.mapping.confirm({ select = false }),
-
-      ["<C-f>"] = cmp.mapping(function(fallback)
-        if luasnip.jumpable(1) then
-          luasnip.jump(1)
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-
-      ["<C-b>"] = cmp.mapping(function(fallback)
-        if luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-
-      ["<Tab>"] = cmp.mapping(function(fallback)
-        local col = vim.fn.col(".") - 1
-
-        if cmp.visible() then
-          cmp.select_next_item(select_opts)
-        elseif col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-          fallback()
-        else
-          cmp.complete()
-        end
-      end, { "i", "s" }),
-
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item(select_opts)
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
+      ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ["<S-CR>"] = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ["<C-CR>"] = function(fallback)
+        cmp.abort()
+        fallback()
+      end,
+    }),
+    experimental = {
+      ghost_text = {
+        hl_group = "CmpGhostText",
+      },
     },
+    sorting = defaults.sorting,
   }
 end
 
 function Plugin.config(_, opts)
-  vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
-  local cmp = require("cmp")
-
-  require("luasnip.loaders.from_vscode").lazy_load()
-
-  -- See :help cmp-config
-  cmp.setup(opts)
+  for _, source in ipairs(opts.sources) do
+    source.group_index = source.group_index or 1
+  end
+  require("cmp").setup(opts)
 end
-
-Plugin.lazy = false
 
 return Plugin
