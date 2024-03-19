@@ -35,7 +35,12 @@ git clone https://github.com/EthanWarrick/nvim_config /tmp/nvim-config-path
 
 * Next time you start Neovim all plugins will be downloaded automatically. After this process is done `nvim-treesitter` will install language parsers for treesitter. And, `mason.nvim` will download packages listed in the configuration. Use the command `:Mason` to check the download process of language servers. 
 
-> If you are replacing an existing neovim config, you may need to delete the contents of `~/.local/share/nvim` and `~/.local/state/nvim`. Do this if you are receiving numerous errors immediately after installation. This file may contain unwanted runtime files from your previous config.
+> If you are replacing an existing neovim config, you may need to delete the contents of `~/.local/share/nvim` and `~/.local/state/nvim`. Do this if you are receiving numerous errors immediately after installation. These directories may contain unwanted runtime files from your previous config.
+
+## Customization
+Customize this configuration by adding and removing files. A single file is associated with a single plugin concept or grouping. This often means a single file consists of a plugin and its dependencies. This can also mean a file consists of all relevant plugins for a specific programming language (LSPs, highlighting, etc).
+
+If a file installing a Mason package is removed, that package must also be uninstalled via Mason. This can be done from within the Mason menu accessed via `:Mason`.
 
 ## Keybindings
 [See here.](docs/keymaps.md)
