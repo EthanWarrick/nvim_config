@@ -79,7 +79,7 @@ function Plugin.config(_, opts)
           return
         else
           -- See :help lspconfig-setup
-          lspconfig[server].setup(server_opts)
+          lspconfig[server].setup(server_opts or {})
         end
       end,
     },
