@@ -40,7 +40,7 @@ vim.opt.shiftwidth = 2 -- Number of spaces for (auto)indent
 vim.opt.expandtab = true -- Turn tab into spaces
 
 -- Default User Interface Behavior
-vim.opt.wrap = true -- Wrap text
+vim.opt.wrap = false -- Wrap text
 vim.opt.breakindent = true -- Preserve indentation when wrapping text
 vim.opt.cursorline = true -- Highlight the entire line containing the cursor
 vim.opt.colorcolumn = "81" -- Highlight a vertical column for visual character limit
