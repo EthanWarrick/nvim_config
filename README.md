@@ -155,3 +155,46 @@ functions to make the desired movement and grab the desired text. A useful way
 to make text selections in **Operator-Pending Mode** is mapping to the `:normal`
 command followed by some visual mode selection. This allows for full text
 selection with some predefined visual mode sequence.
+
+## Schema
+My understanding of JSON schema as used in this config:
+
+A schema is used to validate the contents of some document. It provides an
+outline of what a document's contents should be and how they should be
+structured. This is useful for documents that follow some user defined standard
+\- application configuration files, or json data between web front-ends and
+back-ends, for example. These types of documents follow a specific
+standard/protocol/syntax but are not a language of their own. They don't have
+associated tools like LSPs and linters. A schema allows the programmer to define
+the exact, application-specific structure of their document.
+
+[JSON Schema](https://json-schema.org) refers to a popular standard for defining
+schemas for JSON data. The schemas are written in JSON but are also often
+written in languages easily converted to JSON like YAML. JSON Schema is how one
+defines a schema for one's document. A programmer can specify the allowed
+properties in the their JSON file as well as the expected/allowed values of each
+property. Properties can have descriptions and custom types can be defined.
+See also: <https://json-schema.org/learn/glossary>.
+
+LSPs can be set up to respect given schemas written in the JSON Schema format.
+For example, both
+[jsonls](https://github.com/hrsh7th/vscode-langservers-extracted)
+and [yamlls](https://github.com/redhat-developer/yaml-language-server) can read
+schemas. The LSPs can provide helpful functionality based on the schemas like
+diagnostics, hover information and autocompletion. 
+
+[Schema Store](https://www.schemastore.org) is a repository of common schemas
+written according to the JSON Schema specification. A programmer can upload a
+schema for their application to Schema Store for others to access. The LSPs
+listed above can both automatically access corresponding schemas from Schema
+Store using the [SchemaStore.nvim](https://github.com/b0o/SchemaStore.nvim)
+Neovim plugin.
+
+An example of this whole setup is the
+[Lazygit](https://github.com/jesseduffield/lazygit) configuration file. The
+Lazygit config file has a schema written according to the JSON Schema spec
+stored in Schema Store. This schema specifies the properties allowed in
+Lazygit's config. Using yamlls and SchemaStore.nvim, diagnostic errors are
+produced if an illegal config property is set or if a valid property is set to
+an illegal value. For valid properties, descriptions can be seen using LSP
+hover.
