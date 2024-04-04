@@ -1,5 +1,8 @@
 local Plugin = { "christoomey/vim-tmux-navigator" }
 
+-- Enbale Tmux navigator plugin only if nvim is opened from within Tmux
+Plugin.cond = os.getenv("TMUX") ~= nil
+
 Plugin.cmd = {
   "TmuxNavigateLeft",
   "TmuxNavigateDown",
