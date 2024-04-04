@@ -31,8 +31,9 @@ vim.opt.fillchars = { -- Fold column characters
 ------------------------------- Editor Behavior -------------------------------
 vim.opt.mouse = "a" -- Turn on mouse mode
 
--- An .editorconfig file will override other options specified here
+-- Project specific configuration files:
 vim.g.editorconfig = true -- Enables .editorconfig files for project specific formatting
+vim.opt.exrc = true -- Automatically trusted execute .nvim.lua and .nvimrc files in cwd
 
 -- Default Tab Behavior
 vim.opt.tabstop = 2 -- Tab size
