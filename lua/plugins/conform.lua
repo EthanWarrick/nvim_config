@@ -2,7 +2,7 @@ local Plugin = { "stevearc/conform.nvim" }
 
 Plugin.dependencies = { "williamboman/mason.nvim" }
 
--- Plugin.event = "BufWritePre"
+Plugin.event = { "BufReadPre", "BufNewFile" }
 
 Plugin.opts = {
   format_on_save = function(bufnr)
