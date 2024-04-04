@@ -7,7 +7,18 @@ local LSP = {
   opts = {
     servers = {
       -- Ensure mason installs the server
-      lua_ls = {},
+      lua_ls = {
+        settings = {
+          Lua = {
+            workspace = {
+              checkThirdParty = false,
+            },
+            completion = {
+              callSnippet = "Replace",
+            },
+          },
+        },
+      },
     },
   },
 }
