@@ -2,6 +2,8 @@ local Plugin = { "mfussenegger/nvim-lint" }
 
 Plugin.dependencies = { "williamboman/mason.nvim" }
 
+Plugin.event = { "BufReadPre", "BufNewFile" }
+
 Plugin.opts = {
   -- Event to trigger linters
   events = { "BufWritePost", "BufReadPost", "InsertLeave" },
