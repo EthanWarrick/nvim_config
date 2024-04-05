@@ -9,4 +9,5 @@ if exists("b:did_ftplugin_append")
 endif
 let b:did_ftplugin_append = 1
 
+setlocal formatoptions+=a
 setlocal spell spelllang=en_us
