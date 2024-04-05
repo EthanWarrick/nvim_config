@@ -10,12 +10,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "help", "man" },
-  group = group,
-  command = "nnoremap <buffer> q <cmd>quit<cr>",
-})
-
 -- TODO: this should be coverted to lua
 -- This ports over ctags functionality
 vim.api.nvim_exec(
