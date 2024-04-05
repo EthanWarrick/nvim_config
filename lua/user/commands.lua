@@ -82,14 +82,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
--- Turn on spell check for specific file types
-vim.api.nvim_create_autocmd("FileType", {
-  desc = "Turn on spell check for specific files",
-  group = group,
-  pattern = { "gitcommit", "markdown" },
-  command = [[setlocal spell spelllang=en_us]],
-})
-
 -- Use relative line numbers on the focused window if in normal mode.
 -- If in insert mode or the window is unfocused, use absolute line numbers.
 local numbertogglegroup = vim.api.nvim_create_augroup("numbertoggle", { clear = true })
