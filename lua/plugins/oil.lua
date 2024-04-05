@@ -7,6 +7,8 @@ Plugin.dependencies = {
 
 -- This isn't lazy loading correctly because its not loading on ':edit .' unless
 --  already loaded.
+Plugin.lazy = false
+
 Plugin.cmd = { "Oil" }
 
 Plugin.keys = {
