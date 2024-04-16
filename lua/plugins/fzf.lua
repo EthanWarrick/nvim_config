@@ -5,6 +5,19 @@ local Plugin = { "ibhagwan/fzf-lua" }
 Plugin.dependencies = {
   { "nvim-tree/nvim-web-devicons" },
   { "junegunn/fzf", build = "./install --bin" }, -- Installs fzf utility
+  {
+    "roginfarrer/fzf-lua-lazy.nvim",
+    keys = {
+      {
+        "<leader>lv",
+        function()
+          require("fzf-lua-lazy").search()
+        end,
+        mode = "n",
+        desc = "Find in lazy.nvim spec",
+      },
+    },
+  },
 }
 
 Plugin.keys = function()
