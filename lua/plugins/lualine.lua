@@ -99,7 +99,7 @@ Plugin.opts = {
       "filetype",
     },
     lualine_y = { "searchcount", "progress" },
-    lualine_z = { "location" },
+    lualine_z = { "%l:%c/%L" },
   },
   inactive_sections = {
     lualine_a = {},
