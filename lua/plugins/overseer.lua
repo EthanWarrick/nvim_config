@@ -1,5 +1,7 @@
 local Plugin = { "stevearc/overseer.nvim" }
 
+Plugin.enabled = false
+
 Plugin.cmd = {
   "OverseerBuild",
   "OverseerClearCache",
