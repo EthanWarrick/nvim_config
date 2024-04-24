@@ -19,7 +19,7 @@ end
 local function readonlySymbol()
   return {
     function()
-      return vim.bo.readonly and "" or ""
+      return (vim.bo.readonly or not vim.bo.modifiable) and "" or ""
     end,
     padding = 0,
     separator = "",
