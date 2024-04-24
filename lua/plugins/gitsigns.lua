@@ -2,6 +2,8 @@ local Plugin = { "lewis6991/gitsigns.nvim" }
 
 Plugin.event = { "BufReadPre", "BufNewFile" }
 
+Plugin.cmd = "Gitsigns"
+
 -- See :help gitsigns-usage
 Plugin.opts = {
   signs = {
@@ -21,9 +23,9 @@ Plugin.opts = {
     end
 
     -- Navigation
-    map("n", "]c", function()
+    map("n", "]h", function()
       if vim.wo.diff then
-        return "]c"
+        return "]h"
       end
       vim.schedule(function()
         gs.next_hunk()
@@ -31,9 +33,9 @@ Plugin.opts = {
       return "<Ignore>"
     end, { expr = true })
 
-    map("n", "[c", function()
+    map("n", "[h", function()
       if vim.wo.diff then
-        return "[c"
+        return "[h"
       end
       vim.schedule(function()
         gs.prev_hunk()
@@ -54,15 +56,18 @@ Plugin.opts = {
     map("n", "<leader>hu", gs.undo_stage_hunk)
     map("n", "<leader>hR", gs.reset_buffer)
     map("n", "<leader>hp", gs.preview_hunk)
-    map("n", "<leader>hb", function()
+    map("n", "<leader>gl", function()
+      gs.blame_line(--[[ { full = true } ]])
+    end)
+    map("n", "<leader>gL", function()
       gs.blame_line({ full = true })
     end)
-    map("n", "<leader>tb", gs.toggle_current_line_blame)
+    map("n", "<leader>gv", gs.toggle_current_line_blame)
     map("n", "<leader>hd", gs.diffthis)
     map("n", "<leader>hD", function()
       gs.diffthis("~")
     end)
-    map("n", "<leader>td", gs.toggle_deleted)
+    map("n", "<leader>gd", gs.toggle_deleted)
 
     -- Text object
     map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
