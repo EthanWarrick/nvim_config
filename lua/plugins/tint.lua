@@ -1,6 +1,6 @@
 local Plugin = { "levouh/tint.nvim" }
 
-Plugin.event = { "WinEnter" }
+-- Plugin.event = { "WinEnter" } -- Enables Tint on entering another window
 Plugin.cmd = { "TintEnable", "TintDisable", "TintToggle" }
 
 Plugin.opts = {
