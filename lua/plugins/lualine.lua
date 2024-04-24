@@ -118,7 +118,7 @@ Plugin.opts = {
       modifiedSymbol(),
       readonlySymbol(),
     },
-    lualine_x = { "location" },
+    lualine_x = { "%l:%c/%L" },
     lualine_y = {},
     lualine_z = {},
   },
