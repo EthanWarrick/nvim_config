@@ -108,7 +108,15 @@ Plugin.opts = {
       {
         "filename",
         path = 1,
+        symbols = {
+          modified = "",
+          readonly = "",
+        },
+        separator = "",
+        padding = { left = 1, right = 0 },
       },
+      modifiedSymbol(),
+      readonlySymbol(),
     },
     lualine_x = { "location" },
     lualine_y = {},
