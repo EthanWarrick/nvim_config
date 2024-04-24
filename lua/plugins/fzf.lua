@@ -9,7 +9,7 @@ Plugin.dependencies = {
     "roginfarrer/fzf-lua-lazy.nvim",
     keys = {
       {
-        "<leader>lv",
+        "<leader>v",
         function()
           require("fzf-lua-lazy").search()
         end,
@@ -67,7 +67,7 @@ Plugin.keys = function()
     },
     -- Git --
     {
-      "<leader>gc",
+      "<leader>gC",
       function()
         fzf.git_commits()
       end,
@@ -75,7 +75,7 @@ Plugin.keys = function()
       desc = "Find project git commits",
     },
     {
-      "<leader>gC",
+      "<leader>gc",
       function()
         fzf.git_bcommits()
       end,
