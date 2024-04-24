@@ -1,7 +1,5 @@
 local Plugin = { "hrsh7th/nvim-cmp" }
 
--- Plugin.enabled = false
-
 Plugin.dependencies = {
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
@@ -66,4 +64,59 @@ function Plugin.config(_, opts)
   require("cmp").setup(opts)
 end
 
-return Plugin
+-- I'm not for sure if LuaSnip should be a dependency of nvim-cmp or not
+-- Right now it can't be a dependency, because nvim-cmp's opts function
+-- needs to run before the opts function supplied by the nvim-cmp as a
+-- LuaSnip dependency.
+local Snippets = {
+  "L3MON4D3/LuaSnip",
+}
+-- Only build if not on Windows
+Snippets.build = (vim.uv.os_uname().sysname:find("Windows") == nil) and "make install_jsregexp" or nil
+Snippets.dependencies = {
+  {
+    "nvim-cmp",
+    dependencies = {
+      "saadparwaiz1/cmp_luasnip",
+    },
+    opts = function(_, opts)
+      opts.snippet = {
+        expand = function(args)
+          require("luasnip").lsp_expand(args.body)
+        end,
+      }
+      table.insert(opts.sources, { name = "luasnip" })
+    end,
+  },
+}
+Snippets.opts = {
+  history = true,
+  delete_check_events = "TextChanged",
+}
+Snippets.keys = {
+  {
+    "<tab>",
+    function()
+      return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+    end,
+    expr = true,
+    silent = true,
+    mode = "i",
+  },
+  {
+    "<tab>",
+    function()
+      require("luasnip").jump(1)
+    end,
+    mode = "s",
+  },
+  {
+    "<s-tab>",
+    function()
+      require("luasnip").jump(-1)
+    end,
+    mode = { "i", "s" },
+  },
+}
+
+return { Plugin, Snippets }
