@@ -1,10 +1,17 @@
+---@type LazyPluginSpec
 local Plugin = { "ibhagwan/fzf-lua" }
 
 -- Plugin.enabled = false
 
 Plugin.dependencies = {
   { "nvim-tree/nvim-web-devicons" },
-  { "junegunn/fzf", build = "./install --bin" }, -- Installs fzf utility
+  {
+    "junegunn/fzf", -- Installs fzf utility
+    build = {
+      "./install --bin --no-key-bindings --no-completion --no-update-rc",
+      "ln -srf ./bin/fzf " .. vim.fn.stdpath("data") .. "/bin/",
+    }, -- Assumes bin directory is in PATH
+  },
   {
     "roginfarrer/fzf-lua-lazy.nvim",
     keys = {
@@ -143,20 +150,13 @@ Plugin.keys = function()
   }
 end
 
-Plugin.config = function()
+Plugin.opts = function()
   local actions = require("fzf-lua.actions")
-  require("fzf-lua").setup({
-    actions = {
-      files = {
-        ["default"] = actions.file_edit,
-        ["ctrl-s"] = actions.file_split,
-        ["ctrl-v"] = actions.file_vsplit,
-        ["ctrl-t"] = actions.file_tabedit,
-        ["alt-q"] = actions.file_sel_to_qf,
-        ["alt-l"] = actions.file_sel_to_ll,
-      },
-    },
-  })
+  return {}
+end
+
+Plugin.config = function(_, opts)
+  require("fzf-lua").setup(opts)
 end
 
 return Plugin
