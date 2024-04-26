@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "williamboman/mason.nvim" }
 
 Plugin.cmd = {
@@ -10,10 +11,12 @@ Plugin.cmd = {
 }
 
 -- See :help mason-settings
+---@type MasonSettings
 Plugin.opts = {
   ui = { border = "rounded" },
 }
 
+---@param opts MasonSettings | {ensure_installed: string[]}
 Plugin.config = function(_, opts)
   require("mason").setup(opts)
   local mr = require("mason-registry")
