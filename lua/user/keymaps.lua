@@ -7,6 +7,10 @@ vim.keymap.set({ "n", "x", "o" }, "<leader>l", "g_", { desc = "Move cursor to li
 vim.keymap.set("n", "<leader>a", ":keepjumps normal! ggVG<cr>", { desc = "Visual select whole buffer" })
 vim.keymap.set("n", "<leader>o", "o<Esc>k", { desc = "Insert newline below" })
 vim.keymap.set("n", "<leader>O", "O<Esc>j", { desc = "Insert newline above" })
+vim.keymap.set("n", "<c-s>", function()
+  vim.cmd.mksession({ bang = true })
+  vim.notify("Saved session to Session.vim", vim.log.levels.INFO)
+end, { desc = "Save vim session to Session.vim" })
 
 local close_floats = function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
