@@ -13,7 +13,8 @@ Plugin.opts = {
   cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
 
   -- toggle theme style ---
-  toggle_style_key = "<leader>C", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+  -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+  toggle_style_key = nil, -- Set in Plugin.config
   toggle_style_list = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }, -- List of styles to toggle between
 
   -- Change code style ---
@@ -33,7 +34,10 @@ Plugin.opts = {
   },
 
   -- Custom Highlights --
-  colors = {}, -- Override default colors
+  colors = {
+    bg0 = "#000000",
+    bg1 = "#111111",
+  }, -- Override default colors
   highlights = {}, -- Override highlight groups
 
   -- Plugins Config --
@@ -45,8 +49,12 @@ Plugin.opts = {
 }
 
 Plugin.config = function(_, opts)
-  require("onedark").setup(opts)
-  -- require('onedark').load() -- load the colorscheme here
+  local onedark = require("onedark")
+  onedark.setup(opts)
+  vim.keymap.set("n", "<leader>C", function()
+    onedark.toggle()
+  end, { noremap = true, silent = true, desc = "Toggle Onedark Themes" })
+  onedark.load() -- load the colorscheme here
 end
 
 return Plugin
