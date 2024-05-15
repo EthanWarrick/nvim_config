@@ -36,4 +36,4 @@ lazy.opts = {
   },
 }
 
-lazy.setup({ { import = "plugins" } })
+lazy.setup({ { import = "plugins" }, { import = "plugins.lang" } })
