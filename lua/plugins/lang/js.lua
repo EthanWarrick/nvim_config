@@ -1,10 +1,12 @@
-local Treesitter = require("util").ts_ensure_installed({
-  "css",
-  "javascript",
-  "json",
-  "tsx",
-  "typescript",
-})
+local Treesitter = {
+  "nvim-treesitter/nvim-treesitter",
+  optional = true,
+  opts = function(_, opts)
+    if type(opts.ensure_installed) == "table" then
+      vim.list_extend(opts.ensure_installed, { "css", "javascript", "jsdoc", "tsx", "typescript" })
+    end
+  end,
+}
 
 local LSP = {
   "neovim/nvim-lspconfig",

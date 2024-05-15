@@ -1,4 +1,12 @@
-local Treesitter = require("util").ts_ensure_installed({ "yaml" })
+local Treesitter = {
+  "nvim-treesitter/nvim-treesitter",
+  optional = true,
+  opts = function(_, opts)
+    if type(opts.ensure_installed) == "table" then
+      vim.list_extend(opts.ensure_installed, { "yaml" })
+    end
+  end,
+}
 
 -- SchemaStore is a universal JSON schema store, where schemas for popular JSON documents can be found.
 local Extra = {

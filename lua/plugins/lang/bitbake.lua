@@ -1,4 +1,12 @@
-local Treesitter = require("util").ts_ensure_installed({ "bitbake" })
+local Treesitter = {
+  "nvim-treesitter/nvim-treesitter",
+  optional = true,
+  opts = function(_, opts)
+    if type(opts.ensure_installed) == "table" then
+      vim.list_extend(opts.ensure_installed, { "bitbake" })
+    end
+  end,
+}
 
 -- local LSP = {
 --   "Freed-Wu/bitbake-language-server",
