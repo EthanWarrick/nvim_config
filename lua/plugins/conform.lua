@@ -12,6 +12,7 @@ Plugin.opts = {
     end
     return { timeout_ms = 500, lsp_fallback = false }
   end,
+  formatters_by_ft = {},
 }
 
 Plugin.config = function(_, opts)
