@@ -31,6 +31,10 @@ end
 lazy.path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 lazy.opts = {
+  install = {
+    -- try to load one of these colorschemes when starting an installation during startup
+    colorscheme = { "default" },
+  },
   ui = {
     border = "rounded",
   },
