@@ -102,6 +102,7 @@ Snippets.keys = {
     expr = true,
     silent = true,
     mode = "i",
+    desc = "Jump in snippet",
   },
   {
     "<tab>",
@@ -109,6 +110,7 @@ Snippets.keys = {
       require("luasnip").jump(1)
     end,
     mode = "s",
+    desc = "Jump in snippet",
   },
   {
     "<s-tab>",
@@ -116,6 +118,7 @@ Snippets.keys = {
       require("luasnip").jump(-1)
     end,
     mode = { "i", "s" },
+    desc = "Jump back in snippet",
   },
 }
 
