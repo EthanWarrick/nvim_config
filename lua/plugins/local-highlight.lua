@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "tzachar/local-highlight.nvim" }
 
 Plugin.event = "BufReadPost"

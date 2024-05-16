@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Treesitter = {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
@@ -30,6 +31,7 @@ local Treesitter = {
 --   end,
 -- }
 
+---@type LazyPluginSpec
 local Linter = {
   "mfussenegger/nvim-lint",
   optional = true,

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "folke/which-key.nvim", enabled = false }
 
 Plugin.event = "VeryLazy"

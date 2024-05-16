@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "tpope/vim-fugitive" }
 
 Plugin.cmd = {

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "FabijanZulj/blame.nvim" }
 
 Plugin.cmd = { "BlameToggle" }

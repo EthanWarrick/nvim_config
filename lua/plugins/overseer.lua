@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "stevearc/overseer.nvim" }
 
 Plugin.enabled = false

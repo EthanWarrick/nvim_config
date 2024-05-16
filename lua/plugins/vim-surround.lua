@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "kylechui/nvim-surround" }
 
 Plugin.keys = {

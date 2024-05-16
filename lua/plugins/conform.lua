@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "stevearc/conform.nvim" }
 
 Plugin.dependencies = { "williamboman/mason.nvim" }

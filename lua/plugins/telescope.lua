@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "nvim-telescope/telescope.nvim" }
 
 Plugin.enabled = false

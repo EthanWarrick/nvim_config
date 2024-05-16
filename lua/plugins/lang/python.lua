@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Treesitter = {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
@@ -8,6 +9,7 @@ local Treesitter = {
   end,
 }
 
+---@type LazyPluginSpec
 local LSP = {
   "neovim/nvim-lspconfig",
   optional = true,
@@ -24,6 +26,7 @@ local LSP = {
   },
 }
 
+---@type LazyPluginSpec
 local Formatter = {
   "stevearc/conform.nvim",
   optional = true,

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "akinsho/bufferline.nvim" }
 
 Plugin.enabled = false

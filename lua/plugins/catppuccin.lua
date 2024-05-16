@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "catppuccin/nvim" }
 
 Plugin.name = "catppuccin"

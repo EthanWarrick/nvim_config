@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "lewis6991/gitsigns.nvim" }
 
 Plugin.event = { "BufReadPre", "BufNewFile" }

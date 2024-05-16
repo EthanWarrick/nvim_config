@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Treesitter = {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
@@ -8,6 +9,7 @@ local Treesitter = {
   end,
 }
 
+---@type LazyPluginSpec
 local LSP = {
   "neovim/nvim-lspconfig",
   optional = true,
@@ -19,6 +21,7 @@ local LSP = {
   },
 }
 
+---@type LazyPluginSpec
 local Extra = {
   "PratikBhusal/vim-grip",
   dependencies = { "joeyespo/grip", build = "pip3 install ." },

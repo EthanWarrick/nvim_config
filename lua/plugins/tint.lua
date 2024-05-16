@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "levouh/tint.nvim" }
 
 -- Plugin.event = { "WinEnter" } -- Enables Tint on entering another window

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "moll/vim-bbye" }
 
 Plugin.enabled = false

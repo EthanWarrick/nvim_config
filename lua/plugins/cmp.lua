@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "hrsh7th/nvim-cmp" }
 
 Plugin.dependencies = {
@@ -93,6 +94,7 @@ end
 -- Right now it can't be a dependency, because nvim-cmp's opts function
 -- needs to run before the opts function supplied by the nvim-cmp as a
 -- LuaSnip dependency.
+---@type LazyPluginSpec
 local Snippets = {
   "L3MON4D3/LuaSnip",
 }

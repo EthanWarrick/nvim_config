@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "kyazdani42/nvim-tree.lua" }
 
 Plugin.cmd = { "NvimTreeToggle" }

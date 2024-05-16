@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "akinsho/toggleterm.nvim", enabled = false }
 
 Plugin.keys = { "<C-g>" }

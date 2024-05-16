@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Treesitter = {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
@@ -9,11 +10,13 @@ local Treesitter = {
 }
 
 -- SchemaStore is a universal JSON schema store, where schemas for popular JSON documents can be found.
+---@type LazyPluginSpec
 local Extra = {
   "b0o/schemastore.nvim",
   lazy = true,
 }
 
+---@type LazyPluginSpec
 local LSP = {
   "neovim/nvim-lspconfig",
   optional = true,

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Tmux = { "christoomey/vim-tmux-navigator" }
 
 -- Enbale Tmux navigator plugin only if nvim is opened from within Tmux
@@ -19,6 +20,7 @@ Tmux.keys = {
   { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>", { desc = "Tmux navigate previous" } },
 }
 
+---@type LazyPluginSpec
 local Zellij = { "swaits/zellij-nav.nvim" }
 
 -- Enbale Tmux navigator plugin only if nvim is opened from within Tmux

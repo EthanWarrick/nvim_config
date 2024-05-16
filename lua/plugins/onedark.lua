@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 local Plugin = { "navarasu/onedark.nvim" }
 
 Plugin.priority = 1000
