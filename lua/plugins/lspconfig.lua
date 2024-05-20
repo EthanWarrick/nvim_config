@@ -6,7 +6,15 @@ Plugin.dependencies = {
   -- { "hrsh7th/cmp-nvim-lsp", optional = true },
 }
 
-Plugin.cmd = { "LspInfo", "LspInstall", "LspUnInstall" }
+Plugin.cmd = {
+  "LspInfo",
+  "LspInstall",
+  "LspLog",
+  "LspRestart",
+  "LspStart",
+  "LspStop",
+  "LspUninstall",
+}
 
 Plugin.event = { "BufReadPre", "BufNewFile" }
 
