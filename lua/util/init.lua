@@ -44,29 +44,19 @@ function M.list_contains(list, element)
 end
 
 function M.grep_operator(callback)
-  local set_opfunc = vim.fn[vim.api.nvim_exec(
-    [[
-      func s:set_opfunc(val)
-        let &opfunc = a:val
-      endfunc
-      echon get(function('s:set_opfunc'), 'name')
-    ]],
-    true
-  )]
-
   return function()
-    local op = function(t, ...)
+    _G.my_grep = function(mode)
       local regsave = vim.fn.getreg("@")
       local selsave = vim.o.selection
       local selvalid = true
 
       vim.o.selection = "inclusive"
 
-      if t == "v" or t == "V" then
+      if mode == "v" or mode == "V" then
         vim.api.nvim_command('silent execute "normal! gvy"')
-      elseif t == "line" then
+      elseif mode == "line" then
         vim.api.nvim_command("silent execute \"normal! '[V']y\"")
-      elseif t == "char" then
+      elseif mode == "char" then
         vim.api.nvim_command('silent execute "normal! `[v`]y"')
       else
         selvalid = false
@@ -81,7 +71,7 @@ function M.grep_operator(callback)
       vim.fn.setreg("@", regsave)
     end
 
-    set_opfunc(op)
+    vim.o.operatorfunc = "v:lua.my_grep"
     vim.api.nvim_feedkeys("g@", "n", false)
   end
 end

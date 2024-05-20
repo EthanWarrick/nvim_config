@@ -16,14 +16,14 @@ vim.api.nvim_create_autocmd("BufLeave", {
   desc = "Save window view position",
   group = group,
   callback = function()
-    vim.api.nvim_exec(
+    vim.api.nvim_exec2(
       [[
       if !exists("w:SavedBufView")
           let w:SavedBufView = {}
       endif
       let w:SavedBufView[bufnr("%")] = winsaveview()
-    ]],
-      false
+      ]],
+      {}
     )
   end,
 })
@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Restore window view position",
   group = group,
   callback = function()
-    vim.api.nvim_exec(
+    vim.api.nvim_exec2(
       [[
       let buf = bufnr("%")
       if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
@@ -45,8 +45,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
           endif
           unlet w:SavedBufView[buf]
       endif
-    ]],
-      false
+      ]],
+      {}
     )
   end,
 })
