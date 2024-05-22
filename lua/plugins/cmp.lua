@@ -12,9 +12,12 @@ Plugin.opts = function()
   vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
   local cmp = require("cmp")
   local defaults = require("cmp.config.default")()
+  local luasnip = require("luasnip")
+
+  ---@type cmp.ConfigSchema
   return {
     completion = {
-      completeopt = "menu,menuone,noinsert",
+      completeopt = "menu,menuone,noselect",
     },
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
@@ -23,6 +26,8 @@ Plugin.opts = function()
       { name = "buffer" },
     }),
     formatting = {
+      expandable_indicator = true,
+      fields = { "abbr", "kind", "menu" },
       format = function(_, item)
         local icons = require("util").icons.kinds
         if icons[item.kind] then
@@ -31,23 +36,42 @@ Plugin.opts = function()
         return item
       end,
     },
-    mapping = cmp.mapping.preset.insert({
-      ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    mapping = {
+      ["<CR>"] = cmp.mapping(function(fallback)
+        if cmp.visible() and cmp.get_active_entry() then
+          if luasnip.expandable() then
+            luasnip.expand()
+          else
+            cmp.confirm({
+              select = false,
+            }) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          end
+        else
+          fallback()
+        end
+      end),
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.locally_jumpable(1) then
+          luasnip.jump(1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.locally_jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
-      ["<C-Space>"] = cmp.mapping.complete(),
-      ["<C-e>"] = cmp.mapping.abort(),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ["<S-CR>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ["<C-CR>"] = function(fallback)
-        cmp.abort()
-        fallback()
-      end,
-    }),
+      ["<C-c>"] = cmp.mapping.abort(),
+    },
     experimental = {
       ghost_text = {
         hl_group = "CmpGhostText",
@@ -57,6 +81,7 @@ Plugin.opts = function()
   }
 end
 
+---@param opts cmp.ConfigSchema
 function Plugin.config(_, opts)
   for _, source in ipairs(opts.sources) do
     source.group_index = source.group_index or 1
@@ -71,8 +96,12 @@ end
 local Snippets = {
   "L3MON4D3/LuaSnip",
 }
+
+Snippets.lazy = true
+
 -- Only build if not on Windows
 Snippets.build = (vim.uv.os_uname().sysname:find("Windows") == nil) and "make install_jsregexp" or nil
+
 Snippets.dependencies = {
   {
     "nvim-cmp",
@@ -89,37 +118,10 @@ Snippets.dependencies = {
     end,
   },
 }
+
 Snippets.opts = {
   history = true,
   delete_check_events = "TextChanged",
-}
-Snippets.keys = {
-  {
-    "<tab>",
-    function()
-      return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-    end,
-    expr = true,
-    silent = true,
-    mode = "i",
-    desc = "Jump in snippet",
-  },
-  {
-    "<tab>",
-    function()
-      require("luasnip").jump(1)
-    end,
-    mode = "s",
-    desc = "Jump in snippet",
-  },
-  {
-    "<s-tab>",
-    function()
-      require("luasnip").jump(-1)
-    end,
-    mode = { "i", "s" },
-    desc = "Jump back in snippet",
-  },
 }
 
 return { Plugin, Snippets }
