@@ -1,6 +1,8 @@
 ---@type LazyPluginSpec
 local Plugin = { "catppuccin/nvim" }
 
+Plugin.enabled = false
+
 Plugin.name = "catppuccin"
 
 Plugin.priority = 1000
