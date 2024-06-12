@@ -59,7 +59,7 @@ Plugin.keys = function()
     {
       "<leader>fg",
       function()
-        fzf.live_grep()
+        fzf.live_grep_glob()
       end,
       mode = "n",
       desc = "Live grep",
