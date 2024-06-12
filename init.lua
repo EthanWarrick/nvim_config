@@ -16,4 +16,4 @@ load("user.commands")
 load("user.keymaps")
 require("user.plugins")
 
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("onedark")

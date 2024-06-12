@@ -3,7 +3,7 @@ local Plugin = { "navarasu/onedark.nvim" }
 
 Plugin.priority = 1000
 
-Plugin.lazy = true
+Plugin.lazy = false
 
 Plugin.opts = {
   -- Main options --
@@ -55,7 +55,7 @@ Plugin.config = function(_, opts)
   vim.keymap.set("n", "<leader>C", function()
     onedark.toggle()
   end, { noremap = true, silent = true, desc = "Toggle Onedark Themes" })
-  onedark.load() -- load the colorscheme here
+  -- onedark.load() -- load the colorscheme here
 end
 
 return Plugin
