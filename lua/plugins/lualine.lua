@@ -59,7 +59,7 @@ Plugin.opts = {
     component_separators = "|",
     section_separators = "",
     disabled_filetypes = {
-      statusline = { "NvimTree" },
+      statusline = { "NvimTree", "blame", "fugitiveblame" },
     },
   },
   sections = {
