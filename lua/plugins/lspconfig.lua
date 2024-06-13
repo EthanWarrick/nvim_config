@@ -126,7 +126,7 @@ function Plugin.config(_, opts)
 end
 
 -- Define keymapings
-function user.on_attach()
+function user.on_attach(args)
   local bufmap = function(mode, lhs, rhs, desc)
     local opts = { buffer = true, desc = desc }
     vim.keymap.set(mode, lhs, rhs, opts)
@@ -149,6 +149,8 @@ function user.on_attach()
     vim.lsp.buf.format({ async = true })
   end, "")
   bufmap("n", "<F4>", vim.lsp.buf.code_action, "")
+
+  vim.bo[args.buf].tagfunc = "" -- Stop Neovim from setting the LSP as the tag provider
 end
 
 return Plugin
