@@ -62,14 +62,6 @@ function Plugin.config(_, opts)
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
-  -- diagnostics signs
-  if vim.fn.has("nvim-0.10.0") == 0 then
-    for severity, icon in pairs(opts.diagnostics.signs.text) do
-      local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
-      name = "DiagnosticSign" .. name
-      vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-    end
-  end
   -- diagnostics config
   vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
@@ -141,8 +133,6 @@ function user.on_attach(args)
   bufmap("n", "go", vim.lsp.buf.type_definition, "Go to type definition")
   bufmap("n", "gr", vim.lsp.buf.references, "List references")
   bufmap("n", "gl", vim.diagnostic.open_float, "Open diagnostic float")
-  bufmap("n", "[d", vim.diagnostic.goto_prev, "Go to next diagnostic")
-  bufmap("n", "]d", vim.diagnostic.goto_next, "Go to previous diagnostic")
   -- bufmap('n', 'gs', vim.lsp.buf.signature_help, "")
   bufmap("n", "<F2>", vim.lsp.buf.rename, "")
   bufmap({ "n", "x" }, "<F3>", function()
