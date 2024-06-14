@@ -33,7 +33,7 @@ vim.opt.mouse = "a" -- Turn on mouse mode
 
 -- Project specific configuration files:
 vim.g.editorconfig = true -- Enables .editorconfig files for project specific formatting
-vim.opt.exrc = true -- Automatically trusted execute .nvim.lua and .nvimrc files in cwd
+vim.opt.exrc = true -- Automatically execute trusted .nvim.lua and .nvimrc files in cwd
 
 -- Default Tab Behavior
 vim.opt.tabstop = 2 -- Tab size
