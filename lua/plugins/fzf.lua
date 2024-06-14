@@ -1,6 +1,8 @@
 ---@type LazyPluginSpec
 local Plugin = { "ibhagwan/fzf-lua" }
 
+-- Plugin.enabled = false
+
 Plugin.dependencies = {
   { "nvim-tree/nvim-web-devicons" },
   {
@@ -9,6 +11,19 @@ Plugin.dependencies = {
       "./install --bin --no-key-bindings --no-completion --no-update-rc",
       "ln -srf ./bin/fzf " .. vim.fn.stdpath("data") .. "/bin/",
     }, -- Assumes bin directory is in PATH
+  },
+  {
+    "roginfarrer/fzf-lua-lazy.nvim",
+    keys = {
+      {
+        "<leader>v",
+        function()
+          require("fzf-lua-lazy").search()
+        end,
+        mode = "n",
+        desc = "Find in lazy.nvim spec",
+      },
+    },
   },
 }
 

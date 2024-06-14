@@ -1,11 +1,11 @@
 -------------------------------- Status Column --------------------------------
--- This status column configuration consists of the sign column, the fold
---  column, and the line number column. The size of the sign and fold columns
---  are automatic. They are both only present if there is something to display
---  and are at minimum two and one characters wide, respectively. The size of
---  the line number column is wide enough to fit the max line number plus a
---  space. These were formatted using the functionality of status column. The
---  line number column shows the current line number for the current line and
+-- This status line configuration consists of the sign column, the fold column,
+--  and the line number column. The size of the sign and fold columns are
+--  automatic. They are both only present if there is something to display and
+--  are at minimum two and one characters wide, respectively. The size of the
+--  line number column is wide enough to fit the max line number plus a space.
+--  These were formatted using the functionality of status column. The line
+--  number column shows the current line number for the current line and
 --  relative line numbers for others. The current line number is preceeded by
 --  zeros filling the whole line number column width. All line numbers are
 --  aligned to the right.
@@ -44,6 +44,7 @@ vim.opt.expandtab = true -- Turn tab into spaces
 vim.opt.wrap = false -- Wrap text
 vim.opt.breakindent = true -- Preserve indentation when wrapping text
 vim.opt.cursorline = true -- Highlight the entire line containing the cursor
+vim.opt.colorcolumn = "81" -- Highlight a vertical column for visual character limit
 vim.opt.termguicolors = true -- Helps with displaying colors correctly
 
 -- Searching Behavior
@@ -57,5 +58,10 @@ vim.opt.hlsearch = true -- Highlight search term
 vim.opt.wildmode = "longest,longest,longest:full,full"
 
 -- Show the following hidden characters
-vim.o.list = false
+vim.o.listchars = "trail:-,nbsp:+,tab:▏ ,eol:↴"
+vim.o.list = true
+-------------------------------------------------------------------------------
+
+-------------------------------- Diff Behavior --------------------------------
+vim.opt.diffopt = "internal,filler,closeoff,foldcolumn:1,followwrap,algorithm:histogram"
 -------------------------------------------------------------------------------
