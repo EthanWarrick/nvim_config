@@ -25,3 +25,26 @@ vim.keymap.set({ "n", "x" }, "gY", '"+Y', { remap = true, desc = "Copy to system
 vim.keymap.set({ "n", "x" }, "gp", '"+p', { desc = "Paste to system clipboard" })
 vim.keymap.set("n", "<C-p>", ":let @+ = @%<cr>", { desc = "Copy relative path to system clipboard" })
 vim.keymap.set({ "n", "x" }, "x", '"_x', { desc = 'Delete without saving to " register' })
+
+vim.keymap.set({ "n", "x" }, "<F12>", "<cmd>call GenerateCtags()<CR>", { desc = "Generate tags file" })
+vim.api.nvim_exec2(
+  [[
+  " Ctags
+  function! s:CtagsHandler(job_id, data, event)
+    if a:event == 'exit'
+      echo "Generating Tags... Complete"
+    endif
+  endfunction
+  function! GenerateCtags()
+    let l:ctags_cmd = "ctags -R --fields=+Slk --c-types=+deftuxgsmp -B --exclude=build --exclude=megainclude ."
+    echo "Generating Tags..."
+    if has('nvim')
+      let job = jobstart(l:ctags_cmd, {'on_exit': function('s:CtagsHandler')})
+    else
+      call system(l:ctags_cmd)
+      call s:CtagsHandler(0, "", 'exit')
+    endif
+  endfunction
+]],
+  {}
+)
