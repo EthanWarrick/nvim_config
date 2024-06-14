@@ -45,9 +45,9 @@ vim.keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Buffer next" })
 vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Buffer previous" })
 
 vim.keymap.set("n", "<leader>d", function()
-  if vim.diagnostic.is_disabled(0) then
-    vim.diagnostic.enable()
+  if vim.diagnostic.is_enabled() then
+    vim.diagnostic.enable(false)
   else
-    vim.diagnostic.disable()
+    vim.diagnostic.enable(true)
   end
 end, { desc = "Toggle diagnostic messages" })
