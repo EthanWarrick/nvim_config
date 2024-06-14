@@ -14,6 +14,7 @@ end
 load("user.settings")
 load("user.commands")
 load("user.keymaps")
+load("user.taskfile")
 require("user.plugins")
 
 vim.cmd.colorscheme("onedark")
