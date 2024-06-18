@@ -19,9 +19,9 @@ local close_floats = function()
   end
 end
 vim.keymap.set("n", "<esc>", function()
-  close_floats()
+  vim.api.nvim_command("fclose")
   vim.api.nvim_command("nohlsearch")
-end, { desc = "Close all floating windows & disable search highlight" })
+end, { desc = "Close top floating window & disable search highlight" })
 
 -- Essentially creates a line text object
 --  - this is for operating on lines without counting the newline

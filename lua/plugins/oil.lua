@@ -30,7 +30,7 @@ Plugin.cmd = { "Oil" }
 
 Plugin.keys = {
   {
-    "<leader>fe",
+    "-",
     function()
       require("oil").open_float()
     end,
