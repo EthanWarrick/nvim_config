@@ -66,3 +66,5 @@ vim.api.nvim_exec2(
 ]],
   {}
 )
+
+vim.keymap.set("n", "<BS>", ":let @/=expand('<cword>') <bar> set hls <cr>", { silent = true })
