@@ -10,14 +10,6 @@ vim.keymap.set("n", "<c-s>", function()
   vim.notify("Saved session to Session.vim", vim.log.levels.INFO)
 end, { desc = "Save vim session to Session.vim" })
 
-local close_floats = function()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local config = vim.api.nvim_win_get_config(win)
-    if config.relative ~= "" then -- is_floating_window?
-      vim.api.nvim_win_close(win, false) -- do not force
-    end
-  end
-end
 vim.keymap.set("n", "<esc>", function()
   vim.api.nvim_command("fclose")
   vim.api.nvim_command("nohlsearch")
