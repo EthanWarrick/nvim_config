@@ -22,8 +22,9 @@ Tmux.keys = {
 
 ---@type LazyPluginSpec
 local Zellij = { "swaits/zellij-nav.nvim" }
+-- Pair with https://github.com/hiasr/vim-zellij-navigator
 
--- Enbale Tmux navigator plugin only if nvim is opened from within Tmux
+-- Enbale Zellij navigator plugin only if nvim is opened from within Zellij
 Zellij.cond = os.getenv("ZELLIJ") ~= nil
 
 Zellij.config = true

@@ -21,7 +21,7 @@ local LSP = {
           ["textDocument/publishDiagnostics"] = function() end,
         },
       },
-      ruff_lsp = {}, -- Additional ruff diagnostics
+      ruff = {}, -- Additional ruff diagnostics
     },
   },
 }

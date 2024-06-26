@@ -126,7 +126,6 @@ function user.on_attach(args)
 
   -- You can search each function in the help page.
   -- For example :help vim.lsp.buf.hover()
-  bufmap("n", "<leader><space>", vim.lsp.buf.hover, "Open hover preview")
   bufmap("n", "gd", vim.lsp.buf.definition, "Go to definition")
   bufmap("n", "gD", vim.lsp.buf.declaration, "Go to declartation")
   bufmap("n", "gi", vim.lsp.buf.implementation, "Go to implementation")

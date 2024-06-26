@@ -40,4 +40,3 @@
   "vim-fugitive": { "branch": "master", "commit": "64d6cafb9dcbacce18c26d7daf617ebb96b273f3" },
   "vim-grip": { "branch": "master", "commit": "b89bc5fe850da96d2ea5bb8764c71b2020d0f10b" },
   "zellij-nav.nvim": { "branch": "main", "commit": "25930804397ef540bd2de62f9897bc2db61f9baa" }
-}
