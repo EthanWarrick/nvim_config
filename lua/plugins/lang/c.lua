@@ -64,7 +64,9 @@ local Linter = {
     linters = {
       checkpatch = {
         cmd = "./scripts/checkpatch.pl",
-        condition = vim.fn.filereadable("./scripts/checkpatch.pl") == 1,
+        condition = function(_)
+          return vim.fn.filereadable("./scripts/checkpatch.pl") == 1
+        end,
       },
     },
   },
