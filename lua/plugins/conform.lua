@@ -7,7 +7,27 @@ Plugin.event = { "BufReadPre", "BufNewFile" }
 
 Plugin.cmd = { "ConformInfo" }
 
+-- Vim has the `gq` keybinding to trigger formatting. The formatexpr
+-- var can be set to use a custom function for formatting. Conform
+-- provides a custom function for this var to use a filetype's
+-- formatters. This function extends Conform's function to fallback
+-- to default behavior if no formatters are available.
+_G.my_formatexpr = function()
+  local conform = require("conform")
+
+  -- Grab formatters for the current buffer
+  local formatters = conform.list_formatters(0)
+
+  if #formatters == 0 then
+    return 1
+  else
+    return conform.formatexpr()
+  end
+end
+
 Plugin.init = function()
+  -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+  vim.o.formatexpr = "v:lua.my_formatexpr()"
   vim.g.disable_autoformat = true
 end
 
