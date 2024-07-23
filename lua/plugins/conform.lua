@@ -5,13 +5,25 @@ Plugin.dependencies = { "williamboman/mason.nvim" }
 
 Plugin.event = { "BufReadPre", "BufNewFile" }
 
+Plugin.cmd = { "ConformInfo" }
+
+Plugin.init = function()
+  vim.g.disable_autoformat = true
+end
+
 Plugin.opts = {
   format_on_save = function(bufnr)
+    -- Disable autoformat on certain filetypes
+    local ignore_filetypes = {}
+    if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+      return
+    end
+
     -- Disable with a global or buffer-local variable
     if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
       return
     end
-    return { timeout_ms = 500, lsp_fallback = false }
+    return { timeout_ms = 3000, lsp_fallback = false }
   end,
   formatters_by_ft = {},
 }
@@ -27,9 +39,13 @@ Plugin.config = function(_, opts)
   local mr = require("mason-registry")
   local function mason_try_install()
     for _, formatter in ipairs(ensure_installed) do
-      local p = mr.get_package(formatter)
-      if not p:is_installed() then
-        p:install()
+      if mr.has_package(formatter) then
+        local p = mr.get_package(formatter)
+        if not p:is_installed() then
+          p:install()
+        end
+      else
+        vim.notify("Formatter not in Mason registry: " .. formatter, vim.log.levels.WARN)
       end
     end
   end
