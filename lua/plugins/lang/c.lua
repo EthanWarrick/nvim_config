@@ -64,13 +64,7 @@ local Linter = {
     linters = {
       checkpatch = {
         cmd = "./scripts/checkpatch.pl",
-        condition = function(ctx)
-          -- local repo_path = vim.fn.system("git rev-parse --show-toplevel")
-          -- if vim.v.shell_error ~= 0 then
-          --   repo_path = ctx.dirname
-          -- end
-          --
-          -- return string.find(repo_path, "kernel") and vim.fn.filereadable(repo_path .. "/scripts/checkpatch.pl")
+        condition = function(_)
           return vim.fn.filereadable("./scripts/checkpatch.pl") == 1
         end,
       },
