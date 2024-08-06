@@ -23,8 +23,8 @@ vim.opt.signcolumn = "auto" -- Width for sign column
 -- Fold Column
 vim.opt.foldcolumn = "auto" -- Width for fold column
 vim.opt.fillchars = { -- Fold column characters
-  foldopen = "",
-  foldclose = "",
+  foldopen = "",
+  foldclose = "",
 }
 -------------------------------------------------------------------------------
 

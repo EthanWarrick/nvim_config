@@ -1,8 +1,6 @@
 ---@type LazyPluginSpec
 local Plugin = { "ibhagwan/fzf-lua" }
 
--- Plugin.enabled = false
-
 Plugin.dependencies = {
   { "nvim-tree/nvim-web-devicons" },
   {
@@ -152,7 +150,22 @@ end
 
 Plugin.opts = function()
   local actions = require("fzf-lua.actions")
-  return {}
+  return {
+    winopts = {
+      on_create = function()
+        local b = vim.api.nvim_get_current_buf()
+
+        -- Access vim registers from FZF prompt
+        vim.keymap.set("t", "<C-r>", function()
+          vim.schedule(function()
+            local char = vim.fn.getchar()
+            local key = vim.fn.nr2char(char)
+            vim.fn.feedkeys(vim.fn.getreg(key))
+          end)
+        end, { buffer = b, expr = true })
+      end,
+    },
+  }
 end
 
 Plugin.config = function(_, opts)

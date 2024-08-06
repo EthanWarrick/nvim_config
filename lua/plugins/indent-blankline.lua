@@ -15,6 +15,7 @@ Plugin.opts = {
     -- char = "▏",
     char = "│",
     tab_char = "┆",
+    highlight = "IblWhitespace",
   },
 }
 
