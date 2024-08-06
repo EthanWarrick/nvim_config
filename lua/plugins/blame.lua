@@ -9,7 +9,7 @@ Plugin.keys = {
 
 Plugin.opts = {
   mappings = {
-    commit_info = "<leader><space>",
+    commit_info = "K",
     stack_push = "<TAB>",
     stack_pop = "<BS>",
     show_commit = "<CR>",
