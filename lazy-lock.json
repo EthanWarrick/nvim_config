@@ -1,5 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
+  "CopilotChat.nvim": { "branch": "canary", "commit": "43d033b68c8bede4cc87092c7db6bb3bbb2fe145" },
   "LuaSnip": { "branch": "master", "commit": "45db5addf8d0a201e1cf247cae4cdce605ad3768" },
   "blame.nvim": { "branch": "main", "commit": "59cf695685c1d8d603d99b246cc8d42421937c09" },
   "clangd_extensions.nvim": { "branch": "main", "commit": "385a44f133f4145e3a3da1a2a557225dccc3e1f8" },
@@ -8,6 +9,7 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "conform.nvim": { "branch": "master", "commit": "62eba813b7501b39612146cbf29cd07f1d4ac29c" },
+  "copilot.lua": { "branch": "master", "commit": "86537b286f18783f8b67bccd78a4ef4345679625" },
   "fzf": { "branch": "master", "commit": "fc69308057cf8486d2753efd76682fd613471da6" },
   "fzf-lua": { "branch": "main", "commit": "1572a89acf8c468a230f0f5ee7092a15496213ee" },
   "fzf-lua-lazy.nvim": { "branch": "main", "commit": "e813f5df261ff5b781204c108af8f071bf0e1b00" },
