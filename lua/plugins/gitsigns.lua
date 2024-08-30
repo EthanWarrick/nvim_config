@@ -62,6 +62,7 @@ Plugin.opts = {
 
     -- Text object
     map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Hunk text object" })
+    map({ "o", "x" }, "ah", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Hunk text object" })
   end,
 }
 

@@ -22,10 +22,7 @@ vim.opt.signcolumn = "auto" -- Width for sign column
 
 -- Fold Column
 vim.opt.foldcolumn = "auto" -- Width for fold column
-vim.opt.fillchars = { -- Fold column characters
-  foldopen = "",
-  foldclose = "",
-}
+vim.opt.fillchars = { foldopen = "", foldclose = "" } -- Fold column characters
 -------------------------------------------------------------------------------
 
 ------------------------------- Editor Behavior -------------------------------
@@ -58,8 +55,8 @@ vim.opt.hlsearch = true -- Highlight search term
 vim.opt.wildmode = "longest,longest,longest:full,full"
 
 -- Show the following hidden characters
-vim.o.listchars = "trail:-,nbsp:+,tab:▏ ,eol:↴"
-vim.o.list = true
+vim.opt.listchars = { trail = "-", nbsp = "+", tab = "▏ ", eol = "↴" }
+vim.opt.list = true
 -------------------------------------------------------------------------------
 
 -------------------------------- Diff Behavior --------------------------------
