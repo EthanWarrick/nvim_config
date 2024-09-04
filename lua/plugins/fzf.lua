@@ -12,128 +12,125 @@ Plugin.dependencies = {
   },
 }
 
-Plugin.keys = function()
-  local fzf = require("fzf-lua")
-  return {
-    -- Buffers and Files --
-    {
-      "<leader>bb",
-      function()
-        fzf.buffers()
-      end,
-      mode = "n",
-      desc = "Find buffers",
-    },
-    {
-      "<leader>ff",
-      function()
-        fzf.files()
-      end,
-      mode = "n",
-      desc = "Find files",
-    },
-    -- Search --
-    {
-      "gs",
-      require("util").grep_operator(function(query)
-        fzf.grep({ search = query })
-      end),
-      mode = { "n", "x" },
-      desc = "Grep operator",
-    },
-    {
-      "<leader>fg",
-      function()
-        fzf.live_grep_glob()
-      end,
-      mode = "n",
-      desc = "Live grep",
-    },
-    {
-      "<leader>fs",
-      function()
-        fzf.lgrep_curbuf()
-      end,
-      mode = "n",
-      desc = "Current buffer fuzzy find",
-    },
-    -- Git --
-    {
-      "<leader>gC",
-      function()
-        fzf.git_commits()
-      end,
-      mode = "n",
-      desc = "Find project git commits",
-    },
-    {
-      "<leader>gc",
-      function()
-        fzf.git_bcommits()
-      end,
-      mode = "n",
-      desc = "Find file git commits",
-    },
-    {
-      "<leader>gb",
-      function()
-        fzf.git_branches()
-      end,
-      mode = "n",
-      desc = "Find git branches",
-    },
-    -- LSP/Diagnostics --
-    {
-      "<leader>fd",
-      function()
-        fzf.diagnostics_document()
-      end,
-      mode = "n",
-      desc = "List document diagnostics",
-    },
-    -- Misc --
-    {
-      "<leader>c",
-      function()
-        fzf.colorschemes()
-      end,
-      mode = "n",
-      desc = "View colorschemes",
-    },
-    {
-      "<leader>fc",
-      function()
-        fzf.command_history()
-      end,
-      mode = "n",
-      desc = "View command history",
-    },
-    {
-      "<leader>fm",
-      function()
-        fzf.marks()
-      end,
-      mode = "n",
-      desc = "View marks",
-    },
-    {
-      "<leader>fr",
-      function()
-        fzf.registers()
-      end,
-      mode = "n",
-      desc = "View registers",
-    },
-    {
-      "<leader>k",
-      function()
-        fzf.keymaps()
-      end,
-      mode = "n",
-      desc = "View keymaps",
-    },
-  }
-end
+Plugin.keys = {
+  -- Buffers and Files --
+  {
+    "<leader>bb",
+    function()
+      require("fzf-lua").buffers()
+    end,
+    mode = "n",
+    desc = "Find buffers",
+  },
+  {
+    "<leader>ff",
+    function()
+      require("fzf-lua").files()
+    end,
+    mode = "n",
+    desc = "Find files",
+  },
+  -- Search --
+  {
+    "gs",
+    require("util").grep_operator(function(query)
+      require("fzf-lua").grep({ search = query })
+    end),
+    mode = { "n", "x" },
+    desc = "Grep operator",
+  },
+  {
+    "<leader>fg",
+    function()
+      require("fzf-lua").live_grep_glob()
+    end,
+    mode = "n",
+    desc = "Live grep",
+  },
+  {
+    "<leader>fs",
+    function()
+      require("fzf-lua").lgrep_curbuf()
+    end,
+    mode = "n",
+    desc = "Current buffer fuzzy find",
+  },
+  -- Git --
+  {
+    "<leader>gC",
+    function()
+      require("fzf-lua").git_commits()
+    end,
+    mode = "n",
+    desc = "Find project git commits",
+  },
+  {
+    "<leader>gc",
+    function()
+      require("fzf-lua").git_bcommits()
+    end,
+    mode = "n",
+    desc = "Find file git commits",
+  },
+  {
+    "<leader>gb",
+    function()
+      require("fzf-lua").git_branches()
+    end,
+    mode = "n",
+    desc = "Find git branches",
+  },
+  -- LSP/Diagnostics --
+  {
+    "<leader>fd",
+    function()
+      require("fzf-lua").diagnostics_document()
+    end,
+    mode = "n",
+    desc = "List document diagnostics",
+  },
+  -- Misc --
+  {
+    "<leader>c",
+    function()
+      require("fzf-lua").colorschemes()
+    end,
+    mode = "n",
+    desc = "View colorschemes",
+  },
+  {
+    "<leader>fc",
+    function()
+      require("fzf-lua").command_history()
+    end,
+    mode = "n",
+    desc = "View command history",
+  },
+  {
+    "<leader>fm",
+    function()
+      require("fzf-lua").marks()
+    end,
+    mode = "n",
+    desc = "View marks",
+  },
+  {
+    "<leader>fr",
+    function()
+      require("fzf-lua").registers()
+    end,
+    mode = "n",
+    desc = "View registers",
+  },
+  {
+    "<leader>k",
+    function()
+      require("fzf-lua").keymaps()
+    end,
+    mode = "n",
+    desc = "View keymaps",
+  },
+}
 
 Plugin.opts = function()
   local actions = require("fzf-lua.actions")
