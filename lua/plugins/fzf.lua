@@ -14,7 +14,7 @@ Plugin.dependencies = {
     "roginfarrer/fzf-lua-lazy.nvim",
     keys = {
       {
-        "<leader>v",
+        "<leader>fv",
         function()
           require("fzf-lua-lazy").search()
         end,
