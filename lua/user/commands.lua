@@ -55,14 +55,18 @@ local numbertogglegroup = vim.api.nvim_create_augroup("numbertoggle", { clear = 
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
   pattern = "*",
   callback = function()
-    vim.opt.statuscolumn = '%s%C%=%{%v:relnum?"%r":"%0"..(float2nr(log10(line("$")))+1).."l"%} '
+    if vim.bo.modifiable and not vim.bo.readonly then
+      vim.opt_local.statuscolumn = '%s%C%=%{%v:relnum?"%r":"%0"..(float2nr(log10(line("$")))+1).."l"%} '
+    end
   end,
   group = numbertogglegroup,
 })
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
   pattern = "*",
   callback = function()
-    vim.opt.statuscolumn = "%=%l "
+    if vim.bo.modifiable and not vim.bo.readonly then
+      vim.opt_local.statuscolumn = "%=%l "
+    end
   end,
   group = numbertogglegroup,
 })
