@@ -18,6 +18,12 @@ vim.keymap.set({ "n", "x" }, "gp", '"+p', { desc = "Paste to system clipboard" }
 vim.keymap.set("n", "<C-p>", ":let @+ = @%<cr>", { desc = "Copy relative path to system clipboard" })
 vim.keymap.set({ "n", "x" }, "x", '"_x', { desc = 'Delete without saving to " register' })
 
+-- Window Navigation Commands
+vim.keymap.set("n", "<c-h>", "<c-w>h", { desc = "Navigate left" })
+vim.keymap.set("n", "<c-j>", "<c-w>j", { desc = "Navigate down" })
+vim.keymap.set("n", "<c-k>", "<c-w>k", { desc = "Navigate up" })
+vim.keymap.set("n", "<c-l>", "<c-w>l", { desc = "Navigate right" })
+
 vim.keymap.set({ "n", "x" }, "<F12>", "<cmd>call GenerateCtags()<CR>", { desc = "Generate tags file" })
 vim.api.nvim_exec2(
   [[
