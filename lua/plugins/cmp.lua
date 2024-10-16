@@ -37,6 +37,10 @@ Plugin.opts = function()
         return item
       end,
     },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
     mapping = {
       ["<CR>"] = cmp.mapping(function(fallback)
         if cmp.visible() and cmp.get_active_entry() then
