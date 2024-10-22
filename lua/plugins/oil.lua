@@ -23,7 +23,7 @@ Plugin.dependencies = {
 }
 
 -- This isn't lazy loading correctly because its not loading on ':edit .' unless
---  already loaded.
+--  already loaded. See https://github.com/stevearc/oil.nvim/issues/300
 Plugin.lazy = false
 
 Plugin.cmd = { "Oil" }

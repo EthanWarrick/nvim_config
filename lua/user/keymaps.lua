@@ -33,6 +33,12 @@ vim.keymap.set("n", "<leader>bl", "<cmd>buffer #<cr>", { desc = "Buffer last" })
 vim.keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Buffer next" })
 vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Buffer previous" })
 
+-- Window Navigation Commands
+vim.keymap.set("n", "<c-h>", "<c-w>h", { desc = "Navigate left" })
+vim.keymap.set("n", "<c-j>", "<c-w>j", { desc = "Navigate down" })
+vim.keymap.set("n", "<c-k>", "<c-w>k", { desc = "Navigate up" })
+vim.keymap.set("n", "<c-l>", "<c-w>l", { desc = "Navigate right" })
+
 vim.keymap.set("n", "<leader>d", function()
   if vim.diagnostic.is_enabled() then
     vim.diagnostic.enable(false)

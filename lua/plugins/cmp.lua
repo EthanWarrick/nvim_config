@@ -9,6 +9,8 @@ Plugin.dependencies = {
 
 Plugin.event = "InsertEnter"
 
+Plugin.cmd = "CmpStatus"
+
 Plugin.opts = function()
   vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
   local cmp = require("cmp")
@@ -36,6 +38,10 @@ Plugin.opts = function()
         end
         return item
       end,
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
     mapping = {
       ["<CR>"] = cmp.mapping(function(fallback)
@@ -107,9 +113,8 @@ Snippets.build = (vim.uv.os_uname().sysname:find("Windows") == nil) and "make in
 Snippets.dependencies = {
   {
     "nvim-cmp",
-    dependencies = {
-      "saadparwaiz1/cmp_luasnip",
-    },
+    dependencies = { "saadparwaiz1/cmp_luasnip" },
+    optional = true,
     opts = function(_, opts)
       opts.snippet = {
         expand = function(args)

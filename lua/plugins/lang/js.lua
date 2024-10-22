@@ -16,7 +16,7 @@ local LSP = {
   opts = {
     servers = {
       -- Ensure mason installs the server
-      tsserver = {}, -- Requires Node.js | Might need to update Node.js
+      ts_ls = {}, -- Requires Node.js | Might need to update Node.js
     },
   },
 }
