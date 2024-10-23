@@ -21,7 +21,7 @@ _G.my_formatexpr = function()
   if #formatters == 0 then
     return 1
   else
-    return conform.formatexpr()
+    return conform.formatexpr({ timeout_ms = 3000 })
   end
 end
 
