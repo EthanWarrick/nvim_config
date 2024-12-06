@@ -53,7 +53,6 @@ local Completion = {
 ---@type LazyPluginSpec
 local CopilotChat = {
   "CopilotC-Nvim/CopilotChat.nvim",
-  branch = "canary",
   dependencies = {
     { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
     { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
@@ -74,32 +73,75 @@ local CopilotChat = {
         return select.visual(source) or select.buffer(source)
       end,
       mappings = {
-        reset = { -- The default '<c-l>' is already used for window navigation
+        complete = {
+          insert = "<Tab>",
+        },
+        close = {
+          normal = "q",
+          insert = "<C-c>",
+        },
+        reset = { -- The default '<C-l>' is already used for window navigation
           normal = "",
           insert = "",
+        },
+        submit_prompt = {
+          normal = "<CR>",
+          insert = "<C-s>",
+        },
+        toggle_sticky = {
+          detail = "Makes line under cursor sticky or deletes sticky line.",
+          normal = "gr",
+        },
+        accept_diff = {
+          normal = "<C-y>",
+          insert = "<C-y>",
+        },
+        jump_to_diff = {
+          normal = "gj",
+        },
+        quickfix_diffs = {
+          normal = "gq",
+        },
+        yank_diff = {
+          normal = "",
+          register = "",
+        },
+        show_diff = {
+          normal = "gd",
+        },
+        show_info = {
+          normal = "gi",
+        },
+        show_context = {
+          normal = "gc",
+        },
+        show_help = {
+          normal = "gh",
         },
       },
     }
   end,
   cmd = {
     "CopilotChat",
-    "CopilotChatOpen",
+    "CopilotChatAgents",
     "CopilotChatClose",
-    "CopilotChatToggle",
-    "CopilotChatStop",
-    "CopilotChatReset",
-    "CopilotChatSave",
-    "CopilotChatLoad",
-    "CopilotChatDebugInfo",
-    "CopilotChatExplain",
-    "CopilotChatReview",
-    "CopilotChatFix",
-    "CopilotChatOptimize",
-    "CopilotChatDocs",
-    "CopilotChatTests",
-    "CopilotChatFixDiagnostic",
     "CopilotChatCommit",
     "CopilotChatCommitStaged",
+    "CopilotChatDebugInfo",
+    "CopilotChatDocs",
+    "CopilotChatExplain",
+    "CopilotChatFix",
+    "CopilotChatFixDiagnostic",
+    "CopilotChatLoad",
+    "CopilotChatModels",
+    "CopilotChatOpen",
+    "CopilotChatOptimize",
+    "CopilotChatReset",
+    "CopilotChatReview",
+    "CopilotChatSave",
+    "CopilotChatStop",
+    "CopilotChatTests",
+    "CopilotChatToggle",
   },
   config = function(_, opts)
     vim.api.nvim_create_autocmd("BufEnter", {
@@ -109,16 +151,6 @@ local CopilotChat = {
         vim.opt_local.number = false
         vim.opt_local.signcolumn = "no"
       end,
-    })
-
-    require("CopilotChat.integrations.cmp").setup()
-    -- The above setup disables all other completion sources for copilot-chat.
-    -- Manually add back buffer completion.
-    require("cmp").setup.filetype("copilot-chat", {
-      sources = {
-        { name = "copilot-chat" },
-        { name = "buffer" },
-      },
     })
 
     require("CopilotChat").setup(opts)
