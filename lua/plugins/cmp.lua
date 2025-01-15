@@ -1,6 +1,8 @@
 ---@type LazyPluginSpec
 local Plugin = { "hrsh7th/nvim-cmp" }
 
+Plugin.enabled = false
+
 Plugin.dependencies = {
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
