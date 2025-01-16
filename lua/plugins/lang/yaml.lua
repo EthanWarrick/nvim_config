@@ -2,11 +2,9 @@
 local Treesitter = {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
-  opts = function(_, opts)
-    if type(opts.ensure_installed) == "table" then
-      vim.list_extend(opts.ensure_installed, { "yaml" })
-    end
-  end,
+  opts = {
+    ensure_installed = { "yaml" },
+  },
 }
 
 -- SchemaStore is a universal JSON schema store, where schemas for popular JSON documents can be found.

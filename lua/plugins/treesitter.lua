@@ -72,6 +72,8 @@ Plugin.opts = {
   },
 }
 
+Plugin.opts_extend = { "ensure_installed" } -- Secret Lazy.nvim spec
+
 ---@param opts TSConfig
 Plugin.config = function(_, opts)
   if type(opts.ensure_installed) == "table" then
