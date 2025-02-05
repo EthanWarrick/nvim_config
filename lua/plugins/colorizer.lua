@@ -1,8 +1,6 @@
 ---@type LazyPluginSpec
 local Plugin = { "norcalli/nvim-colorizer.lua" }
 
-Plugin.event = "VeryLazy"
-
 Plugin.cmd = {
   "ColorizerAttachToBuffer",
   "ColorizerDetachFromBuffer",
@@ -10,6 +8,6 @@ Plugin.cmd = {
   "ColorizerToggle",
 }
 
-Plugin.opts = { "*" }
+Plugin.opts = {}
 
 return Plugin
