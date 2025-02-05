@@ -10,14 +10,15 @@ Tmux.cmd = {
   "TmuxNavigateUp",
   "TmuxNavigateRight",
   "TmuxNavigatePrevious",
+  "TmuxNavigatorProcessList",
 }
 
 Tmux.keys = {
-  { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>", { desc = "Tmux navigate left" } },
-  { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>", { desc = "Tmux navigate down" } },
-  { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>", { desc = "Tmux navigate up" } },
-  { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>", { desc = "Tmux navigate right" } },
-  { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>", { desc = "Tmux navigate previous" } },
+  { "<c-h>", "<cmd>TmuxNavigateLeft<cr>", mode = { "n", "x" }, desc = "Tmux navigate left" },
+  { "<c-j>", "<cmd>TmuxNavigateDown<cr>", mode = { "n", "x" }, desc = "Tmux navigate down" },
+  { "<c-k>", "<cmd>TmuxNavigateUp<cr>", mode = { "n", "x" }, desc = "Tmux navigate up" },
+  { "<c-l>", "<cmd>TmuxNavigateRight<cr>", mode = { "n", "x" }, desc = "Tmux navigate right" },
+  { "<c-\\>", "<cmd>TmuxNavigatePrevious<cr>", mode = { "n", "x" }, desc = "Tmux navigate previous" },
 }
 
 ---@type LazyPluginSpec
