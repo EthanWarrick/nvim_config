@@ -17,6 +17,7 @@ Plugin.opts = function()
   vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
   local cmp = require("cmp")
   local defaults = require("cmp.config.default")()
+  -- TODO: References to luasnip should be moved.
   local luasnip = require("luasnip")
 
   ---@type cmp.ConfigSchema
@@ -98,39 +99,4 @@ function Plugin.config(_, opts)
   require("cmp").setup(opts)
 end
 
--- I'm not for sure if LuaSnip should be a dependency of nvim-cmp or not
--- Right now it can't be a dependency, because nvim-cmp's opts function
--- needs to run before the opts function supplied by the nvim-cmp as a
--- LuaSnip dependency.
----@type LazyPluginSpec
-local Snippets = {
-  "L3MON4D3/LuaSnip",
-}
-
-Snippets.lazy = true
-
--- Only build if not on Windows
-Snippets.build = (vim.uv.os_uname().sysname:find("Windows") == nil) and "make install_jsregexp" or nil
-
-Snippets.dependencies = {
-  {
-    "nvim-cmp",
-    dependencies = { "saadparwaiz1/cmp_luasnip" },
-    optional = true,
-    opts = function(_, opts)
-      opts.snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body)
-        end,
-      }
-      table.insert(opts.sources, { name = "luasnip" })
-    end,
-  },
-}
-
-Snippets.opts = {
-  history = true,
-  delete_check_events = "TextChanged",
-}
-
-return { Plugin, Snippets }
+return Plugin
