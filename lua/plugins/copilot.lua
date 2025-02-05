@@ -187,5 +187,6 @@ local CopilotChat = {
     require("CopilotChat").setup(opts)
   end,
 }
+Copilot.specs = { CmpCompletion, BlinkCompletion }
 
-return { Copilot, CopilotChat, CmpCompletion, BlinkCompletion }
+return { Copilot, CopilotChat }
