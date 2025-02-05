@@ -38,6 +38,22 @@ lazy.opts = {
   ui = {
     border = "rounded",
   },
+    performance = {
+    rtp = {
+      ---@type string[] List any plugins you want to disable here
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+
 }
 
 lazy.setup({ { import = "plugins" }, { import = "plugins.lang" } })
