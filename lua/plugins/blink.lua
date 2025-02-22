@@ -53,8 +53,9 @@ Plugin.opts = {
   -- elsewhere in your config, without redefining it, due to `opts_extend`
   sources = {
     default = { "lsp", "path", "snippets", "buffer" },
-    cmdline = {},  -- Disable cmdline completions
   },
+
+  cmdline = { enabled = false }, -- Disable blink cmdline completions
 }
 
 Plugin.opts_extend = { "sources.default" } -- Secret Lazy.nvim spec
