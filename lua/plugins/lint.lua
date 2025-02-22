@@ -15,7 +15,7 @@ Plugin.opts = {
     -- ['_'] = { 'fallback linter' }, -- Run linters on filetypes that don't have other linters configured.
   },
   -- Custom linters and overrides for built-in linters
-  ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean } ) }
+  ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean } | { mason: boolean } ) }
   linters = {
     -- [linter] = {
     --   cmd = 'linter_cmd',
@@ -26,7 +26,8 @@ Plugin.opts = {
     --   stream = nil, -- ('stdout' | 'stderr' | 'both') configure the stream to which the linter outputs the linting result.
     --   ignore_exitcode = false, -- set this to true if the linter exits with a code != 0 and that's considered normal.
     --   env = nil, -- custom environment table to use with the external process. Note that this replaces the *entire* environment, it is not additive.
-    --   parser = your_parse_function
+    --   parser = your_parse_function,
+    --   mason = true, --Do not install with mason if false
     -- }
   },
 }
@@ -49,10 +50,14 @@ Plugin.config = function(_, opts)
   local ensure_installed = {} ---@type string[]
   for _, linters in pairs(opts.linters_by_ft) do
     for _, linter in ipairs(linters) do
-      if mr.has_package(linter) then
-        ensure_installed = vim.list_extend(ensure_installed, { linter })
-      else
-        vim.notify("Linter not in Mason registry: " .. linter, vim.log.levels.WARN)
+      ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean } | { mason: boolean } ) }
+      local linter_opts = opts.linters[linter] or {}
+      if linter_opts.mason ~= false then
+        if mr.has_package(linter) then
+          ensure_installed = vim.list_extend(ensure_installed, { linter })
+        else
+          vim.notify("Linter not in Mason registry: " .. linter, vim.log.levels.WARN)
+        end
       end
     end
   end
@@ -105,7 +110,7 @@ Plugin.config = function(_, opts)
     local ctx = { filename = vim.api.nvim_buf_get_name(0) }
     ctx.dirname = vim.fn.fnamemodify(ctx.filename, ":h")
     names = vim.tbl_filter(function(name)
-      ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean } ) }
+      ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean | { mason: boolean } } ) }
       local linter = lint.linters[name]
       if not linter then
         vim.notify("Linter not found: " .. name, vim.log.levels.WARN)
