@@ -59,12 +59,14 @@ local Linter = {
     linters_by_ft = {
       c = { "checkpatch" },
     },
+    ---@type { [string]: ( lint.Linter | {condition: fun(ctx: table): boolean} | {mason: boolean} ) }
     linters = {
       checkpatch = {
         cmd = "./scripts/checkpatch.pl",
         condition = function(_)
           return vim.fn.filereadable("./scripts/checkpatch.pl") == 1
         end,
+        mason = false,
       },
     },
   },
