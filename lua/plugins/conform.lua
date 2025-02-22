@@ -68,6 +68,7 @@ Plugin.opts = {
     --   inherit = true,
     --   prepend_args = {"",},
     --   append_args = {"",},
+    --   mason = true, -- Do not install with mason if false
     -- },
   },
 }
@@ -79,10 +80,13 @@ Plugin.config = function(_, opts)
   local ensure_installed = {} ---@type string[]
   for _, formatters in pairs(opts.formatters_by_ft) do
     for _, formatter in ipairs(formatters) do
-      if mr.has_package(formatter) then
-        ensure_installed = vim.list_extend(ensure_installed, { formatter })
-      else
-        vim.notify("Formatter not in Mason registry: " .. formatter, vim.log.levels.WARN)
+      local formatter_opts = opts.formatters[formatter] or {} ---@type conform.FormatterConfigOverride | {mason: boolean}
+      if formatter_opts.mason ~= false then
+        if mr.has_package(formatter) then
+          ensure_installed = vim.list_extend(ensure_installed, { formatter })
+        else
+          vim.notify("Formatter not in Mason registry: " .. formatter, vim.log.levels.WARN)
+        end
       end
     end
   end
