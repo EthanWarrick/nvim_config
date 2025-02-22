@@ -31,6 +31,7 @@ Plugin.init = function()
   vim.g.disable_autoformat = true
 end
 
+---@type conform.setupOpts
 Plugin.opts = {
   format_on_save = function(bufnr)
     -- Disable autoformat on certain filetypes
@@ -45,35 +46,56 @@ Plugin.opts = {
     end
     return { timeout_ms = 3000, lsp_fallback = false }
   end,
-  formatters_by_ft = {},
+  -- Map of filetype to formatters
+  formatters_by_ft = {
+    -- [filetype] = { "language formatter" },
+    -- ['*'] = { 'global formatter' }, -- Run formatters on all filetypes.
+    -- ['_'] = { 'fallback formatter' }, -- Run formatters on filetypes that don't have other formatters configured.
+  },
+  -- Custom formatters and overrides for built-in formatters
+  formatters = {
+    -- [formatter] = {
+    --   command = "my_cmd",
+    --   args = {"",},
+    --   range_args = function(self, ctx) end,
+    --   stdin = true,
+    --   cwd = function() end,
+    --   require_cwd = true,
+    --   tmpfile_format = ".conform.$RANDOM.$FILENAME",
+    --   condition = function(self, ctx) end,
+    --   exit_codes = {0,1,},
+    --   env = {VAR="value",},
+    --   inherit = true,
+    --   prepend_args = {"",},
+    --   append_args = {"",},
+    -- },
+  },
 }
 
+---@param opts conform.setupOpts
 Plugin.config = function(_, opts)
-  -- Obtain formatters
+  -- Check mason registry for formatter packages
+  local mr = require("mason-registry")
   local ensure_installed = {} ---@type string[]
   for _, formatters in pairs(opts.formatters_by_ft) do
-    ensure_installed = vim.list_extend(ensure_installed, formatters)
-  end
-
-  -- Install formatter packages from mason registry
-  local mr = require("mason-registry")
-  local function mason_try_install()
-    for _, formatter in ipairs(ensure_installed) do
+    for _, formatter in ipairs(formatters) do
       if mr.has_package(formatter) then
-        local p = mr.get_package(formatter)
-        if not p:is_installed() then
-          p:install()
-        end
+        ensure_installed = vim.list_extend(ensure_installed, { formatter })
       else
         vim.notify("Formatter not in Mason registry: " .. formatter, vim.log.levels.WARN)
       end
     end
   end
-  if mr.refresh then
-    mr.refresh(vim.schedule_wrap(mason_try_install))
-  else
-    mason_try_install()
-  end
+
+  -- Install formatter packages from mason registry
+  mr.refresh(function()
+    for _, formatter in ipairs(ensure_installed) do
+      local p = mr.get_package(formatter)
+      if not p:is_installed() then
+        p:install()
+      end
+    end
+  end)
 
   require("conform").setup(opts)
 
