@@ -8,13 +8,16 @@ Plugin.event = { "BufReadPre", "BufNewFile" }
 Plugin.opts = {
   -- Event to trigger linters
   events = { "BufWritePost", "BufReadPost", "InsertLeave" },
+  -- Map of filetype to linters
   linters_by_ft = {
     -- [filetype] = { "language linter" },
     -- ['*'] = { 'global linter' }, -- Run linters on all filetypes.
     -- ['_'] = { 'fallback linter' }, -- Run linters on filetypes that don't have other linters configured.
   },
+  -- Custom linters and overrides for built-in linters
+  ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean } ) }
   linters = {
-    -- [filetype] = {
+    -- [linter] = {
     --   cmd = 'linter_cmd',
     --   condition = function(ctx) end, -- allows you to dynamically enable/disable linters based on the context.
     --   stdin = true, -- or false if it doesn't support content input via stdin. In that case the filename is automatically added to the arguments.
@@ -46,26 +49,23 @@ Plugin.config = function(_, opts)
   local ensure_installed = {} ---@type string[]
   for _, linters in pairs(opts.linters_by_ft) do
     for _, linter in ipairs(linters) do
-      if pcall(mr.get_package, linter) then
+      if mr.has_package(linter) then
         ensure_installed = vim.list_extend(ensure_installed, { linter })
+      else
+        vim.notify("Linter not in Mason registry: " .. linter, vim.log.levels.WARN)
       end
     end
   end
 
   -- Install linter packages from mason registry
-  local function mason_try_install()
-    for _, formatter in ipairs(ensure_installed) do
-      local p = mr.get_package(formatter)
+  mr.refresh(function()
+    for _, linter in ipairs(ensure_installed) do
+      local p = mr.get_package(linter)
       if not p:is_installed() then
         p:install()
       end
     end
-  end
-  if mr.refresh then
-    mr.refresh(vim.schedule_wrap(mason_try_install))
-  else
-    mason_try_install()
-  end
+  end)
 
   -- Pass linters to plugin
   lint.linters_by_ft = opts.linters_by_ft
@@ -105,6 +105,7 @@ Plugin.config = function(_, opts)
     local ctx = { filename = vim.api.nvim_buf_get_name(0) }
     ctx.dirname = vim.fn.fnamemodify(ctx.filename, ":h")
     names = vim.tbl_filter(function(name)
+      ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean } ) }
       local linter = lint.linters[name]
       if not linter then
         vim.notify("Linter not found: " .. name, vim.log.levels.WARN)
