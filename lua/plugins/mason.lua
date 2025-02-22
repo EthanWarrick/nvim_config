@@ -1,6 +1,8 @@
 ---@type LazyPluginSpec
 local Plugin = { "williamboman/mason.nvim" }
 
+Plugin.build = ":MasonUpdate"
+
 Plugin.cmd = {
   "Mason",
   "MasonLog",
