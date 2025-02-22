@@ -28,10 +28,19 @@ local LSP = {
 local Formatter = {
   "stevearc/conform.nvim",
   optional = true,
+  specs = { "williamboman/mason.nvim", opts = { ensure_installed = { "ruff" } } },
   opts = {
     formatters_by_ft = {
       python = { "ruff_format", "ruff_fix" },
     },
+    formatters = {
+      ruff_format = {
+        mason = false,
+      },
+      ruff_fix = {
+        mason = false,
+      },
+    }
   },
 }
 
