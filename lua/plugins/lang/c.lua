@@ -2,11 +2,9 @@
 local Treesitter = {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
-  opts = function(_, opts)
-    if type(opts.ensure_installed) == "table" then
-      vim.list_extend(opts.ensure_installed, { "c", "cpp", "make", "rst" })
-    end
-  end,
+  opts = {
+    ensure_installed = { "c", "cpp", "make", "rst" },
+  },
 }
 
 ---@type LazyPluginSpec
@@ -61,12 +59,14 @@ local Linter = {
     linters_by_ft = {
       c = { "checkpatch" },
     },
+    ---@type { [string]: ( lint.Linter | {condition: fun(ctx: table): boolean} | {mason: boolean} ) }
     linters = {
       checkpatch = {
         cmd = "./scripts/checkpatch.pl",
         condition = function(_)
           return vim.fn.filereadable("./scripts/checkpatch.pl") == 1
         end,
+        mason = false,
       },
     },
   },

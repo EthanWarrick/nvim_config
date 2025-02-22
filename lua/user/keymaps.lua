@@ -17,8 +17,8 @@ end, { desc = "Close top floating window & disable search highlight" })
 
 -- Essentially creates a line text object
 --  - this is for operating on lines without counting the newline
-vim.keymap.set({ "x", "o" }, "al", ":normal 0v$h<CR>", { desc = "'around-line' text object" })
-vim.keymap.set({ "x", "o" }, "il", ":normal ^vg_<CR>", { desc = "'in-line' text object" })
+vim.keymap.set({ "x", "o" }, "al", ":normal! 0v$h<CR>", { desc = "'around-line' text object" })
+vim.keymap.set({ "x", "o" }, "il", ":normal! ^vg_<CR>", { desc = "'in-line' text object" })
 
 -- Basic clipboard/register interaction
 vim.keymap.set({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })

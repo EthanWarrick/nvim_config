@@ -2,11 +2,9 @@
 local Treesitter = {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
-  opts = function(_, opts)
-    if type(opts.ensure_installed) == "table" then
-      vim.list_extend(opts.ensure_installed, { "markdown", "markdown_inline" })
-    end
-  end,
+  opts = {
+    ensure_installed = { "markdown", "markdown_inline" },
+  },
 }
 
 ---@type LazyPluginSpec

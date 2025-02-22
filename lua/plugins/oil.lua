@@ -22,11 +22,9 @@ Plugin.dependencies = {
   },
 }
 
--- This isn't lazy loading correctly because its not loading on ':edit .' unless
---  already loaded. See https://github.com/stevearc/oil.nvim/issues/300
-Plugin.lazy = false
+Plugin.lazy = true
 
-Plugin.cmd = { "Oil" }
+Plugin.cmd = { "Oil", "Explore", "E", "Hexplore", "He", "Vexplore", "Ve", "Sexplore", "Se", "Texplore", "Te" }
 
 Plugin.keys = {
   {
@@ -54,7 +52,41 @@ Plugin.opts = {
   view_options = {
     show_hidden = true,
   },
+  adapter_aliases = {
+    ["ssh://"] = "oil-ssh://",
+    ["scp://"] = "oil-ssh://",
+    ["sftp://"] = "oil-ssh://",
+  },
 }
+
+Plugin.init = function(p)
+  ------------------------- Enable Lazy Loading -------------------------
+  if vim.fn.argc() == 1 then
+    local argv = tostring(vim.fn.argv(0))
+    local stat = vim.loop.fs_stat(argv)
+
+    local remote_dir_args = vim.startswith(argv, "ssh")
+      or vim.startswith(argv, "sftp")
+      or vim.startswith(argv, "scp")
+      or vim.startswith(argv, "oil-ssh")
+
+    if stat and stat.type == "directory" or remote_dir_args then
+      require("lazy").load({ plugins = { p.name } })
+    end
+  end
+  if not require("lazy.core.config").plugins[p.name]._.loaded then
+    vim.api.nvim_create_autocmd("BufNew", {
+      callback = function()
+        if vim.fn.isdirectory(vim.fn.expand("<afile>")) == 1 then
+          require("lazy").load({ plugins = { "oil.nvim" } })
+          -- Once oil is loaded, we can delete this autocmd
+          return true
+        end
+      end,
+    })
+  end
+  -----------------------------------------------------------------------
+end
 
 Plugin.config = function(_, opts)
   local oil = require("oil")
