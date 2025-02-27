@@ -40,6 +40,15 @@ local function recordingSymbol()
     color = { fg = "#f9905f" },
   }
 end
+local function maximizedSymbol()
+  return {
+    function ()
+      return vim.t.maximized and '' or ''
+    end,
+    padding = { left = 1, right = 0 },
+    separator = "",
+  }
+end
 
 local hl_table = {
   ["n"] = "#89a0e0",
@@ -66,6 +75,7 @@ Plugin.opts = {
     lualine_a = { "mode" },
     lualine_b = { "branch", "diff", { "diagnostics", symbols = require("util").icons.diagnostics } },
     lualine_c = {
+      maximizedSymbol(),
       {
         "filename",
         path = 1,
