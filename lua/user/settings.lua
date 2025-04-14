@@ -10,7 +10,7 @@
 --  zeros filling the whole line number column width. All line numbers are
 --  aligned to the right.
 
-vim.opt.statuscolumn = '%s%C%=%{%"%0"..(float2nr(log10(line("$")))+1).."l"%} '
+vim.opt.statuscolumn = '%s%C%=%{%v:relnum?"%l":"%0"..(float2nr(log10(line("$")))+1).."l"%} '
 
 -- Line Numbers
 vim.opt.number = true -- Show line numbers
@@ -43,6 +43,7 @@ vim.opt.breakindent = true -- Preserve indentation when wrapping text
 vim.opt.cursorline = true -- Highlight the entire line containing the cursor
 vim.opt.colorcolumn = "81" -- Highlight a vertical column for visual character limit
 vim.opt.termguicolors = true -- Helps with displaying colors correctly
+vim.opt.winborder = 'rounded' -- Default border for floating windows
 
 -- Searching Behavior
 vim.opt.ignorecase = true -- Ignore capitalization when searching a file

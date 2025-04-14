@@ -1,6 +1,11 @@
 ---@type LazyPluginSpec
 local Plugin = { "ibhagwan/fzf-lua" }
 
+Plugin.cmd = {
+  "FzfLua",
+  "FZF",
+}
+
 Plugin.dependencies = {
   { "nvim-tree/nvim-web-devicons" },
   {
