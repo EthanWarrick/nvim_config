@@ -56,7 +56,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnte
   pattern = "*",
   callback = function()
     if vim.bo.modifiable and not vim.bo.readonly then
-      vim.opt_local.statuscolumn = '%s%C%=%{%v:relnum?"%r":"%0"..(float2nr(log10(line("$")))+1).."l"%} '
+      vim.opt.relativenumber = true -- Show relative line numbers
+      vim.opt_local.statuscolumn = '%s%C%=%{%v:relnum?"%l":"%0"..(float2nr(log10(line("$")))+1).."l"%} '
     end
   end,
   group = numbertogglegroup,
@@ -65,6 +66,7 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave"
   pattern = "*",
   callback = function()
     if vim.bo.modifiable and not vim.bo.readonly then
+      vim.opt.relativenumber = false -- Show absolute line numbers
       vim.opt_local.statuscolumn = "%=%l "
     end
   end,
