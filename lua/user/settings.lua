@@ -10,7 +10,7 @@
 --  zeros filling the whole line number column width. All line numbers are
 --  aligned to the right.
 
-vim.opt.statuscolumn = '%s%C%=%{%v:relnum?"%r":"%0"..(float2nr(log10(line("$")))+1).."l"%} '
+vim.opt.statuscolumn = '%s%C%=%{%v:relnum?"%l":"%0"..(float2nr(log10(line("$")))+1).."l"%} '
 
 -- Line Numbers
 vim.opt.number = true -- Show line numbers
