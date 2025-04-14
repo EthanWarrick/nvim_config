@@ -24,11 +24,10 @@ Plugin.opts = {
   -- options for vim.diagnostic.config()
   ---@type vim.diagnostic.Opts
   diagnostics = {
-    virtual_text = false,
     severity_sort = true,
     float = {
       border = "rounded",
-      source = "always",
+      source = true,
     },
     signs = {
       text = {
@@ -58,9 +57,6 @@ function Plugin.config(_, opts)
     desc = "LSP actions",
     callback = user.on_attach,
   })
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
   -- diagnostics config
   vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
@@ -128,12 +124,9 @@ function user.on_attach(args)
   -- For example :help vim.lsp.buf.hover()
   bufmap("n", "gd", vim.lsp.buf.definition, "Go to definition")
   bufmap("n", "gD", vim.lsp.buf.declaration, "Go to declartation")
-  bufmap("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
   bufmap("n", "go", vim.lsp.buf.type_definition, "Go to type definition")
-  bufmap("n", "gr", vim.lsp.buf.references, "List references")
   bufmap("n", "gl", vim.diagnostic.open_float, "Open diagnostic float")
   -- bufmap('n', 'gs', vim.lsp.buf.signature_help, "")
-  bufmap("n", "<F2>", vim.lsp.buf.rename, "")
   bufmap({ "n", "x" }, "<F3>", function()
     vim.lsp.buf.format({ async = true })
   end, "")
