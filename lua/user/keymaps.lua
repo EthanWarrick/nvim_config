@@ -3,8 +3,6 @@ vim.g.mapleader = " "
 
 -- Shortcuts
 vim.keymap.set("n", "<leader>a", ":keepjumps normal! ggVG<cr>", { desc = "Visual select whole buffer" })
-vim.keymap.set("n", "<leader>o", "o<Esc>k", { desc = "Insert newline below" })
-vim.keymap.set("n", "<leader>O", "O<Esc>j", { desc = "Insert newline above" })
 vim.keymap.set("n", "<c-s>", function()
   vim.cmd.mksession({ bang = true })
   vim.notify("Saved session to Session.vim", vim.log.levels.INFO)
