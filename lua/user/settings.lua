@@ -42,6 +42,7 @@ vim.opt.wrap = false -- Wrap text
 vim.opt.breakindent = true -- Preserve indentation when wrapping text
 vim.opt.cursorline = true -- Highlight the entire line containing the cursor
 vim.opt.termguicolors = true -- Helps with displaying colors correctly
+vim.opt.winborder = 'rounded' -- Default border for floating windows
 
 -- Searching Behavior
 vim.opt.ignorecase = true -- Ignore capitalization when searching a file

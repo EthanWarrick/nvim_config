@@ -26,7 +26,6 @@ Plugin.opts = {
   diagnostics = {
     severity_sort = true,
     float = {
-      border = "rounded",
       source = true,
     },
     signs = {
