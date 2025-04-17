@@ -1,6 +1,3 @@
--- Space as leader key
-vim.g.mapleader = " "
-
 vim.keymap.set("n", "<esc>", function()
   vim.api.nvim_command("fclose")
   vim.api.nvim_command("nohlsearch")
