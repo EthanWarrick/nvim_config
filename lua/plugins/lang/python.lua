@@ -8,21 +8,20 @@ local Treesitter = {
 }
 
 ---@type LazyPluginSpec
-local LSP = {
-  "neovim/nvim-lspconfig",
+local Mason = {
+  "williamboman/mason.nvim",
   optional = true,
   opts = {
-    servers = {
-      -- Ensure mason installs the server
-      pylsp = {
-        handlers = {
-          ["textDocument/publishDiagnostics"] = function() end,
-        },
-      },
-      ruff = {}, -- Additional ruff diagnostics
-    },
+    ensure_installed = { "python-lsp-server", "ruff" },
   },
 }
+
+vim.lsp.config("pylsp", {
+  handlers = {
+    ["textDocument/publishDiagnostics"] = function() end,
+  },
+})
+vim.lsp.enable({ "pylsp", "ruff" })
 
 ---@type LazyPluginSpec
 local Formatter = {
@@ -40,8 +39,8 @@ local Formatter = {
       ruff_fix = {
         mason = false,
       },
-    }
+    },
   },
 }
 
-return { Treesitter, LSP, Formatter }
+return { Treesitter, Mason, Formatter }

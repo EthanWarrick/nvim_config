@@ -8,19 +8,14 @@ local Treesitter = {
 }
 
 ---@type LazyPluginSpec
-local LSP = {
-  "neovim/nvim-lspconfig",
+local Mason = {
+  "williamboman/mason.nvim",
   optional = true,
-  -- Force mason to install the LSP
-  specs = { "williamboman/mason.nvim", opts = { ensure_installed = { "language-server-bitbake" } } },
   opts = {
-    servers = {
-      -- Ensure mason installs the server
-      bitbake_ls = { mason = false }, -- Official Bitbake Language Server for the Yocto Project.
-      -- bitbake_language_server = {}, -- Language server for bitbake (Freed-Wu)
-    },
+    ensure_installed = { "language-server-bitbake" },
   },
 }
+vim.lsp.enable("bitbake_language_server")
 
 ---@type LazyPluginSpec
 local Linter = {
@@ -33,4 +28,4 @@ local Linter = {
   },
 }
 
-return { Treesitter, LSP, Linter }
+return { Treesitter, Mason, Linter }

@@ -8,15 +8,13 @@ local Treesitter = {
 }
 
 ---@type LazyPluginSpec
-local LSP = {
-  "neovim/nvim-lspconfig",
+local Mason = {
+  "williamboman/mason.nvim",
   optional = true,
   opts = {
-    servers = {
-      -- Ensure mason installs the server
-      marksman = {},
-    },
+    ensure_installed = { "marksman" },
   },
 }
+vim.lsp.enable("marksman")
 
-return { Treesitter, LSP }
+return { Treesitter, Mason }
