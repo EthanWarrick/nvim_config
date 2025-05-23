@@ -64,7 +64,7 @@ Plugin.opts = {
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "branch", "diff", { "diagnostics", symbols = require("util").icons.diagnostics } },
+    lualine_b = {},
     lualine_c = {
       {
         "filename",
@@ -94,12 +94,17 @@ Plugin.opts = {
           return { fg = hl_table[vim.api.nvim_get_mode()["mode"]], gui = "bold" }
         end,
       },
+      {
+        "searchcount",
+        separator = "",
+        color = function()
+          return { fg = hl_table[vim.api.nvim_get_mode()["mode"]], gui = "bold" }
+        end,
+      },
       recordingSymbol(),
-      "encoding",
-      "fileformat",
       "filetype",
     },
-    lualine_y = { "searchcount", "progress" },
+    lualine_y = { "progress" },
     lualine_z = { "%l:%c/%L" },
   },
   inactive_sections = {
