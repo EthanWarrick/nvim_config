@@ -1,19 +1,32 @@
 ---@type LazyPluginSpec
-local Plugin = { "folke/which-key.nvim", enabled = false }
+local Plugin = { "folke/which-key.nvim" }
+
+Plugin.enabled = true
 
 Plugin.event = "VeryLazy"
 
-function Plugin.init()
-  vim.o.timeout = true
-  vim.o.timeoutlen = 300
-end
+Plugin.keys = {
+  {
+    "<leader>?",
+    function()
+      require("which-key").show({ global = false })
+    end,
+    desc = "Buffer Keymaps (which-key)",
+  },
+  {
+    "<c-w><space>",
+    function()
+      require("which-key").show({ keys = "<c-w>", loop = true })
+    end,
+    desc = "Window Hydra Mode (which-key)",
+  },
+}
+
+Plugin.opts_extend = { "spec" }
 
 Plugin.opts = {
-  options = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  },
+  preset = "helix",
+  spec = {},
 }
 
 return Plugin

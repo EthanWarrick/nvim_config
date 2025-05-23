@@ -11,10 +11,10 @@ if not string.find(vim.env.PATH, bin_dir) then
   vim.env.PATH = bin_dir .. ":" .. vim.env.PATH
 end
 
-load("user.settings")
-load("user.commands")
-load("user.keymaps")
-load("user.taskfile")
-require("user.plugins")
+load("config.options")
+load("config.commands")
+load("config.keymaps")
+load("config.taskfile")
+require("config.lazy")
 
 vim.cmd.colorscheme("onedark")
