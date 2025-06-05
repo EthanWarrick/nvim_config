@@ -50,13 +50,16 @@ Plugin.config = function(_, opts)
   local ensure_installed = {} ---@type string[]
   for _, linters in pairs(opts.linters_by_ft) do
     for _, linter in ipairs(linters) do
-      ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean } | { mason: boolean } ) }
-      local linter_opts = opts.linters[linter] or {}
-      if linter_opts.mason ~= false then
-        if mr.has_package(linter) then
-          ensure_installed = vim.list_extend(ensure_installed, { linter })
-        else
-          vim.notify("Linter not in Mason registry: " .. linter, vim.log.levels.WARN)
+      if not vim.list_contains(ensure_installed, linter) then
+        ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean } | { mason: boolean } ) }
+        local linter_opts = opts.linters[linter] or {}
+        if linter_opts.mason ~= false then
+          if mr.has_package(linter) then
+            -- ensure_installed = vim.list_extend(ensure_installed, { linter })
+            table.insert(ensure_installed, linter)
+          else
+            vim.notify("Linter not in Mason registry: " .. linter, vim.log.levels.WARN)
+          end
         end
       end
     end
