@@ -158,7 +158,9 @@ Plugin.opts = function()
 end
 
 Plugin.config = function(_, opts)
-  require("fzf-lua").setup(opts)
+  local fzf_lua = require("fzf-lua")
+  fzf_lua.setup(opts)
+  fzf_lua.register_ui_select()
 end
 
 return Plugin
