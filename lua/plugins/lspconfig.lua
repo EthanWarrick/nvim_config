@@ -41,7 +41,21 @@ Plugin.opts = {
   capabilities = {},
   -- LSP Server Settings
   ---@type lspconfig.options
-  servers = {},
+  servers = {
+    -- [lsp_server] = {
+    --   enabled? boolean
+    --   single_file_support? boolean
+    --   silent? boolean
+    --   filetypes? string[]
+    --   filetype? string
+    --   on_new_config? fun(new_config: lspconfig.Config?, new_root_dir: string)
+    --   autostart? boolean
+    --   package _on_attach? fun(client: vim.lsp.Client, bufnr: integer)
+    --   root_dir? string|fun(filename: string, bufnr: number)
+    --   commands? table<string, lspconfig.Config.command>
+    --   mason? boolean
+    -- }
+  },
   -- you can do any additional lsp server setup here
   -- return true if you don't want this server to be setup with lspconfig
   ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
