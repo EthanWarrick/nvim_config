@@ -1,3 +1,7 @@
+-- Set Leader Keys
+vim.g.mapleader = " " -- Set leader key as space
+vim.g.maplocalleader = "\\" -- Set local leader key as backslash
+
 vim.keymap.set("n", "<esc>", function()
   vim.api.nvim_command("fclose")
   vim.api.nvim_command("nohlsearch")
