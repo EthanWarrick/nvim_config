@@ -58,3 +58,21 @@ vim.opt.wildmode = "longest,longest,longest:full,full"
 vim.opt.listchars = { trail = "-", nbsp = "+", tab = "▏ ", eol = "↴" }
 vim.opt.list = false
 -------------------------------------------------------------------------------
+
+----------------------------- Diagnostic Behavior -----------------------------
+local icons = require("util").icons.diagnostics
+vim.diagnostic.config({
+  severity_sort = true, --  Sort diagnostics by severity
+  float = {
+    source = true, -- Include the diagnostic source in the message
+  },
+  signs = { -- Set diagnostic icons
+    text = {
+      [vim.diagnostic.severity.ERROR] = icons.error,
+      [vim.diagnostic.severity.WARN] = icons.warn,
+      [vim.diagnostic.severity.HINT] = icons.hint,
+      [vim.diagnostic.severity.INFO] = icons.info,
+    },
+  },
+})
+-------------------------------------------------------------------------------

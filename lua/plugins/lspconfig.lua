@@ -19,24 +19,7 @@ Plugin.cmd = {
 
 Plugin.event = { "BufReadPre", "BufNewFile" }
 
-local icons = require("util").icons.diagnostics
 Plugin.opts = {
-  -- options for vim.diagnostic.config()
-  ---@type vim.diagnostic.Opts
-  diagnostics = {
-    severity_sort = true,
-    float = {
-      source = true,
-    },
-    signs = {
-      text = {
-        [vim.diagnostic.severity.ERROR] = icons.error,
-        [vim.diagnostic.severity.WARN] = icons.warn,
-        [vim.diagnostic.severity.HINT] = icons.hint,
-        [vim.diagnostic.severity.INFO] = icons.info,
-      },
-    },
-  },
   -- add any global capabilities here
   capabilities = {},
   -- LSP Server Settings
@@ -70,9 +53,6 @@ function Plugin.config(_, opts)
     desc = "LSP actions",
     callback = user.on_attach,
   })
-
-  -- diagnostics config
-  vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
   local servers = opts.servers
   local has_cmp, cmp_nvim_lsp = pcall(require, "blink.cmp")
