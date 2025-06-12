@@ -51,11 +51,32 @@ local CmpCompletion = {
 }
 
 ---@type LazyPluginSpec
+local BlinkCompletionSrc = {
+  "fang2hou/blink-copilot",
+  dependencies = { "zbirenbaum/copilot.lua" },
+  opts = function()
+    local icon = require("util").icons.kinds.Copilot
+    return {
+      max_completions = 3,
+      max_attempts = 4,
+      kind_name = "Copilot", ---@type string | false
+      kind_icon = icon, ---@type string | false
+      kind_hl = false, ---@type string | false
+      debounce = 200, ---@type integer | false
+      auto_refresh = {
+        backward = true,
+        forward = true,
+      },
+    }
+  end,
+}
+
+---@type LazyPluginSpec
 local BlinkCompletion = {
   "saghen/blink.cmp",
   optional = true,
   dependencies = {
-    { "giuxtaposition/blink-cmp-copilot", dependencies = { "zbirenbaum/copilot.lua" } },
+    { BlinkCompletionSrc },
   },
   opts = {
     sources = {
@@ -63,18 +84,9 @@ local BlinkCompletion = {
       providers = {
         copilot = {
           name = "copilot",
-          module = "blink-cmp-copilot",
+          module = "blink-copilot",
           score_offset = 100,
           async = true,
-          transform_items = function(_, items)
-            local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-            local kind_idx = #CompletionItemKind + 1
-            CompletionItemKind[kind_idx] = "Copilot"
-            for _, item in ipairs(items) do
-              item.kind = kind_idx
-            end
-            return items
-          end,
         },
       },
     },
@@ -88,13 +100,15 @@ local CopilotChat = {
     { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
     { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
   },
+  build = "make tiktoken", -- Only on MacOS or Linux
   opts = function()
     local user = vim.env.USER or "User"
     user = user:sub(1, 1):upper() .. user:sub(2)
+    local icon = require("util").icons.kinds.Copilot
     return {
       model = "gpt-4", -- GPT model to use, 'gpt-3.5-turbo', 'gpt-4', or 'gpt-4o'
       question_header = " " .. user .. " ", -- Header to use for user questions
-      answer_header = "  Copilot ", -- Header to use for AI answers
+      answer_header = icon .. " Copilot ", -- Header to use for AI answers
       show_help = false, -- Shows help message as virtual lines when waiting for user input
       window = {
         width = 0.4,
