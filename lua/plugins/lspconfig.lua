@@ -46,19 +46,8 @@ Plugin.opts = {
 
 function Plugin.config(_, opts)
   local servers = opts.servers
-  local has_cmp, cmp_nvim_lsp = pcall(require, "blink.cmp")
-  local capabilities = vim.tbl_deep_extend(
-    "force",
-    {},
-    vim.lsp.protocol.make_client_capabilities(),
-    has_cmp and cmp_nvim_lsp.get_lsp_capabilities() or {},
-    opts.capabilities or {}
-  )
-
   local function setup(server)
-    local server_opts = vim.tbl_deep_extend("force", {
-      capabilities = vim.deepcopy(capabilities),
-    }, servers[server] or {})
+    local server_opts = servers[server] or {}
 
     if opts.setup[server] then
       if opts.setup[server](server, server_opts) then
