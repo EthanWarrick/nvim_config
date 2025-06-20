@@ -33,20 +33,6 @@ local BlinkCompletion = {
   },
 }
 
-local CmpCompletion = {
-  "hrsh7th/nvim-cmp",
-  optional = true,
-  dependencies = { "saadparwaiz1/cmp_luasnip" },
-  opts = function(_, opts)
-    opts.snippet = {
-      expand = function(args)
-        require("luasnip").lsp_expand(args.body)
-      end,
-    }
-    table.insert(opts.sources, { name = "luasnip" })
-  end,
-}
-
-Snippet_Engine.specs = { BlinkCompletion, CmpCompletion }
+Snippet_Engine.specs = { BlinkCompletion }
 
 return { Snippet_Engine, Snippet_Source }
