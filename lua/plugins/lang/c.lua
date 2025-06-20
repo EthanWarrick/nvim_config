@@ -50,32 +50,4 @@ local Linter = {
   },
 }
 
-local Extra = {
-  "p00f/clangd_extensions.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-  opts = {
-    ast = {
-      --These require codicons (https://github.com/microsoft/vscode-codicons)
-      role_icons = {
-        type = "",
-        declaration = "",
-        expression = "",
-        specifier = "",
-        statement = "",
-        ["template argument"] = "",
-      },
-      kind_icons = {
-        Compound = "",
-        Recovery = "",
-        TranslationUnit = "",
-        PackExpansion = "",
-        TemplateTypeParm = "",
-        TemplateTemplateParm = "",
-        TemplateParamObject = "",
-      },
-    },
-  },
-}
-
-return { Treesitter, Mason, Linter, Extra }
+return { Treesitter, Mason, Linter }
