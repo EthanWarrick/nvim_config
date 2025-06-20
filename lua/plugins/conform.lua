@@ -25,12 +25,6 @@ _G.my_formatexpr = function()
   end
 end
 
-Plugin.init = function()
-  -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-  vim.o.formatexpr = "v:lua.my_formatexpr()"
-  vim.g.disable_autoformat = true
-end
-
 ---@type conform.setupOpts
 Plugin.opts = {
   format_on_save = function(bufnr)
@@ -75,6 +69,10 @@ Plugin.opts = {
 
 ---@param opts conform.setupOpts
 Plugin.config = function(_, opts)
+  -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+  vim.o.formatexpr = "v:lua.my_formatexpr()"
+  vim.g.disable_autoformat = true
+
   -- Check mason registry for formatter packages
   local mr = require("mason-registry")
   local ensure_installed = {} ---@type string[]
