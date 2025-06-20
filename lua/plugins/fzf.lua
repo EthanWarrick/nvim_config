@@ -128,12 +128,20 @@ Plugin.keys = {
     desc = "View registers",
   },
   {
-    "<leader>k",
+    "<leader>fk",
     function()
       require("fzf-lua").keymaps()
     end,
     mode = "n",
     desc = "View keymaps",
+  },
+  {
+    "<leader>F",
+    function()
+      require("fzf-lua").resume()
+    end,
+    mode = "n",
+    desc = "Resume last FZF search",
   },
 }
 
