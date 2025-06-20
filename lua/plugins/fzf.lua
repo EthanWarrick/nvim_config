@@ -15,19 +15,6 @@ Plugin.dependencies = {
       "ln -srf ./bin/fzf " .. vim.fn.stdpath("data") .. "/bin/",
     }, -- Assumes bin directory is in PATH
   },
-  {
-    "roginfarrer/fzf-lua-lazy.nvim",
-    keys = {
-      {
-        "<leader>fv",
-        function()
-          require("fzf-lua-lazy").search()
-        end,
-        mode = "n",
-        desc = "Find in lazy.nvim spec",
-      },
-    },
-  },
 }
 
 Plugin.keys = {
