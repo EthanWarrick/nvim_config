@@ -60,6 +60,14 @@ Plugin.keys = {
     mode = "n",
     desc = "Current buffer fuzzy find",
   },
+  {
+    "<leader>fl",
+    function()
+      require("fzf-lua").lines()
+    end,
+    mode = "n",
+    desc = "Fuzzy find in all open buffers",
+  },
   -- Git --
   {
     "<leader>gC",
