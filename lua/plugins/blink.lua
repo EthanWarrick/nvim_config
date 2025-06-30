@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 local Plugin = { "saghen/blink.cmp" }
 
-Plugin.version = "*" -- use a release tag to download pre-built binaries
+Plugin.version = "1.*" -- use a release tag to download pre-built binaries
 
 Plugin.event = "InsertEnter"
 
@@ -58,5 +58,14 @@ Plugin.opts = {
 }
 
 Plugin.opts_extend = { "sources.default" } -- Secret Lazy.nvim spec
+
+Plugin.config = function(_, opts)
+  local blink = require("blink.cmp")
+  blink.setup(opts)
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = vim.tbl_deep_extend("force", capabilities, blink.get_lsp_capabilities({}, false))
+  -- Make sure capabilities are added elsewhere with `capabilities = vim.tbl_deep_extend('force', capabilities, {...})`
+end
 
 return Plugin

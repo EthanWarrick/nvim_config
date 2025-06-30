@@ -12,7 +12,7 @@ if not string.find(vim.env.PATH, bin_dir) then
 end
 
 load("config.options")
-load("config.commands")
+load("config.autocommands")
 load("config.keymaps")
 load("config.taskfile")
 require("config.lazy")

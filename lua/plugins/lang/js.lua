@@ -8,15 +8,13 @@ local Treesitter = {
 }
 
 ---@type LazyPluginSpec
-local LSP = {
-  "neovim/nvim-lspconfig",
+local Mason = {
+  "williamboman/mason.nvim",
   optional = true,
   opts = {
-    servers = {
-      -- Ensure mason installs the server
-      ts_ls = {}, -- Requires Node.js | Might need to update Node.js
-    },
+    ensure_installed = { "typescript-language-server" },
   },
 }
+vim.lsp.enable("ts_ls")
 
-return { Treesitter, LSP }
+return { Treesitter, Mason }

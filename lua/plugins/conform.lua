@@ -25,12 +25,6 @@ _G.my_formatexpr = function()
   end
 end
 
-Plugin.init = function()
-  -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-  vim.o.formatexpr = "v:lua.my_formatexpr()"
-  vim.g.disable_autoformat = true
-end
-
 ---@type conform.setupOpts
 Plugin.opts = {
   format_on_save = function(bufnr)
@@ -75,17 +69,23 @@ Plugin.opts = {
 
 ---@param opts conform.setupOpts
 Plugin.config = function(_, opts)
+  -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+  vim.o.formatexpr = "v:lua.my_formatexpr()"
+  vim.g.disable_autoformat = true
+
   -- Check mason registry for formatter packages
   local mr = require("mason-registry")
   local ensure_installed = {} ---@type string[]
   for _, formatters in pairs(opts.formatters_by_ft) do
     for _, formatter in ipairs(formatters) do
-      local formatter_opts = opts.formatters[formatter] or {} ---@type conform.FormatterConfigOverride | {mason: boolean}
-      if formatter_opts.mason ~= false then
-        if mr.has_package(formatter) then
-          ensure_installed = vim.list_extend(ensure_installed, { formatter })
-        else
-          vim.notify("Formatter not in Mason registry: " .. formatter, vim.log.levels.WARN)
+      if not vim.list_contains(ensure_installed, formatter) then
+        local formatter_opts = opts.formatters[formatter] or {} ---@type conform.FormatterConfigOverride | {mason: boolean}
+        if formatter_opts.mason ~= false then
+          if mr.has_package(formatter) then
+            table.insert(ensure_installed, formatter)
+          else
+            vim.notify("Formatter not in Mason registry: " .. formatter, vim.log.levels.WARN)
+          end
         end
       end
     end

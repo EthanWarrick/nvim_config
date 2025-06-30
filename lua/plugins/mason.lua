@@ -39,7 +39,7 @@ Plugin.config = function(_, opts)
   local ensure_installed = {} ---@type string[]
   for _, tool in ipairs(opts.ensure_installed) do
     if mr.has_package(tool) then
-      ensure_installed = vim.list_extend(ensure_installed, { tool })
+      table.insert(ensure_installed, tool)
     else
       vim.notify("Package not in Mason registry: " .. tool, vim.log.levels.WARN)
     end

@@ -1,5 +1,6 @@
--- Space as leader key
-vim.g.mapleader = " "
+-- Set Leader Keys
+vim.g.mapleader = " " -- Set leader key as space
+vim.g.maplocalleader = "\\" -- Set local leader key as backslash
 
 -- Shortcuts
 vim.keymap.set("n", "<leader>a", ":keepjumps normal! ggVG<cr>", { desc = "Visual select whole buffer" })
@@ -22,6 +23,7 @@ vim.keymap.set({ "x", "o" }, "il", ":normal! ^vg_<CR>", { desc = "'in-line' text
 vim.keymap.set({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set({ "n", "x" }, "gY", '"+Y', { remap = true, desc = "Copy to system clipboard" })
 vim.keymap.set({ "n", "x" }, "gp", '"+p', { desc = "Paste to system clipboard" })
+vim.keymap.set({ "n", "x" }, "gP", '"+P', { desc = "Paste to system clipboard" })
 vim.keymap.set("n", "<C-p>", ":let @+ = @%<cr>", { desc = "Copy relative path to system clipboard" })
 vim.keymap.set({ "n", "x" }, "x", '"_x', { desc = 'Delete without saving to " register' })
 

@@ -15,28 +15,29 @@ local Extra = {
 }
 
 ---@type LazyPluginSpec
-local LSP = {
-  "neovim/nvim-lspconfig",
+local Mason = {
+  "williamboman/mason.nvim",
   optional = true,
   opts = {
-    servers = {
-      jsonls = {
-        -- lazy-load schemastore when needed
-        on_new_config = function(new_config)
-          new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-          vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
-        end,
-        settings = {
-          json = {
-            format = {
-              enable = true,
-            },
-            validate = { enable = true },
-          },
-        },
-      },
-    },
+    ensure_installed = { "json-lsp" },
   },
 }
 
-return { Treesitter, LSP, Extra }
+vim.lsp.config("jsonls", {
+  -- lazy-load schemastore when needed
+  before_init = function(_, new_config)
+    new_config.settings.json.schemas =
+      vim.tbl_deep_extend("force", new_config.settings.json.schemas or {}, require("schemastore").json.schemas())
+  end,
+  settings = {
+    json = {
+      format = {
+        enable = true,
+      },
+      validate = { enable = true },
+    },
+  },
+})
+vim.lsp.enable("jsonls")
+
+return { Treesitter, Mason, Extra }

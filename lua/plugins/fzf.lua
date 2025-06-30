@@ -73,6 +73,14 @@ Plugin.keys = {
     mode = "n",
     desc = "Current buffer fuzzy find",
   },
+  {
+    "<leader>fl",
+    function()
+      require("fzf-lua").lines()
+    end,
+    mode = "n",
+    desc = "Fuzzy find in all open buffers",
+  },
   -- Git --
   {
     "<leader>gC",
@@ -141,12 +149,20 @@ Plugin.keys = {
     desc = "View registers",
   },
   {
-    "<leader>k",
+    "<leader>fk",
     function()
       require("fzf-lua").keymaps()
     end,
     mode = "n",
     desc = "View keymaps",
+  },
+  {
+    "<leader>F",
+    function()
+      require("fzf-lua").resume()
+    end,
+    mode = "n",
+    desc = "Resume last FZF search",
   },
 }
 
@@ -171,7 +187,9 @@ Plugin.opts = function()
 end
 
 Plugin.config = function(_, opts)
-  require("fzf-lua").setup(opts)
+  local fzf_lua = require("fzf-lua")
+  fzf_lua.setup(opts)
+  fzf_lua.register_ui_select()
 end
 
 return Plugin

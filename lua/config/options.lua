@@ -63,3 +63,21 @@ vim.opt.list = true
 -------------------------------- Diff Behavior --------------------------------
 vim.opt.diffopt = "internal,filler,closeoff,foldcolumn:1,followwrap,algorithm:histogram"
 -------------------------------------------------------------------------------
+
+----------------------------- Diagnostic Behavior -----------------------------
+local icons = require("util").icons.diagnostics
+vim.diagnostic.config({
+  severity_sort = true, --  Sort diagnostics by severity
+  float = {
+    source = true, -- Include the diagnostic source in the message
+  },
+  signs = { -- Set diagnostic icons
+    text = {
+      [vim.diagnostic.severity.ERROR] = icons.error,
+      [vim.diagnostic.severity.WARN] = icons.warn,
+      [vim.diagnostic.severity.HINT] = icons.hint,
+      [vim.diagnostic.severity.INFO] = icons.info,
+    },
+  },
+})
+-------------------------------------------------------------------------------
