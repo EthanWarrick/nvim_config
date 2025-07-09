@@ -170,6 +170,13 @@ Plugin.opts = function()
         end, { buffer = b, expr = true })
       end,
     },
+    files = {
+      hidden = true, -- search hidden files
+      follow = false, -- don't follow symlinks
+      no_ignore = true, -- don't respect .gitignore
+      toggle_ignore_flag = "--no-ignore --ignore-file=$HOME/.config/fd/ignore",
+    },
+    grep = { hidden = true, follow = false, no_ignore = true },
   }
 end
 
