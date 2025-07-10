@@ -50,4 +50,15 @@ local Linter = {
   },
 }
 
-return { Treesitter, Mason, Linter }
+---@type LazyPluginSpec
+local Formatter = {
+  "stevearc/conform.nvim",
+  optional = true,
+  opts = {
+    formatters_by_ft = {
+      c = { "clang-format" },
+    },
+  },
+}
+
+return { Treesitter, Mason, Linter, Formatter }
