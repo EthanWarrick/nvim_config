@@ -35,10 +35,13 @@ local Linter = {
   optional = true,
   opts = {
     linters_by_ft = {
-      c = { "checkpatch" },
+      c = { "clangtidy", "checkpatch" },
     },
     ---@type { [string]: ( lint.Linter | {condition: fun(ctx: table): boolean} | {mason: boolean} ) }
     linters = {
+      clangtidy = {
+        mason = false,
+      },
       checkpatch = {
         cmd = "./scripts/checkpatch.pl",
         condition = function(_)
