@@ -71,5 +71,16 @@ vim.api.nvim_exec2(
 )
 
 -- Highlight word under cursor / visual selection (navigatable as search)
-vim.keymap.set("n", "<BS>", ":let @/=expand('<cword>') <bar> set hls <cr>", { silent = true })
-vim.keymap.set("x", "<BS>", '""y:<c-u>let @/="<c-r>\"" <bar> set hls <cr>', { silent = true })
+vim.keymap.set("n", "<BS>", function()
+  vim.fn.setreg("/", "\\<" .. vim.fn.expand("<cword>") .. "\\>")
+  vim.opt.hlsearch = true
+end, { silent = true })
+vim.keymap.set(
+  "x",
+  "<BS>",
+  require("util").grep_operator(function(query)
+    vim.fn.setreg("/", query:gsub("\n", "\\n"))
+    vim.opt.hlsearch = true
+  end),
+  { silent = true }
+)
