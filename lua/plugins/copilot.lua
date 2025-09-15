@@ -106,10 +106,9 @@ local CopilotChat = {
     user = user:sub(1, 1):upper() .. user:sub(2)
     local icon = require("util").icons.kinds.Copilot
     return {
-      model = "gpt-4", -- GPT model to use, 'gpt-3.5-turbo', 'gpt-4', or 'gpt-4o'
       question_header = " " .. user .. " ", -- Header to use for user questions
       answer_header = icon .. " Copilot ", -- Header to use for AI answers
-      show_help = false, -- Shows help message as virtual lines when waiting for user input
+      show_help = true, -- Shows help message as virtual lines when waiting for user input
       window = {
         width = 0.4,
       },
