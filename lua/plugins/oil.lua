@@ -27,14 +27,8 @@ Plugin.lazy = true
 Plugin.cmd = { "Oil", "Explore", "Ex", "E", "Hexplore", "He", "Vexplore", "Ve", "Sexplore", "Se", "Texplore", "Te" }
 
 Plugin.keys = {
-  {
-    "-",
-    function()
-      require("oil").open_float()
-    end,
-    mode = "n",
-    desc = "Open Oil file explorer as floating window",
-  },
+  { "-", function() require("oil").open_float() end, mode = "n", desc = "Open Oil file explorer at buffer as floating window" },
+  { "_", function() require("oil").open_float(vim.fn.getcwd()) end, mode = "n", desc = "Open Oil file explorer at cwd as floating window" },
 }
 
 ---@module 'oil'

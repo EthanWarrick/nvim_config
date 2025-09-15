@@ -35,10 +35,13 @@ local Linter = {
   optional = true,
   opts = {
     linters_by_ft = {
-      c = { "checkpatch" },
+      c = { "clangtidy", "checkpatch" },
     },
     ---@type { [string]: ( lint.Linter | {condition: fun(ctx: table): boolean} | {mason: boolean} ) }
     linters = {
+      clangtidy = {
+        mason = false,
+      },
       checkpatch = {
         cmd = "./scripts/checkpatch.pl",
         condition = function(_)
@@ -50,4 +53,15 @@ local Linter = {
   },
 }
 
-return { Treesitter, Mason, Linter }
+---@type LazyPluginSpec
+local Formatter = {
+  "stevearc/conform.nvim",
+  optional = true,
+  opts = {
+    formatters_by_ft = {
+      c = { "clang-format" },
+    },
+  },
+}
+
+return { Treesitter, Mason, Linter, Formatter }
