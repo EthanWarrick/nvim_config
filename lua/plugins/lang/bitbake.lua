@@ -17,6 +17,15 @@ local Mason = {
 }
 -- vim.lsp.enable("bitbake_language_server")
 
+vim.filetype.add({
+  pattern = {
+    ['.*meta.*/conf/.*%.inc'] = 'bitbake',
+    ['.*meta.*/.*includes/.*%.inc'] = 'bitbake',
+    ['.*/recipes%-.*/.*%.inc'] = 'bitbake',
+    ['.*/yocto/conf/.*%.inc'] = 'bitbake',
+  },
+})
+
 ---@type LazyPluginSpec
 local Linter = {
   "mfussenegger/nvim-lint",
