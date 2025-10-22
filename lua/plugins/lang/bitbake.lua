@@ -15,7 +15,7 @@ local Mason = {
     ensure_installed = { "language-server-bitbake" },
   },
 }
-vim.lsp.enable("bitbake_language_server")
+-- vim.lsp.enable("bitbake_language_server")
 
 ---@type LazyPluginSpec
 local Linter = {
