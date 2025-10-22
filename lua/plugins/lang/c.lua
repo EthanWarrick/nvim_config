@@ -22,6 +22,7 @@ vim.lsp.config("clangd", {
     "--background-index", -- Index project code in the background
     "--clang-tidy", -- use clang-tidy for code formatting
     "--fallback-style=llvm", -- formatting option if not using clang-tidy
+    "--header-insertion=never", -- Don't auto add #include directives
     vim.env.OECORE_NATIVE_SYSROOT
       and vim.env.OECORE_TARGET_ARCH
       and ("--query-driver=" .. vim.env.OECORE_NATIVE_SYSROOT .. "/**/" .. vim.env.OECORE_TARGET_ARCH .. "*"),
