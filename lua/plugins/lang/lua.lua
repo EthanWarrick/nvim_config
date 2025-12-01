@@ -67,7 +67,7 @@ local Extra = {
   "folke/lazydev.nvim",
   ft = "lua", -- only load on lua files
   cmd = "LazyDev",
-  specs = { BlinkCompletion, CmpCompletion },
+  specs = { BlinkCompletion },
   ---@type lazydev.Config
   opts = {
     library = {
