@@ -22,7 +22,7 @@ Plugin.keys = {
   { "<leader>bb", function() require("fzf-lua").buffers() end, mode = "n", desc = "Find buffers" },
   { "<leader>ff", function() require("fzf-lua").files() end, mode = "n", desc = "Find files" },
   -- Search --
-  { "<leader>fg", function() require("fzf-lua").live_grep_glob() end, mode = "n", desc = "Live grep" },
+  { "<leader>fg", function() require("fzf-lua").live_grep() end, mode = "n", desc = "Live grep" },
   { "<leader>fs", function() require("fzf-lua").lgrep_curbuf() end, mode = "n", desc = "Current buffer fuzzy find" },
   { "<leader>fl", function() require("fzf-lua").lines() end, mode = "n", desc = "Fuzzy find in all open buffers" },
   -- Git --
