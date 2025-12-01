@@ -72,7 +72,9 @@ vim.api.nvim_exec2(
 
 -- Highlight word under cursor / visual selection (navigatable as search)
 vim.keymap.set("n", "<BS>", function()
-  vim.fn.setreg("/", "\\<" .. vim.fn.expand("<cword>") .. "\\>")
+  local search = [[\<]] .. vim.fn.expand("<cword>") .. [[\>]]
+  vim.fn.setreg("/", search)
+  vim.fn.histadd("/", search)
   vim.opt.hlsearch = true
 end, { silent = true })
 vim.keymap.set(
@@ -82,6 +84,7 @@ vim.keymap.set(
     local regex_chars = [[[]*.^$\/~]] -- Vim '/' search regex chars
     local search = vim.fn.escape(query, regex_chars):gsub("\n", [[\n]])
     vim.fn.setreg("/", search)
+    vim.fn.histadd("/", search)
     vim.opt.hlsearch = true
   end),
   { silent = true }
