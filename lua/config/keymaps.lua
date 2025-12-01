@@ -80,9 +80,8 @@ vim.keymap.set(
   "<BS>",
   require("util").grep_operator(function(query)
     local regex_chars = [[[]*.^$\/~]] -- Vim '/' search regex chars
-    local pattern = string.format("[%s]", regex_chars:gsub(".", "%%%0"))
-    local escaped_query = query:gsub(pattern, [[\%0]]):gsub("\n", [[\n]])
-    vim.fn.setreg("/", escaped_query)
+    local search = vim.fn.escape(query, regex_chars):gsub("\n", [[\n]])
+    vim.fn.setreg("/", search)
     vim.opt.hlsearch = true
   end),
   { silent = true }
