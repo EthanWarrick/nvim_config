@@ -14,6 +14,7 @@ local BlinkCompletionSrc = {
   -- Make sure Copilot LSP is installed as completion source
   cond = (vim.fn.executable("copilot-language-server") == 1)
     or (vim.fn.executable(vim.fn.stdpath("data") .. "/mason/bin/copilot-language-server") == 1),
+  lazy = true,
   opts = function()
     local icon = require("util").icons.kinds.Copilot
     return {
@@ -35,7 +36,7 @@ local BlinkCompletionSrc = {
 local BlinkCompletion = {
   "saghen/blink.cmp",
   optional = true,
-  dependencies = { BlinkCompletionSrc },
+  dependencies = { "fang2hou/blink-copilot" },
   opts = {
     sources = {
       default = { "copilot" },
