@@ -108,4 +108,29 @@ Plugin.config = function(_, opts)
   -----------------------------------------------------------------------
 end
 
+---@type LazyPluginSpec
+local FzfLua = { "ibhagwan/fzf-lua" }
+FzfLua.optional = true -- Only change Oil's opts if Snacks or FzfLua is already installed
+FzfLua.specs = {       -- Change Oil opts while preserving Oil's lazy-loading
+  {
+    "stevearc/oil.nvim",
+    opts = {
+      keymaps = {
+        ["<leader>ff"] = {
+          callback = function() require("fzf-lua").files({ cwd = require("oil").get_current_dir() }) end,
+          mode = "n",
+          desc = "Find Files from the current directory",
+        },
+        ["<leader>fg"] = {
+          callback = function() require("fzf-lua").live_grep({ cwd = require("oil").get_current_dir() }) end,
+          mode = "n",
+          desc = "Live Grep from the current directory",
+        },
+      },
+    },
+  },
+}
+
+Plugin.specs = { FzfLua }
+
 return Plugin
