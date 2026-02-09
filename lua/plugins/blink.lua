@@ -20,8 +20,8 @@ Plugin.opts = {
     ["<Up>"] = { "select_prev", "fallback" },
     ["<Down>"] = { "select_next", "fallback" },
 
-    ["<C-p>"] = { "scroll_documentation_up", "fallback" },
-    ["<C-n>"] = { "scroll_documentation_down", "fallback" },
+    ["<C-p>"] = { "scroll_documentation_up" },
+    ["<C-n>"] = { "scroll_documentation_down" },
   },
 
   appearance = {
@@ -47,6 +47,8 @@ Plugin.opts = {
     -- Display a preview of the selected item on the current line
     ghost_text = { enabled = false },
   },
+
+  fuzzy = { implementation = "prefer_rust_with_warning" },
 
   -- Default list of enabled providers defined so that you can extend it
   -- elsewhere in your config, without redefining it, due to `opts_extend`

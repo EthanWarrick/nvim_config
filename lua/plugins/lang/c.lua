@@ -30,6 +30,7 @@ vim.lsp.config("clangd", {
 })
 vim.lsp.enable("clangd")
 
+---@module 'lint'
 ---@type LazyPluginSpec
 local Linter = {
   "mfussenegger/nvim-lint",
@@ -37,6 +38,8 @@ local Linter = {
   opts = {
     linters_by_ft = {
       c = { "clangtidy", "checkpatch" },
+      cpp = { "clangtidy", "checkpatch" },
+      kconfig = { "clangtidy", "checkpatch" },
     },
     ---@type { [string]: ( lint.Linter | {condition: fun(ctx: table): boolean} | {mason: boolean} ) }
     linters = {
@@ -61,6 +64,8 @@ local Formatter = {
   opts = {
     formatters_by_ft = {
       c = { "clang-format" },
+      cpp = { "clang-format" },
+      kconfig = { "clang-format" },
     },
   },
 }

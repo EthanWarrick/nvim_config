@@ -19,6 +19,9 @@ local Mason = {
 vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
+      runtime = {
+        pathStrict = false,
+      },
       completion = {
         callSnippet = "Replace",
       },
