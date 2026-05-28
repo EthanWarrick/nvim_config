@@ -1,3 +1,4 @@
+---@module 'ibl'
 ---@type LazyPluginSpec
 local Plugin = { "lukas-reineke/indent-blankline.nvim" }
 
@@ -5,7 +6,6 @@ Plugin.main = "ibl"
 
 Plugin.event = { "BufReadPost", "BufNewFile" }
 
----@module "ibl"
 ---@type ibl.config See :help ibl.setup()
 Plugin.opts = {
   enabled = true,

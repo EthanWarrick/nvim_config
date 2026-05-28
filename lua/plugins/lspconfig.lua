@@ -1,3 +1,4 @@
+---@module 'lspconfig'
 ---@type LazyPluginSpec
 local Plugin = { "neovim/nvim-lspconfig" }
 

@@ -1,22 +1,26 @@
+---@module 'nvim-treesitter'
 ---@type LazyPluginSpec
 local Treesitter = {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
+  ---@type TSConfig
+  ---@diagnostic disable-next-line: missing-fields
   opts = {
     ensure_installed = { "lua", "luadoc", "luap" },
   },
 }
 
+---@module 'mason'
 ---@type LazyPluginSpec
 local Mason = {
   "williamboman/mason.nvim",
   optional = true,
-  opts = {
+  opts = { ---@type MasonSettings
     ensure_installed = { "lua-language-server" },
   },
 }
 
-vim.lsp.config("lua_ls", {
+vim.lsp.config("lua_ls", { ---@type vim.lsp.Config
   settings = {
     Lua = {
       runtime = {
@@ -34,10 +38,12 @@ vim.lsp.config("lua_ls", {
 vim.lsp.enable("lua_ls")
 
 -- Formatter
+---@module 'conform'
 ---@type LazyPluginSpec
 local Formatter = {
   "stevearc/conform.nvim",
   optional = true,
+  ---@type conform.setupOpts
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
@@ -45,11 +51,12 @@ local Formatter = {
   },
 }
 
+---@module 'blink.cmp'
 ---@type LazyPluginSpec
 local BlinkCompletion = {
   "saghen/blink.cmp",
   optional = true,
-  opts = {
+  opts = { ---@type blink.cmp.Config
     sources = {
       default = { "lazydev" },
       providers = {

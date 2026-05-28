@@ -1,3 +1,4 @@
+---@module 'conform'
 ---@type LazyPluginSpec
 local Plugin = { "stevearc/conform.nvim" }
 
@@ -24,6 +25,10 @@ _G.my_formatexpr = function()
     return conform.formatexpr({ timeout_ms = 3000 })
   end
 end
+
+-- Override conform's default formatter class with addtional fields
+---@class conform.FormatterConfigOverride
+---@field mason? boolean Install formatter with Mason
 
 ---@type conform.setupOpts
 Plugin.opts = {
@@ -79,7 +84,7 @@ Plugin.config = function(_, opts)
   for _, formatters in pairs(opts.formatters_by_ft) do
     for _, formatter in ipairs(formatters) do
       if not vim.list_contains(ensure_installed, formatter) then
-        local formatter_opts = opts.formatters[formatter] or {} ---@type conform.FormatterConfigOverride | {mason: boolean}
+        local formatter_opts = opts.formatters[formatter] or {}
         if formatter_opts.mason ~= false then
           if mr.has_package(formatter) then
             table.insert(ensure_installed, formatter)

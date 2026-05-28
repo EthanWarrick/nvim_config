@@ -1,3 +1,4 @@
+---@module 'oil'
 ---@type LazyPluginSpec
 local Plugin = { "stevearc/oil.nvim" }
 
@@ -14,7 +15,6 @@ Plugin.keys = {
   { "_", function() require("oil").open_float(vim.fn.getcwd()) end, mode = "n", desc = "Open Oil file explorer at cwd as floating window" },
 }
 
----@module 'oil'
 ---@type oil.SetupOpts
 Plugin.opts = {
   columns = {
@@ -74,6 +74,7 @@ Plugin.config = function(_, opts)
   --------------------- Setup Legacy Netrw Commands ---------------------
   ---@param command string Command name to create
   ---@param win_opts {position:oil.OpenPreviewOpts, bang_position:oil.OpenPreviewOpts} Vim position args
+  ---@param desc string Command description
   local oil_command = function(command, win_opts, desc)
     local cmd = function(args)
       if args.bang then

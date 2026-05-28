@@ -1,7 +1,10 @@
+---@module 'nvim-treesitter'
 ---@type LazyPluginSpec
 local Treesitter = {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
+  ---@type TSConfig
+  ---@diagnostic disable-next-line: missing-fields
   opts = {
     ensure_installed = { "yaml" },
   },
@@ -14,16 +17,17 @@ local Extra = {
   lazy = true,
 }
 
+---@module 'mason'
 ---@type LazyPluginSpec
 local Mason = {
   "williamboman/mason.nvim",
   optional = true,
-  opts = {
+  opts = { ---@type MasonSettings
     ensure_installed = { "yaml-language-server" },
   },
 }
 
-vim.lsp.config("yamlls", {
+vim.lsp.config("yamlls", { ---@type vim.lsp.Config
   -- Have to add this for yamlls to understand that we support line folding
   capabilities = {
     textDocument = {

@@ -1,7 +1,10 @@
+---@module 'nvim-treesitter'
 ---@type LazyPluginSpec
 local Treesitter = {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
+  ---@type TSConfig
+  ---@diagnostic disable-next-line: missing-fields
   opts = {
     ensure_installed = { "json", "json5", "jsonc" },
   },
@@ -14,16 +17,17 @@ local Extra = {
   lazy = true,
 }
 
+---@module 'mason'
 ---@type LazyPluginSpec
 local Mason = {
   "williamboman/mason.nvim",
   optional = true,
-  opts = {
+  opts = { ---@type MasonSettings
     ensure_installed = { "json-lsp" },
   },
 }
 
-vim.lsp.config("jsonls", {
+vim.lsp.config("jsonls", { ---@type vim.lsp.Config
   -- lazy-load schemastore when needed
   before_init = function(_, new_config)
     new_config.settings.json.schemas =

@@ -1,3 +1,4 @@
+---@module 'lualine'
 ---@type LazyPluginSpec
 local Plugin = { "nvim-lualine/lualine.nvim" }
 

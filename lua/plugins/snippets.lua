@@ -1,3 +1,4 @@
+---@module 'luasnip'
 ---@type LazyPluginSpec
 local Snippet_Engine = {
   "L3MON4D3/LuaSnip",
@@ -23,10 +24,12 @@ local Snippet_Engine = {
 
 Snippet_Source = { "rafamadriz/friendly-snippets", event = "InsertEnter" }
 
+---@module 'blink.cmp'
+---@type LazyPluginSpec
 local BlinkCompletion = {
   "saghen/blink.cmp",
   optional = true,
-  opts = {
+  opts = { ---@type blink.cmp.Config
     snippets = {
       preset = "luasnip",
     },
