@@ -10,6 +10,20 @@ local Treesitter = {
   },
 }
 
+---@type LazyPluginSpec
+local Treesitter_Text_Objects = {
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  optional = true,
+  opts = {
+      select = {
+        keys = {
+          ["ag"] = "@comment.outer",
+          ["ig"] = "@comment.outer", -- No built-in inner comment object
+        },
+      },
+  },
+}
+
 ---@module 'mason'
 ---@type LazyPluginSpec
 local Mason = {
