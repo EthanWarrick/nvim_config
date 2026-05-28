@@ -1,8 +1,9 @@
+---@module 'mason'
 ---@type LazyPluginSpec
 local Mason = {
   "williamboman/mason.nvim",
   optional = true,
-  opts = {
+  opts = { ---@type MasonSettings
     ensure_installed = { "copilot-language-server" },
   },
 }
@@ -32,12 +33,13 @@ local BlinkCompletionSrc = {
   end,
 }
 
+---@module 'blink.cmp'
 ---@type LazyPluginSpec
 local BlinkCompletion = {
   "saghen/blink.cmp",
   optional = true,
   dependencies = { "fang2hou/blink-copilot" },
-  opts = {
+  opts = { ---@type blink.cmp.Config
     sources = {
       default = { "copilot" },
       providers = {

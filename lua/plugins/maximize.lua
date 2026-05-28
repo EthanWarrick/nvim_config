@@ -1,3 +1,5 @@
+---@module 'maximize'
+---@type LazyPluginSpec
 local Plugin = { "declancm/maximize.nvim" }
 
 Plugin.cmd = "Maximize"

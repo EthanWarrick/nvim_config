@@ -1,3 +1,4 @@
+---@module 'colorizer'
 ---@type LazyPluginSpec
 local Plugin = { "norcalli/nvim-colorizer.lua" }
 

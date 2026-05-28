@@ -10,6 +10,7 @@ local Treesitter = {
   },
 }
 
+---@module 'mason'
 ---@type LazyPluginSpec
 local Treesitter_Text_Objects = {
   "nvim-treesitter/nvim-treesitter-textobjects",

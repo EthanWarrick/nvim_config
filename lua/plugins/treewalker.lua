@@ -1,3 +1,5 @@
+---@module 'treewalker'
+---@type LazyPluginSpec
 local Plugin = { "aaronik/treewalker.nvim" }
 
 Plugin.keys = {

@@ -1,3 +1,4 @@
+---@module 'lazygit'
 ---@type LazyPluginSpec
 local Plugin = { "kdheepak/lazygit.nvim" }
 

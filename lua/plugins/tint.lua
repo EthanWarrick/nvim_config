@@ -1,9 +1,11 @@
+---@module 'tint'
 ---@type LazyPluginSpec
 local Plugin = { "levouh/tint.nvim" }
 
 -- Plugin.event = { "WinEnter" } -- Enables Tint on entering another window
 Plugin.cmd = { "TintEnable", "TintDisable", "TintToggle" }
 
+---@type TintUserConfiguration
 Plugin.opts = {
   tint = -55, -- Determines the intensity of dimming
   window_ignore_function = function(winid)

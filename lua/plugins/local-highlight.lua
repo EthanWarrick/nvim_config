@@ -1,3 +1,4 @@
+---@module 'local-highlight'
 ---@type LazyPluginSpec
 local Plugin = { "tzachar/local-highlight.nvim" }
 

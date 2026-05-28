@@ -1,3 +1,4 @@
+---@module 'catppuccin'
 ---@type LazyPluginSpec
 local Plugin = { "catppuccin/nvim" }
 
