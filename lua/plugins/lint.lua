@@ -86,11 +86,6 @@ Plugin.config = function(_, opts)
   -- Pass linters to plugin
   lint.linters_by_ft = opts.linters_by_ft
 
-  -- Enable diagnostics keybindings
-  vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to next diagnostic" })
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to previous diagnostic" })
-
   ---@param ms integer Debounce delay in milliseconds
   ---@param fn fun(...) Function to debounce
   ---@return fun(...) Debounced function
