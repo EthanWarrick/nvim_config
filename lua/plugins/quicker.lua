@@ -1,3 +1,5 @@
+---@module 'quicker'
+---@type LazyPluginSpec
 local Plugin = { "stevearc/quicker.nvim" }
 
 Plugin.ft = "qf"
@@ -21,7 +23,6 @@ Plugin.keys = {
   },
 }
 
----@module "quicker"
 ---@type quicker.SetupOptions
 Plugin.opts = {
   keys = {

@@ -1,3 +1,4 @@
+---@module 'lint'
 ---@type LazyPluginSpec
 local Plugin = { "mfussenegger/nvim-lint" }
 
@@ -5,17 +6,24 @@ Plugin.dependencies = { "williamboman/mason.nvim" }
 
 Plugin.event = { "BufReadPre", "BufNewFile" }
 
+-- Override nvim-lint's default linter class with addtional fields
+---@class lint.Linter
+---@field condition? fun(ctx: table): boolean Install linter when true
+---@field mason? boolean Install linter with Mason
+
 Plugin.opts = {
   -- Event to trigger linters
+  ---@type string[]
   events = { "BufWritePost", "BufReadPost", "InsertLeave" },
   -- Map of filetype to linters
+  ---@type table<string, string[]>
   linters_by_ft = {
     -- [filetype] = { "language linter" },
     -- ['*'] = { 'global linter' }, -- Run linters on all filetypes.
     -- ['_'] = { 'fallback linter' }, -- Run linters on filetypes that don't have other linters configured.
   },
   -- Custom linters and overrides for built-in linters
-  ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean } | { mason: boolean } ) }
+  ---@type { [string]: lint.Linter }
   linters = {
     -- [linter] = {
     --   cmd = 'linter_cmd',
@@ -51,7 +59,7 @@ Plugin.config = function(_, opts)
   for _, linters in pairs(opts.linters_by_ft) do
     for _, linter in ipairs(linters) do
       if not vim.list_contains(ensure_installed, linter) then
-        ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean } | { mason: boolean } ) }
+        ---@type lint.Linter
         local linter_opts = opts.linters[linter] or {}
         if linter_opts.mason ~= false then
           if mr.has_package(linter) then
@@ -78,11 +86,9 @@ Plugin.config = function(_, opts)
   -- Pass linters to plugin
   lint.linters_by_ft = opts.linters_by_ft
 
-  -- Enable diagnostics keybindings
-  vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to next diagnostic" })
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to previous diagnostic" })
-
+  ---@param ms integer Debounce delay in milliseconds
+  ---@param fn fun(...) Function to debounce
+  ---@return fun(...) Debounced function
   function M.debounce(ms, fn)
     local timer = vim.loop.new_timer()
     return function(...)
@@ -113,7 +119,7 @@ Plugin.config = function(_, opts)
     local ctx = { filename = vim.api.nvim_buf_get_name(0) }
     ctx.dirname = vim.fn.fnamemodify(ctx.filename, ":h")
     names = vim.tbl_filter(function(name)
-      ---@type { [string]: ( lint.Linter | { condition: fun(ctx: table): boolean | { mason: boolean } } ) }
+      ---@type lint.Linter
       local linter = lint.linters[name]
       if not linter then
         vim.notify("Linter not found: " .. name, vim.log.levels.WARN)

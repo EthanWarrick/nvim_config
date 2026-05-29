@@ -1,3 +1,4 @@
+---@module 'fzf-lua'
 ---@type LazyPluginSpec
 local Plugin = { "ibhagwan/fzf-lua" }
 

@@ -1,5 +1,7 @@
 local M = {}
 
+---@param callback fun(query: string)
+---@return fun()
 function M.grep_operator(callback)
   return function()
     _G.my_grep = function(mode)

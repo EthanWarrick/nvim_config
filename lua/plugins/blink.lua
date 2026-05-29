@@ -1,3 +1,4 @@
+---@module 'blink.cmp'
 ---@type LazyPluginSpec
 local Plugin = { "saghen/blink.cmp" }
 
@@ -5,7 +6,6 @@ Plugin.version = "1.*" -- use a release tag to download pre-built binaries
 
 Plugin.event = "InsertEnter"
 
----@module 'blink.cmp'
 ---@type blink.cmp.Config
 Plugin.opts = {
   keymap = {

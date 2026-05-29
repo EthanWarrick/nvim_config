@@ -1,3 +1,4 @@
+---@module 'onedark'
 ---@type LazyPluginSpec
 local Plugin = { "navarasu/onedark.nvim" }
 

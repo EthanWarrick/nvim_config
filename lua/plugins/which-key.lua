@@ -1,3 +1,4 @@
+---@module 'which-key'
 ---@type LazyPluginSpec
 local Plugin = { "folke/which-key.nvim" }
 
@@ -24,6 +25,7 @@ Plugin.keys = {
 
 Plugin.opts_extend = { "spec" }
 
+---@type wk.Opts
 Plugin.opts = {
   preset = "helix",
   spec = {},
